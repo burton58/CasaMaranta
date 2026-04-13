@@ -629,6 +629,12 @@ const DETAIL_PAGES = {
           'https://maps.google.com/maps?q=Hostaria+del+Borgo+Poschiavo',
           'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/32/07/d1/a3/caption.jpg?w=1100&h=1100&s=1'
         )}
+        ${renderPlaceCard('selva', t('Ristorante Selva','Ristorante Selva'),
+          t('Die Speisekarte ist bewusst klein und unspektakulär – im Ristorante Selva steht nicht das Essen im Vordergrund, sondern der Ort selbst. Auf rund 1\'800 m ü.M. gelegen bietet das Restaurant eine ruhige, abgeschiedene Lage inmitten der Natur. Die Aussicht und die Atmosphäre machen es zu einem idealen Ort für eine Pause während einer Wanderung oder eines Ausflugs im oberen Valposchiavo. Ein einfacher, authentischer Ort zum Durchatmen und Abschalten. Hinweis: Die Anfahrt mit dem Auto ist möglich, aber die Strasse ist eng.',
+            'The menu is intentionally small and unpretentious – at Ristorante Selva, it\'s not the food that takes centre stage, but the place itself. Situated at around 1,800 m above sea level, the restaurant offers a peaceful, secluded setting in the heart of nature. The views and atmosphere make it an ideal spot for a break during a hike or excursion in the upper Valposchiavo. A simple, authentic place to breathe and unwind. Note: Access by car is possible, but the road is narrow.'),
+          'https://maps.google.com/maps?q=Ristorante+Selva+Poschiavo',
+          'https://www.valposchiavo.org/pensioneselva/gestate.jpg'
+        )}
       </div>`
   },
 
@@ -743,6 +749,7 @@ const MAP_PLACES = [
   { lat: 46.2945, lng: 10.0542, title_de: 'Ristorante Grotto Miralago', title_en: 'Ristorante Grotto Miralago', cat: 'restaurant' },
   { lat: 46.3261, lng: 10.0668, title_de: 'Hotel Sport / Raselli – Restaurant', title_en: 'Hotel Sport / Raselli – Restaurant', cat: 'restaurant' },
   { lat: 46.3268, lng: 10.0660, title_de: 'Hostaria del Borgo', title_en: 'Hostaria del Borgo', cat: 'restaurant' },
+  { lat: 46.3512, lng: 10.0490, title_de: 'Ristorante Selva', title_en: 'Ristorante Selva', cat: 'restaurant' },
   // Grocery
   { lat: 46.3252, lng: 10.0642, title_de: 'Coop Poschiavo', title_en: 'Coop Poschiavo', cat: 'grocery' },
   // Activities

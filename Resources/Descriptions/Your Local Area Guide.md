@@ -3,27 +3,43 @@
 
 **Restaurants**
 
-Pizzeria Albrici
+Pizzeria Albrici Pic: https://www.gaultmillau.ch/fp/660/440/1280/854/sites/default/files/hotel_albrici_.jpg 
 This restaurant, located right in the middle of Poschiavo’s town square, offers delicious pizzas, quality meats, and local specialties.
 
 
-Bio-Bistro Semadeni
+Bio-Bistro Semadeni Pic: https://img.oastatic.com/imgsrc/42081867/.jpg
 Coffee with amazing Italian Ice Cream.
 
 
-Ristorante Croce Bianca
-Excellent cuisine and a refined atmosphere.
+Ristorante Croce Bianca Pic: https://www.croce-bianca.ch/de/img/asset/YXNzZXRzL2hlcm8vaG9tZS1yaXN0b3JhbnRlLmpwZw/home-ristorante.jpg?fm=webp&q=80&fit=crop&s=6877315a59998d39049fb712f1aa51d1
+Excellent cuisine and a refined atmosphere. 
 
 
-Risturant al Bernina
+Risturant al Bernina Pic: https://storage.e.jimdo.com/cdn-cgi/image/quality=85,fit=scale-down,format=auto,width=1024,height=763/image/508065883/ee6781fc-441b-4863-8d46-15cd7caaf590.png
+geniessen Sie eine Mischung aus regionaler Küche und klassischen Gerichten – von einfachen, herzhaften Speisen bis hin zu Pizza und Desserts. Die Atmosphäre ist unkompliziert und freundlich – ideal für einen gemütlichen Abend im Dorf.
 
 
-Ristorante giardino - Hotel La Romantica
+Ristorante giardino - Hotel La Romantica https://www.freedreams.ch/media/detail/hotel/229491-hotel-la-romantica-le-prese-906423f852af266f.jpg
 Near Lake Poschiavo, this restaurant features a beautiful garden, excellent food, and friendly staff. There is also a great playground for children, and the mini-golf course is located right next door.
 
 
-Ristorante Grotto Miralago
-Great food and beautiful restaurant.
+Ristorante Grotto Miralago https://www.albergomiralago.ch/wp-content/uploads/2023/04/8_optimized.jpg
+Das Grotto Miralago liegt direkt am Ufer des Lago di Poschiavo und gehört zu den besonders stimmungsvollen Restaurants der Region. In historischem Ambiente – vom alten Grotto über eine umgebaute Stallung bis zur Terrasse mit Seeblick – werden regionale und saisonale Gerichte mit frischen Zutaten serviert.
+
+Hotel Sport / Raselli – Restaurant  (https://dynamic-media-cdn.tripadvisor.com/media/photo-o/07/fd/cb/cd/wintergarten.jpg?w=500&h=-1&s=1)
+Das Restaurant im Raselli Sport Hotel ist ein klassisches, familiengeführtes Haus mit viel Charme und Tradition. Hier erwartet Sie eine gemütliche Atmosphäre mit typischer Bündner Stube, Terrasse und Veranda.
+Serviert werden regionale Spezialitäten aus dem Valposchiavo sowie italienische Klassiker und Pizza aus dem Holzofen. Besonders geschätzt werden die Gerichte mit lokalen und teilweise hausgemachten Bio-Zutaten. 
+
+Hostaria del Borgo (https://dynamic-media-cdn.tripadvisor.com/media/photo-o/32/07/d1/a3/caption.jpg?w=1100&h=1100&s=1)
+Die Hostaria del Borgo ist eine kleine, stilvolle Wein- und Aperobar im historischen Zentrum von Poschiavo. Der Fokus liegt auf lokalen Weinen aus dem Valposchiavo sowie einer sorgfältig ausgewählten Karte mit kleinen regionalen Spezialitäten. Hier treffen sich touristen und Einheimischen gleichermassen.
+
+Ristorante Selva (https://www.valposchiavo.org/pensioneselva/gestate.jpg)
+
+Die Speisekarte ist bewusst klein und unspektakulär – im Ristorante Selva steht nicht das Essen im Vordergrund, sondern der Ort selbst.
+Auf rund 1’800 m ü. M. gelegen bietet das Restaurant eine ruhige, abgeschiedene Lage inmitten der Natur. Die Aussicht und die Atmosphäre machen es zu einem idealen Ort für eine Pause während einer Wanderung oder eines Ausflugs im oberen Valposchiavo.
+Ein einfacher, authentischer Ort zum Durchatmen und Abschalten. Achtung die anfahrt mit dem Auto ist auch möglich aber die Strasse ist jeweils etwas eng.
+
+
 
 
 **Grocery Shopping**
