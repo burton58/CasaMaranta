@@ -308,8 +308,31 @@ const DETAIL_PAGES = {
     render: () => `
       <div class="detail-section">
         <div class="detail-body">
-          ${t(`<p>Informationen zu Gartenmöbeln und Grill folgen.</p>`,
-             `<p>Garden furniture and BBQ information coming soon.</p>`)}
+          ${t(`
+            <h3>Hängematten</h3>
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ifa6c18f05905d17a/version/1776110400/image.jpg" alt="Hängematten" class="welcome-photo" />
+            <p>Gönnen Sie sich eine Auszeit in der Hängematte. Zu beiden Seiten der Pergola befinden sich Metallringe in welche sie die Karabiner einhaken können. Bitte nehmen Sie die Hängematten jeweils am Abend und bei schlechtem Wetter wieder mit ins Haus.</p>
+            <h3>Spielhaus</h3>
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=441x10000:format=jpg/path/s43189f292a34c399/image/i95cf1bfa57506cd1/version/1776110340/image.jpg" alt="Spielhaus" class="welcome-photo" />
+            <p>Unsere Kinder lieben Ihr Spielhaus und wir hoffen Ihren Kindern geht es ebenso. Wir danken Ihnen für einen sorgfältigen Umgang.</p>
+            <h3>Liegestühle</h3>
+            <p>Sie finden einige Liegestühle und sitze unter der Treppe im Haus.</p>
+            <h3>Feuerschale und Grillrost</h3>
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i3a613047bf17fa35/version/1776110877/image.jpg" alt="Feuerschale und Grillrost" class="welcome-photo" />
+            <p>Was gibt es schöneres als ein gutes Stück Fleisch vom Grill. Sie können das Feuerholz des Schwedenofens benutzen. Bitte entsorgen sie die abgehühlte (nicht warme) Kohle im Feuereimer der neben dem Schwedenofen steht. Den Grillrost bitte jeweils wieder reinigen, damit auch der nächste Gast freude daran hat.</p>
+          `, `
+            <h3>Hammocks</h3>
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ifa6c18f05905d17a/version/1776110400/image.jpg" alt="Hammocks" class="welcome-photo" />
+            <p>Treat yourself to a break in the hammock. On both sides of the pergola there are metal rings where you can hook in the carabiners. Please bring the hammocks inside each evening and in bad weather.</p>
+            <h3>Playhouse</h3>
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=441x10000:format=jpg/path/s43189f292a34c399/image/i95cf1bfa57506cd1/version/1776110340/image.jpg" alt="Playhouse" class="welcome-photo" />
+            <p>Our children love their playhouse and we hope yours will too. Thank you for treating it with care.</p>
+            <h3>Sun Loungers</h3>
+            <p>You will find some sun loungers and chairs under the stairs inside the house.</p>
+            <h3>Fire Bowl and BBQ Grate</h3>
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i3a613047bf17fa35/version/1776110877/image.jpg" alt="Fire Bowl and BBQ Grate" class="welcome-photo" />
+            <p>What could be better than a good piece of meat on the grill. You can use the firewood from the Swedish stove. Please dispose of the cooled (not warm) ash in the fire bucket next to the Swedish stove. Please clean the grill grate afterwards so the next guest can enjoy it too.</p>
+          `)}
         </div>
       </div>`
   },
