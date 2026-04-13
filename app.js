@@ -739,24 +739,24 @@ function renderPlaceCard(id, name, description, mapsUrl, imgUrl) {
 // ─────────────────────────────────────────────────────────────
 const MAP_PLACES = [
   // Property (Li Curt, Via da la Rasiga 12)
-  { lat: 46.316711796345416, lng: 10.058898761249974, title_de: 'Casa Maranta', title_en: 'Casa Maranta', cat: 'home' },
+  { lat: 46.31673649875822, lng: 10.05904302485825, title_de: 'Casa Maranta', title_en: 'Casa Maranta', cat: 'home' },
   // Restaurants
-  { lat: 46.3272, lng: 10.0672, title_de: 'Pizzeria Albrici', title_en: 'Pizzeria Albrici', cat: 'restaurant' },
-  { lat: 46.3258, lng: 10.0655, title_de: 'Bio-Bistro Semadeni', title_en: 'Bio-Bistro Semadeni', cat: 'restaurant' },
-  { lat: 46.3265, lng: 10.0675, title_de: 'Ristorante Croce Bianca', title_en: 'Ristorante Croce Bianca', cat: 'restaurant' },
-  { lat: 46.3242, lng: 10.0648, title_de: 'Risturant al Bernina', title_en: 'Risturant al Bernina', cat: 'restaurant' },
-  { lat: 46.2975, lng: 10.0558, title_de: 'Ristorante giardino – La Romantica', title_en: 'Ristorante giardino – La Romantica', cat: 'restaurant' },
-  { lat: 46.2945, lng: 10.0542, title_de: 'Ristorante Grotto Miralago', title_en: 'Ristorante Grotto Miralago', cat: 'restaurant' },
-  { lat: 46.3261, lng: 10.0668, title_de: 'Hotel Sport / Raselli – Restaurant', title_en: 'Hotel Sport / Raselli – Restaurant', cat: 'restaurant' },
-  { lat: 46.3268, lng: 10.0660, title_de: 'Hostaria del Borgo', title_en: 'Hostaria del Borgo', cat: 'restaurant' },
-  { lat: 46.3512, lng: 10.0490, title_de: 'Ristorante Selva', title_en: 'Ristorante Selva', cat: 'restaurant' },
+  { lat: 46.326483260058644, lng: 10.05801262573524, title_de: 'Pizzeria Albrici', title_en: 'Pizzeria Albrici', cat: 'restaurant' },
+  { lat: 46.326436624979245, lng: 10.05838072573526, title_de: 'Bio-Bistro Semadeni', title_en: 'Bio-Bistro Semadeni', cat: 'restaurant' },
+  { lat: 46.32371684059596, lng: 10.05781412573512, title_de: 'Ristorante Croce Bianca', title_en: 'Ristorante Croce Bianca', cat: 'restaurant' },
+  { lat: 46.32744340269469, lng: 10.058083217792698, title_de: 'Risturant al Bernina', title_en: 'Risturant al Bernina', cat: 'restaurant' },
+  { lat: 46.291544834706954, lng: 10.078285812240575, title_de: 'Ristorante giardino – La Romantica', title_en: 'Ristorante giardino – La Romantica', cat: 'restaurant' },
+  { lat: 46.273340602802236, lng: 10.100875239225077, title_de: 'Ristorante Grotto Miralago', title_en: 'Ristorante Grotto Miralago', cat: 'restaurant' },
+  { lat: 46.29148516719607, lng: 10.078040969912049, title_de: 'Hotel Sport / Raselli – Restaurant', title_en: 'Hotel Sport / Raselli – Restaurant', cat: 'restaurant' },
+  { lat: 46.32623344312135, lng: 10.05788153922796, title_de: 'Hostaria del Borgo', title_en: 'Hostaria del Borgo', cat: 'restaurant' },
+  { lat: 46.301240784683685, lng: 10.049722196898104, title_de: 'Ristorante Selva', title_en: 'Ristorante Selva', cat: 'restaurant' },
   // Grocery
-  { lat: 46.3252, lng: 10.0642, title_de: 'Coop Poschiavo', title_en: 'Coop Poschiavo', cat: 'grocery' },
+  { lat: 46.323868231066385, lng: 10.054737839227855, title_de: 'Coop Poschiavo', title_en: 'Coop Poschiavo', cat: 'grocery' },
   // Activities
-  { lat: 46.398855887937344, lng: 10.126257298365717, title_de: 'Lago di Saoseo', title_en: 'Lago di Saoseo', cat: 'activity' },
-  { lat: 46.36029945734483, lng: 10.048121868065586, title_de: 'Gletschergarten Cavaglia', title_en: 'Cavaglia Glacier Garden', cat: 'activity' },
-  { lat: 46.29190618820981, lng: 10.079156647875372, title_de: 'Minigolf Le Prese', title_en: 'Minigolf Le Prese', cat: 'activity' },
-  { lat: 46.32589281436307, lng: 10.053430150862265, title_de: 'Legend Trail', title_en: 'Legend Trail', cat: 'activity' },
+  { lat: 46.399211037342894, lng: 10.125656483564159, title_de: 'Lago di Saoseo', title_en: 'Lago di Saoseo', cat: 'activity' },
+  { lat: 46.36029205314771, lng: 10.04814332573707, title_de: 'Gletschergarten Cavaglia', title_en: 'Cavaglia Glacier Garden', cat: 'activity' },
+  { lat: 46.291932798977086, lng: 10.079160798747822, title_de: 'Minigolf Le Prese', title_en: 'Minigolf Le Prese', cat: 'activity' },
+  { lat: 46.32605125708701, lng: 10.053413802043673, title_de: 'Legend Trail', title_en: 'Legend Trail', cat: 'activity' },
 ];
 
 let googleMap = null;
