@@ -750,6 +750,8 @@ const MAP_PLACES = [
   { lat: 46.29148516719607, lng: 10.078040969912049, title_de: 'Hotel Sport / Raselli – Restaurant', title_en: 'Hotel Sport / Raselli – Restaurant', cat: 'restaurant' },
   { lat: 46.32623344312135, lng: 10.05788153922796, title_de: 'Hostaria del Borgo', title_en: 'Hostaria del Borgo', cat: 'restaurant' },
   { lat: 46.301240784683685, lng: 10.049722196898104, title_de: 'Ristorante Selva', title_en: 'Ristorante Selva', cat: 'restaurant' },
+  { lat: 46.3745729203996, lng: 10.031257060556033, title_de: 'Alp Grüm Restaurant', title_en: 'Alp Grüm Restaurant', cat: 'restaurant' },
+  { lat: 46.17400106321347, lng: 9.898421646671483, title_de: 'Ristoro Castel Grumello', title_en: 'Ristoro Castel Grumello', cat: 'restaurant' },
   // Grocery
   { lat: 46.323868231066385, lng: 10.054737839227855, title_de: 'Coop Poschiavo', title_en: 'Coop Poschiavo', cat: 'grocery' },
   { lat: 46.3243730480346, lng: 10.057473795049141, title_de: 'Mini-Markt Pozzi Alimentari – Prima Poschiavo', title_en: 'Mini-Markt Pozzi Alimentari – Prima Poschiavo', cat: 'grocery' },
@@ -761,6 +763,8 @@ const MAP_PLACES = [
   { lat: 46.36029205314771, lng: 10.04814332573707, title_de: 'Gletschergarten Cavaglia', title_en: 'Cavaglia Glacier Garden', cat: 'activity' },
   { lat: 46.291932798977086, lng: 10.079160798747822, title_de: 'Minigolf Le Prese', title_en: 'Minigolf Le Prese', cat: 'activity' },
   { lat: 46.32605125708701, lng: 10.053413802043673, title_de: 'Legend Trail', title_en: 'Legend Trail', cat: 'activity' },
+  { lat: 46.282314979738565, lng: 10.116724935399883, title_de: 'Chiesa di San Romerio', title_en: 'Chiesa di San Romerio', cat: 'activity' },
+  { lat: 46.441046491006276, lng: 9.983496645286683, title_de: 'Diavolezza', title_en: 'Diavolezza', cat: 'activity' },
 ];
 
 let googleMap = null;
