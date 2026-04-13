@@ -752,6 +752,10 @@ const MAP_PLACES = [
   { lat: 46.301240784683685, lng: 10.049722196898104, title_de: 'Ristorante Selva', title_en: 'Ristorante Selva', cat: 'restaurant' },
   // Grocery
   { lat: 46.323868231066385, lng: 10.054737839227855, title_de: 'Coop Poschiavo', title_en: 'Coop Poschiavo', cat: 'grocery' },
+  { lat: 46.3243730480346, lng: 10.057473795049141, title_de: 'Mini-Markt Pozzi Alimentari – Prima Poschiavo', title_en: 'Mini-Markt Pozzi Alimentari – Prima Poschiavo', cat: 'grocery' },
+  { lat: 46.31406828008419, lng: 10.06082644107752, title_de: 'Metzgerei Scalino', title_en: 'Metzgerei Scalino', cat: 'grocery' },
+  { lat: 46.32644174257124, lng: 10.05649741224247, title_de: 'Bäckerei Bordoni – Panetteria Pasticceria', title_en: 'Bäckerei Bordoni – Panetteria Pasticceria', cat: 'grocery' },
+  { lat: 46.32580274425881, lng: 10.05764252573522, title_de: 'Metzgerei Zanetti', title_en: 'Metzgerei Zanetti', cat: 'grocery' },
   // Activities
   { lat: 46.399211037342894, lng: 10.125656483564159, title_de: 'Lago di Saoseo', title_en: 'Lago di Saoseo', cat: 'activity' },
   { lat: 46.36029205314771, lng: 10.04814332573707, title_de: 'Gletschergarten Cavaglia', title_en: 'Cavaglia Glacier Garden', cat: 'activity' },
