@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casa Maranta – Gästemappe</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<!-- LOGIN OVERLAY -->
+<div id="login-overlay">
+  <div id="login-card">
+    <h1 class="home-title" style="margin-bottom:6px">Casa Maranta</h1>
+    <p style="color:rgba(255,255,255,0.75);margin-bottom:28px;font-size:14px">Via da la Rasiga 12 &middot; Li Curt</p>
+    <input type="password" id="login-input" placeholder="Passwort / Password" autocomplete="current-password" />
+    <p id="login-error"></p>
+    <button id="login-btn" onclick="checkLogin()">Weiter / Continue</button>
+  </div>
+</div>
+
+<div id="app-shell">
+
+<!-- ═══════════════════════════════════════════════════════
+     SPLASH / HOME SCREEN
+═══════════════════════════════════════════════════════ -->
+<div id="screen-home" class="screen active">
+  <div class="home-hero">
+    <div class="lang-toggle">
+      <button id="lang-de" class="lang-btn active" onclick="setLang('de')">DE</button>
+      <button id="lang-en" class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <div class="home-overlay">
+      <h1 class="home-title">Casa Maranta</h1>
+      <p class="home-address">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="inline-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Via da la Rasiga 12, Li Curt, 7745 CH
+      </p>
+      <button class="btn-primary" onclick="showScreen('screen-info')" data-de="Loslegen" data-en="Get Started">Loslegen</button>
+      <div class="checkinout-bar">
+        <div class="co-item">
+          <span class="co-label" data-de="Check-in ab" data-en="Check-in after">Check-in ab</span>
+          <span class="co-time">16:00</span>
+        </div>
+        <div class="co-item">
+          <span class="co-label" data-de="Check-out bis" data-en="Check-out before">Check-out bis</span>
+          <span class="co-time">10:00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     INFO GRID SCREEN
+═══════════════════════════════════════════════════════ -->
+<div id="screen-info" class="screen">
+  <div class="top-bar">
+    <button class="icon-btn" onclick="showScreen('screen-home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </button>
+    <span class="top-bar-title" data-de="Übersicht" data-en="Overview">Übersicht</span>
+    <span></span>
+  </div>
+  <div class="grid-container">
+    <button class="grid-card" onclick="showDetail('welcome')">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 11V6.75A2.75 2.75 0 0015.25 4v0A2.75 2.75 0 0012.5 6.75V11"/><path d="M12.5 11V5.5A2.5 2.5 0 0010 3v0a2.5 2.5 0 00-2.5 2.5V13"/><path d="M7.5 13V9.75A2.25 2.25 0 005.25 7.5v0A2.25 2.25 0 003 9.75V16a8 8 0 0016 0v-5"/><path d="M18 11a2.5 2.5 0 012.5 2.5V16"/></svg>
+      <span data-de="Willkommen" data-en="Welcome">Willkommen</span>
+    </button>
+    <button class="grid-card" onclick="showDetail('arrival')">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 11-7.778 7.778 5.5 5.5 0 017.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+      <span data-de="Anreise-Info" data-en="Arrival Information">Anreise-Info</span>
+    </button>
+    <button class="grid-card" onclick="showDetail('accommodation')">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span data-de="Das Haus" data-en="About the Accommodation">Das Haus</span>
+    </button>
+    <button class="grid-card" onclick="showLocalGuideModal()">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span data-de="Ausflugstipps" data-en="Your Local Area Guide">Ausflugstipps</span>
+    </button>
+    <button class="grid-card" onclick="showDetail('wifi')">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+      <span data-de="WLAN / Internet" data-en="WiFi / Internet Details">WLAN / Internet</span>
+    </button>
+    <button class="grid-card" onclick="showDetail('checkout')">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      <span data-de="Check-out" data-en="Check-out Time">Check-out</span>
+    </button>
+    <button class="grid-card" onclick="showDetail('contacts')">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.08 2.2 2 2 0 012.08.02h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      <span data-de="Notfallnummern" data-en="Useful Contact Numbers">Notfallnummern</span>
+    </button>
+    <button class="grid-card" onclick="showDetail('farewell')">
+      <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 17H2a3 3 0 000 6h20a3 3 0 000-6z"/><path d="M6 17V3a1 1 0 011-1h10a1 1 0 011 1v14"/><line x1="9" y1="8" x2="9" y2="12"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="15" y1="8" x2="15" y2="12"/></svg>
+      <span data-de="Auf Wiedersehen" data-en="So Long, Farewell!">Auf Wiedersehen</span>
+    </button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     MAP SCREEN
+═══════════════════════════════════════════════════════ -->
+<div id="screen-map" class="screen">
+  <div class="top-bar">
+    <button class="icon-btn" onclick="showScreen('screen-home')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    </button>
+    <span class="top-bar-title" data-de="Karte" data-en="Map">Karte</span>
+    <span></span>
+  </div>
+  <div id="map-container">
+    <div id="google-map"></div>
+    <div id="map-filter-bar" onclick="toggleMapFilter()">
+      <span data-de="Orte filtern" data-en="Tap to filter places">Orte filtern</span>
+      <span id="map-filter-arrow">▲</span>
+    </div>
+    <div id="map-filter-panel" class="hidden">
+      <label><input type="checkbox" class="map-cat" value="restaurant" checked onchange="updateMapMarkers()"> <span data-de="Restaurants" data-en="Restaurants">Restaurants</span></label>
+      <label><input type="checkbox" class="map-cat" value="grocery" checked onchange="updateMapMarkers()"> <span data-de="Einkaufen" data-en="Grocery Shopping">Einkaufen</span></label>
+      <label><input type="checkbox" class="map-cat" value="activity" checked onchange="updateMapMarkers()"> <span data-de="Aktivitäten" data-en="Activities">Aktivitäten</span></label>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SEARCH SCREEN
+═══════════════════════════════════════════════════════ -->
+<div id="screen-search" class="screen">
+  <div class="search-bar-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="search-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="text" id="search-input" class="search-input" oninput="doSearch()" data-placeholder-de="Suchen…" data-placeholder-en="Search…" placeholder="Suchen…" />
+    <button class="icon-btn search-clear" onclick="clearSearch()">✕</button>
+  </div>
+  <div id="search-results"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     DETAIL SCREEN (shared for all info pages)
+═══════════════════════════════════════════════════════ -->
+<div id="screen-detail" class="screen">
+  <div class="top-bar">
+    <button class="icon-btn" id="detail-back-btn" onclick="hideDetail()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <span class="top-bar-title" id="detail-title"></span>
+    <span></span>
+  </div>
+  <div id="detail-content" class="detail-content"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     BOTTOM NAV
+═══════════════════════════════════════════════════════ -->
+<nav class="bottom-nav">
+  <button class="nav-btn active" id="nav-home" onclick="showScreen('screen-home'); setNavActive('nav-home')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    <span data-de="START" data-en="HOME">START</span>
+  </button>
+  <button class="nav-btn" id="nav-info" onclick="showScreen('screen-info'); setNavActive('nav-info')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span data-de="INFO" data-en="INFO">INFO</span>
+  </button>
+  <button class="nav-btn" id="nav-map" onclick="showScreen('screen-map'); setNavActive('nav-map'); initMap()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    <span data-de="KARTE" data-en="MAP">KARTE</span>
+  </button>
+  <button class="nav-btn" id="nav-search" onclick="showScreen('screen-search'); setNavActive('nav-search')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <span data-de="SUCHE" data-en="SEARCH">SUCHE</span>
+  </button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════
+     LOCAL AREA GUIDE MODAL
+═══════════════════════════════════════════════════════ -->
+<div id="modal-localguide" class="modal hidden">
+  <div class="modal-card">
+    <div class="modal-icon-wrap">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+    </div>
+    <button class="modal-close" onclick="closeModal('modal-localguide')">✕</button>
+    <h2 class="modal-title" data-de="Ausflugstipps" data-en="Your Local Area Guide">Ausflugstipps</h2>
+    <div class="modal-list">
+      <button class="modal-item" onclick="closeModal('modal-localguide'); showDetail('restaurants')">
+        <span data-de="Restaurants" data-en="Restaurants">Restaurants</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <button class="modal-item" onclick="closeModal('modal-localguide'); showDetail('grocery')">
+        <span data-de="Einkaufen" data-en="Grocery Shopping">Einkaufen</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <button class="modal-item" onclick="closeModal('modal-localguide'); showDetail('activities')">
+        <span data-de="Aktivitäten" data-en="Activities">Aktivitäten</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+<div id="modal-backdrop" class="modal-backdrop hidden" onclick="closeAllModals()"></div>
+
+</div><!-- #app-shell -->
+<script src="app.js"></script>
+<!-- Replace YOUR_API_KEY below with your Google Maps API key -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQp4IVRPBNThAtWVxI6uOTgvkkWe3YmsM&callback=initGoogleMap"></script>
+</body>
+</html>
