@@ -311,27 +311,27 @@ const DETAIL_PAGES = {
           ${t(`
             <h3>Hängematten</h3>
             <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ifa6c18f05905d17a/version/1776110400/image.jpg" alt="Hängematten" class="welcome-photo" />
-            <p>Gönnen Sie sich eine Auszeit in der Hängematte. Zu beiden Seiten der Pergola befinden sich Metallringe in welche sie die Karabiner einhaken können. Bitte nehmen Sie die Hängematten jeweils am Abend und bei schlechtem Wetter wieder mit ins Haus.</p>
+            <p>Gönnen Sie sich eine wohlverdiente Auszeit in einer unserer Hängematten. Zu beiden Seiten der Pergola befinden sich Metallringe, in die Sie die Karabiner einhaken können. Bitte nehmen Sie die Hängematten jeweils am Abend und bei schlechtem Wetter wieder mit ins Haus.</p>
             <h3>Spielhaus</h3>
             <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=441x10000:format=jpg/path/s43189f292a34c399/image/i95cf1bfa57506cd1/version/1776110340/image.jpg" alt="Spielhaus" class="welcome-photo" />
-            <p>Unsere Kinder lieben Ihr Spielhaus und wir hoffen Ihren Kindern geht es ebenso. Wir danken Ihnen für einen sorgfältigen Umgang.</p>
+            <p>Unsere Kinder lieben dieses Spielhaus – und wir hoffen, Ihren Kindern geht es genauso! Wir freuen uns über einen sorgsamen Umgang.</p>
             <h3>Liegestühle</h3>
-            <p>Sie finden einige Liegestühle und sitze unter der Treppe im Haus.</p>
+            <p>Weitere Liegestühle und Sitzgelegenheiten finden Sie unter der Treppe im Haus.</p>
             <h3>Feuerschale und Grillrost</h3>
             <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i3a613047bf17fa35/version/1776110877/image.jpg" alt="Feuerschale und Grillrost" class="welcome-photo" />
-            <p>Was gibt es schöneres als ein gutes Stück Fleisch vom Grill. Sie können das Feuerholz des Schwedenofens benutzen. Bitte entsorgen sie die abgehühlte (nicht warme) Kohle im Feuereimer der neben dem Schwedenofen steht. Den Grillrost bitte jeweils wieder reinigen, damit auch der nächste Gast freude daran hat.</p>
+            <p>Was gibt es Schöneres als ein gutes Stück Fleisch vom Grill? Sie können das Feuerholz aus dem Vorrat beim Schwedenofen verwenden. Bitte entsorgen Sie die vollständig abgekühlte Asche im Feuereimer neben dem Schwedenofen. Den Grillrost bitten wir Sie nach dem Gebrauch zu reinigen – damit auch der nächste Gast seine Freude daran hat.</p>
           `, `
             <h3>Hammocks</h3>
             <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ifa6c18f05905d17a/version/1776110400/image.jpg" alt="Hammocks" class="welcome-photo" />
-            <p>Treat yourself to a break in the hammock. On both sides of the pergola there are metal rings where you can hook in the carabiners. Please bring the hammocks inside each evening and in bad weather.</p>
+            <p>Treat yourself to a well-deserved break in one of our hammocks. Metal rings on both sides of the pergola allow you to attach the carabiners easily. Please bring the hammocks inside each evening and whenever the weather turns.</p>
             <h3>Playhouse</h3>
             <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=441x10000:format=jpg/path/s43189f292a34c399/image/i95cf1bfa57506cd1/version/1776110340/image.jpg" alt="Playhouse" class="welcome-photo" />
-            <p>Our children love their playhouse and we hope yours will too. Thank you for treating it with care.</p>
+            <p>Our children adore this little playhouse — and we hope yours will too! We simply ask that you treat it with care.</p>
             <h3>Sun Loungers</h3>
-            <p>You will find some sun loungers and chairs under the stairs inside the house.</p>
+            <p>Additional sun loungers and chairs are stored under the stairs inside the house.</p>
             <h3>Fire Bowl and BBQ Grate</h3>
             <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i3a613047bf17fa35/version/1776110877/image.jpg" alt="Fire Bowl and BBQ Grate" class="welcome-photo" />
-            <p>What could be better than a good piece of meat on the grill. You can use the firewood from the Swedish stove. Please dispose of the cooled (not warm) ash in the fire bucket next to the Swedish stove. Please clean the grill grate afterwards so the next guest can enjoy it too.</p>
+            <p>Is there anything better than a good piece of meat fresh off the grill? Feel free to use the firewood stored by the Swedish stove. Please dispose of fully cooled ash in the fire bucket next to the stove, and give the grill grate a quick clean after use — so the next guests can enjoy it just as much.</p>
           `)}
         </div>
       </div>`
