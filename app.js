@@ -57,7 +57,9 @@ let currentDetailKey = null;
 
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  const screen = document.getElementById(id);
+  screen.classList.add('active');
+  screen.scrollTop = 0;
   if (id !== 'screen-detail') currentDetailKey = null;
 }
 
@@ -72,6 +74,7 @@ function showDetail(key) {
   if (!cfg) return;
   document.getElementById('detail-title').textContent = cfg.title();
   document.getElementById('detail-content').innerHTML = cfg.render();
+  document.getElementById('screen-detail').scrollTop = 0;
   document.getElementById('detail-back-btn').onclick = cfg.backToDetail
     ? () => showDetail(cfg.backToDetail)
     : cfg.backTo
@@ -233,6 +236,10 @@ const DETAIL_PAGES = {
             <span>${t('Strom &amp; Sicherungen', 'Electricity &amp; Fuses')}</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon"><polyline points="9 18 15 12 9 6"/></svg>
           </button>
+          <button class="modal-item" onclick="showDetail('house_doors')">
+            <span>${t('Türen &amp; Fenster', 'Doors &amp; Windows')}</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
           <button class="modal-item" onclick="showDetail('house_tv')">
             <span>${t('TV &amp; Radio', 'TV &amp; Radio')}</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon"><polyline points="9 18 15 12 9 6"/></svg>
@@ -286,6 +293,37 @@ const DETAIL_PAGES = {
         <div class="detail-body">
           ${t(`<p>Informationen zu den Küchengeräten folgen.</p>`,
              `<p>Kitchen appliance information coming soon.</p>`)}
+        </div>
+      </div>`
+  },
+
+  house_doors: {
+    title: () => t('Türen & Fenster', 'Doors & Windows'),
+    backToDetail: 'accommodation',
+    render: () => `
+      <div class="detail-section">
+        <div class="detail-body">
+          ${t(`
+            <h3>Hauseingangstüre</h3>
+            <p>Die Hauseingangstüre ist mit einem Nuki Go sowie einem Keypad an der Aussenseite ausgestattet. Sie können die Türe bequem über den Code am Keypad öffnen. Die Türe verriegelt sich automatisch jeden Abend um 23:00 Uhr. Bitte achten Sie darauf, den korrekten Code zu verwenden und die Türe nach dem Eintreten vollständig zu schliessen.</p>
+            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i64d1fb88fd9ffce8/version/1776114586/image.jpg" alt="Nuki Schloss" class="welcome-photo" style="max-height:none;object-fit:contain;" />
+            <h3>Dachfenster</h3>
+            <p>Die Dachfenster lassen sich mit einer Stange öffnen und schliessen – diese befindet sich hinter der Tür im Dachschlafzimmer. Bitte achten Sie darauf, die Fenster bei schlechter Witterung sowie beim Verlassen des Hauses immer zu schliessen.</p>
+            <h3>Verschlossene Türen im Erdgeschoss</h3>
+            <p>Die entsprechend gekennzeichneten Türen im Erdgeschoss führen zu Keller- und Heizungsräumen und sind nicht zugänglich. Sie sind mit <strong>„Privat"</strong> beschriftet.</p>
+            <h3>Verschlossene Tür im Dachgeschoss</h3>
+            <p>Auch im Dachgeschoss gibt es eine als <strong>„Privat"</strong> gekennzeichnete Tür. Dieser Raum ist nicht zugänglich.</p>
+          `, `
+            <h3>Front Door</h3>
+            <p>The front door is equipped with a Nuki Go smart lock and an external keypad. You can open the door conveniently using the code on the keypad. The door locks automatically every evening at 11:00 pm. Please make sure to use the correct code and close the door fully behind you.</p>
+            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i43c9c5b48ebbd6f4/version/1776114581/image.jpg" alt="Nuki Lock" class="welcome-photo" style="max-height:none;object-fit:contain;" />
+            <h3>Skylight Windows</h3>
+            <p>The skylight windows in the attic can be opened and closed using a pole — you'll find it behind the door in the attic bedroom. Please always close the windows when the weather turns or when leaving the house.</p>
+            <h3>Locked Doors on the Ground Floor</h3>
+            <p>The marked doors on the ground floor lead to the cellar and utility rooms and are not accessible to guests. They are labelled <strong>"Privat"</strong>.</p>
+            <h3>Locked Door in the Attic</h3>
+            <p>There is also a door in the attic marked <strong>"Privat"</strong>. This room is not accessible to guests.</p>
+          `)}
         </div>
       </div>`
   },
@@ -407,8 +445,15 @@ const DETAIL_PAGES = {
     render: () => `
       <div class="detail-section">
         <div class="detail-body">
-          ${t(`<p>Informationen zur Leseecke folgen.</p>`,
-             `<p>Reading corner information coming soon.</p>`)}
+          ${t(`
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/id75b187f1dc6bb10/version/1776112971/image.jpg" alt="Leseecke" class="welcome-photo" />
+            <p>Im Dachgeschoss finden Sie eine kleine, eher zufällige Büchersammlung. Sie sind herzlich eingeladen, darin zu stöbern und sich ein Buch zu schnappen.</p>
+            <p>Wir bitten Sie, die Bücher im Haus zu lassen – damit sich auch die nächsten Gäste daran erfreuen können.</p>
+          `, `
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/id75b187f1dc6bb10/version/1776112971/image.jpg" alt="Reading Corner" class="welcome-photo" />
+            <p>Up in the attic you'll find a small, eclectic collection of books. You are very welcome to browse through them and pick something to read.</p>
+            <p>Please leave the books in the house so that future guests can enjoy them too.</p>
+          `)}
         </div>
       </div>`
   },
@@ -419,8 +464,51 @@ const DETAIL_PAGES = {
     render: () => `
       <div class="detail-section">
         <div class="detail-body">
-          ${t(`<p>Informationen zum Schwedenofen folgen.</p>`,
-             `<p>Wood-burning stove information coming soon.</p>`)}
+          ${t(`
+            <div style="background:#fff3cd;border-left:5px solid #e6a817;border-radius:6px;padding:14px 16px;margin-bottom:20px;">
+              <strong style="font-size:1.05em;">⚠️ ACHTUNG</strong><br>
+              Der Ofen im Dachgeschoss ist ein reines Dekorationsstück – er ist <strong>nicht angeschlossen</strong> und darf <strong>nicht benutzt werden</strong>.
+            </div>
+            <h3>Schwedenofen im Wohnzimmer</h3>
+            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/if7c0ae80d3f4ff4a/version/1776112277/image.jpg" alt="Schwedenofen" class="welcome-photo" />
+            <p>Den Abend vor einem knisternden Feuer ausklingen zu lassen gehört für uns zu den schönsten Momenten im Ferienhaus. Damit Sie den Schwedenofen sicher und unkompliziert nutzen können, beachten Sie bitte folgende Hinweise:</p>
+            <h4>Sicherheitsregeln</h4>
+            <ul>
+              <li>Sicherstellen, dass das Abluftrohr geöffnet ist (der Hebel muss senkrecht stehen)</li>
+              <li>Die Türe immer geschlossen halten</li>
+              <li>Nichts auf den Schwedenofen stellen</li>
+              <li>Asche immer vollständig abkühlen lassen, bevor sie in den Ascheeimer gegeben wird</li>
+              <li>Bei Unsicherheiten bitte unseren lokalen Kontakt Anna kontaktieren</li>
+            </ul>
+            <h4>Nach Gebrauch</h4>
+            <ul>
+              <li>Kalte Asche in den Eimer neben dem Schwedenofen entsorgen</li>
+              <li>Bei Bedarf die Scheibe reinigen</li>
+            </ul>
+            <p>Vielen Dank für einen sorgfältigen Umgang – und viel Freude beim Heizen!</p>
+          `, `
+            <div style="background:#fff3cd;border-left:5px solid #e6a817;border-radius:6px;padding:14px 16px;margin-bottom:20px;">
+              <strong style="font-size:1.05em;">⚠️ IMPORTANT</strong><br>
+              The stove in the attic is purely decorative – it is <strong>not connected</strong> and must <strong>not be used</strong>.
+            </div>
+            <h3>Wood-Burning Stove in the Living Room</h3>
+            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/if7c0ae80d3f4ff4a/version/1776112277/image.jpg" alt="Wood-Burning Stove" class="welcome-photo" />
+            <p>For us, ending the evening by a crackling fire is one of the most special moments in this holiday home. To help you use the stove safely and easily, please follow the guidelines below:</p>
+            <h4>Safety Rules</h4>
+            <ul>
+              <li>Make sure the flue is open (the lever must be vertical)</li>
+              <li>Always keep the door closed while the stove is in use</li>
+              <li>Do not place anything on top of the stove</li>
+              <li>Always allow ash to cool completely before placing it in the ash bucket</li>
+              <li>If you are unsure about anything, please contact our local contact Anna</li>
+            </ul>
+            <h4>After Use</h4>
+            <ul>
+              <li>Dispose of cooled ash in the bucket next to the stove</li>
+              <li>Clean the glass if needed</li>
+            </ul>
+            <p>Thank you for taking good care of it – and enjoy the warmth!</p>
+          `)}
         </div>
       </div>`
   },
