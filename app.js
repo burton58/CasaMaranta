@@ -671,8 +671,10 @@ const DETAIL_PAGES = {
     render: () => `
       <div class="detail-section">
         <div class="info-box">
-          ${t('Für noch mehr Ideen besuchen Sie <a href="https://www.valposchiavo.ch/de/explore" target="_blank">valposchiavo.ch/de/explore</a>',
-             'For more ideas visit <a href="https://www.valposchiavo.ch/de/explore" target="_blank">valposchiavo.ch/de/explore</a>')}
+          ${t(
+            'Es gibt so viel zu sehen und zu erleben in der Region – wir teilen hier einige unserer persönlichen Highlights, die wir besonders lieben. Für noch mehr Ideen und Aktivitäten besuchen Sie das Tourismusbüro Valposchiavo oder deren Website unter <a href="https://www.valposchiavo.ch/de/explore" target="_blank">valposchiavo.ch/de/explore</a> – dort ist wirklich für jeden etwas dabei!',
+            'There is so much to see and experience in the region, and we would like to share a few of our personal highlights that we especially enjoy. For many more ideas and activities, you can also visit Valposchiavo Tourism Office or explore their website at <a href="https://www.valposchiavo.ch/de/explore" target="_blank">valposchiavo.ch/de/explore</a> – there is truly something for everyone!'
+          )}
         </div>
         ${renderPlaceCard('saoseo', t('Lago di Saoseo','Lago di Saoseo'),
           t('Der Lagh da Saoseo ist absolut eines der beeindruckendsten Ziele, die wir kennen – ein echtes Highlight der Region. Umgeben von Lärchen, Arven und dramatischer Alpenkulisse schaffen die intensiv blauen Gewässer des Sees ein atemberaubendes Bild, das wir immer wieder besuchen möchten. Sie können durch das Naturschutzgebiet Val da Camp ab Sfazù wandern oder den PostAuto-Dienst nutzen. Vom PostBus-Halt in Sfazù fährt ein kleiner Bus nach Lungacqua oder Alp Camp – die Plätze sind begrenzt, also unbedingt vorher reservieren.',
