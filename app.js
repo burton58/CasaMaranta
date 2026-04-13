@@ -635,6 +635,18 @@ const DETAIL_PAGES = {
           'https://maps.google.com/maps?q=Ristorante+Selva+Poschiavo',
           'https://www.valposchiavo.org/pensioneselva/gestate.jpg'
         )}
+        ${renderPlaceCard('alpgrum', t('Alp Grüm Restaurant','Alp Grüm Restaurant'),
+          t('Das Restaurant auf Alp Grüm liegt spektakulär auf 2\u2019091 m ü. M. und ist Teil der bekannten Station der Berninabahn. Von hier aus geniessen Sie einen beeindruckenden Blick über das Valposchiavo und auf den Palügletscher. Der ideale Start oder Abschluss einer der schönen Wanderungen in der Gegend.',
+            'The restaurant at Alp Grüm is spectacularly located at 2,091 m above sea level and is part of the well-known Bernina Railway station. From here you enjoy an impressive view over the Valposchiavo and the Palü glacier. The perfect start or end to a hike in the area.'),
+          'https://maps.google.com/maps?q=Alp+Grum+Restaurant',
+          'https://media-cdn.tripadvisor.com/media/photo-s/1e/c7/54/1b/aussicht-panorama-von.jpg'
+        )}
+        ${renderPlaceCard('castelgrumello', t('Ristoro Castel Grumello','Ristoro Castel Grumello'),
+          t('Bereits in Italien gelegen, liegt das Ristoro Castel Grumello etwas oberhalb von Tirano, direkt bei den Ruinen des Castello di Grumello. Die Lage verbindet Geschichte mit einer schönen Aussicht über das Veltlin.',
+            'Already in Italy, the Ristoro Castel Grumello sits just above Tirano, right next to the ruins of Castello di Grumello. The location combines history with a beautiful view over the Valtellina.'),
+          'https://maps.google.com/maps?q=Ristoro+Castel+Grumello+Tirano',
+          'https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1d/a2/0e/b8/ristoro-castel-grumello.jpg?w=1100&h=1100&s=1'
+        )}
       </div>`
   },
 
@@ -705,6 +717,18 @@ const DETAIL_PAGES = {
             'The Legend Trail starts near the church of San Piero and winds through old larches, firs, and colorful deciduous trees. It is an artistic route suitable for everyone, including families and school groups. Just under 2 km long, it does not present particular difficulties. On the occasion of the Valposchiavo Expo 2018, several artists and sculptors created statues representing various characters from epic poems.'),
           'https://maps.google.com/maps?q=Legend+Trail+San+Piero+Poschiavo',
           'https://media-v2.discover.swiss/image/img_4kq_gaebfiie?nobiblio=true&width=1050&height=560'
+        )}
+        ${renderPlaceCard('sanromerio', t('Chiesa di San Romerio','Chiesa di San Romerio'),
+          t('Die Chiesa di San Romerio liegt spektakulär auf einer Felskante hoch über dem Lago di Poschiavo und gehört zu den eindrücklichsten Aussichtspunkten der Region. Die kleine Kirche stammt aus dem Mittelalter und ist ein beliebtes Ziel für Wanderungen.',
+            'The Chiesa di San Romerio is spectacularly situated on a rocky ledge high above Lake Poschiavo and is one of the most impressive viewpoints in the region. The small church dates from the Middle Ages and is a popular hiking destination.'),
+          'https://maps.google.com/maps?q=Chiesa+di+San+Romerio+Poschiavo',
+          'https://lh3.googleusercontent.com/gps-cs-s/APNQkAFTCkxXb5LHNd7X_MtRMJHjoCnL1WrEzHcXcT5YHR7uq-ImeSvoJglg3NAjU6KuJVhG4wApR8Bbv8uHfln2ZswSH9EgTVx6N-UXdToBhgX_NYuNL1sHWO_RtUWOW2Hq4y98ChXk=w408-h544-k-no'
+        )}
+        ${renderPlaceCard('diavolezza', t('Diavolezza','Diavolezza'),
+          t('Auf der Diavolezza treffen sich Ausflügler, Wanderer, Schneesportler und Alpinisten – gemeinsam ist allen die Faszination für das Bernina-Massiv und die Gletscherwelt. Piz Palü und Piz Bernina sind allgegenwärtig: auf der Gletscherabfahrt nach Morteratsch, auf den Klettersteigen beim Piz Trovat oder der Sonnenterrasse des Berghauses.',
+            'Diavolezza brings together day-trippers, hikers, snow sports enthusiasts and alpinists — all united by a fascination for the Bernina massif and the glacier world. Piz Palü and Piz Bernina are ever-present: on the glacier descent to Morteratsch, on the via ferratas near Piz Trovat, or from the sun terrace of the mountain restaurant.'),
+          'https://maps.google.com/maps?q=Diavolezza+Pontresina',
+          'https://www.corvatsch-diavolezza.ch/typo3temp/assets/_processed_/1/f/csm_942afb2cccfa9244d8a38860dca3d066d2f34e29-fp-16-9-6-35_8e7b7bca77.jpg'
         )}
       </div>`
   }
