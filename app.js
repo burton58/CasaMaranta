@@ -744,7 +744,7 @@ const MAP_PLACES = [
   { lat: 46.326483260058644, lng: 10.05801262573524, title_de: 'Pizzeria Albrici', title_en: 'Pizzeria Albrici', cat: 'restaurant' },
   { lat: 46.326436624979245, lng: 10.05838072573526, title_de: 'Bio-Bistro Semadeni', title_en: 'Bio-Bistro Semadeni', cat: 'restaurant' },
   { lat: 46.32371684059596, lng: 10.05781412573512, title_de: 'Ristorante Croce Bianca', title_en: 'Ristorante Croce Bianca', cat: 'restaurant' },
-  { lat: 46.32744340269469, lng: 10.058083217792698, title_de: 'Risturant al Bernina', title_en: 'Risturant al Bernina', cat: 'restaurant' },
+  { lat: 46.32557005329137, lng: 10.057939365789553, title_de: 'Risturant al Bernina', title_en: 'Risturant al Bernina', cat: 'restaurant' },
   { lat: 46.291544834706954, lng: 10.078285812240575, title_de: 'Ristorante giardino – La Romantica', title_en: 'Ristorante giardino – La Romantica', cat: 'restaurant' },
   { lat: 46.273340602802236, lng: 10.100875239225077, title_de: 'Ristorante Grotto Miralago', title_en: 'Ristorante Grotto Miralago', cat: 'restaurant' },
   { lat: 46.29148516719607, lng: 10.078040969912049, title_de: 'Hotel Sport / Raselli – Restaurant', title_en: 'Hotel Sport / Raselli – Restaurant', cat: 'restaurant' },
