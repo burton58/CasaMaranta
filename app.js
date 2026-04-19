@@ -406,6 +406,10 @@ const DETAIL_PAGES = {
               <a href="https://fragkosmos.zendesk.com/hc/de/article_attachments/8086781066908" target="_blank">Anleitung</a></li>
               <li><strong>Yatzy</strong><br>
               <a href="https://jassverzeichnis.ch/yatzy-wuerfelspiel-spielregeln/" target="_blank">Anleitung</a></li>
+              <li><strong>Rummikub</strong><br>
+              <a href="https://rummikub.com/wp-content/uploads/2019/12/2600-Germany.pdf" target="_blank">Anleitung</a></li>
+              <li><strong>The Walking Pet</strong><br>
+              <a href="https://fragkosmos.zendesk.com/hc/de/article_attachments/8095269961884" target="_blank">Anleitung</a></li>
             </ul>
             <p>Viel Spass beim Spielen!</p>
           `, `
@@ -432,6 +436,10 @@ const DETAIL_PAGES = {
               <a href="https://cdn.1j1ju.com/medias/76/cd/cd-kahuna-rulebook.pdf" target="_blank">Rules</a></li>
               <li><strong>Yatzy</strong><br>
               <a href="https://info.lite.games/en/support/solutions/articles/60000688821-yatzy-rules" target="_blank">Rules</a></li>
+              <li><strong>Rummikub</strong><br>
+              <a href="https://rummikub.com/wp-content/uploads/2019/12/2600-Germany.pdf" target="_blank">Rules</a></li>
+              <li><strong>The Walking Pet</strong><br>
+              <a href="https://fragkosmos.zendesk.com/hc/de/article_attachments/8095269961884" target="_blank">Rules (DE only)</a></li>
             </ul>
             <p>Have fun playing!</p>
           `)}
