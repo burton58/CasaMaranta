@@ -470,7 +470,7 @@ const DETAIL_PAGES = {
               Der Ofen im Dachgeschoss ist ein reines Dekorationsstück – er ist <strong>nicht angeschlossen</strong> und darf <strong>nicht benutzt werden</strong>.
             </div>
             <h3>Schwedenofen im Wohnzimmer</h3>
-            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i0515b57424e5fe51/version/1776631923/image.jpg" alt="Schwedenofen" class="welcome-photo" />
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i0515b57424e5fe51/version/1776632934/image.jpg" alt="Schwedenofen" class="welcome-photo" />
             <p>Den Abend vor einem knisternden Feuer ausklingen zu lassen gehört für uns zu den schönsten Momenten im Ferienhaus. Damit Sie den Schwedenofen sicher und unkompliziert nutzen können, beachten Sie bitte folgende Hinweise:</p>
             <h4>Sicherheitsregeln</h4>
             <ul>
@@ -492,7 +492,7 @@ const DETAIL_PAGES = {
               The stove in the attic is purely decorative – it is <strong>not connected</strong> and must <strong>not be used</strong>.
             </div>
             <h3>Wood-Burning Stove in the Living Room</h3>
-            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i0515b57424e5fe51/version/1776631923/image.jpg" alt="Wood-Burning Stove" class="welcome-photo" />
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i24f5c7a4ed947a35/version/1776632945/image.jpg" alt="Wood-Burning Stove" class="welcome-photo" />
             <p>For us, ending the evening by a crackling fire is one of the most special moments in this holiday home. To help you use the stove safely and easily, please follow the guidelines below:</p>
             <h4>Safety Rules</h4>
             <ul>
