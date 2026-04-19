@@ -197,7 +197,7 @@ const DETAIL_PAGES = {
     backNavId: 'nav-info',
     render: () => `
       <div class="detail-section">
-        <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ic84a6eab1436503a/version/1776081120/image.jpg" alt="Casa Maranta" class="welcome-photo" />
+        <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/iec6caefdbf66df07/version/1776631199/image.jpg" alt="Casa Maranta" class="welcome-photo" />
         <div class="detail-body">
           ${t(`
             <p>Wir haben unser Ferienhaus mit viel Sorgfalt so eingerichtet, dass es für uns und für unsere Gäste möglichst gemütlich, komfortabel und funktional ist. Unser Ziel ist, dass Sie sich hier genauso wohlfühlen wie wir selbst.</p>
@@ -380,7 +380,7 @@ const DETAIL_PAGES = {
     backToDetail: 'accommodation',
     render: () => `
       <div class="detail-section">
-        <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i4a87d5d17335be37/version/1776086648/image.jpg" alt="Gesellschaftsspiele" class="welcome-photo" />
+        <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=10000x740:format=jpg:rotate=270/path/s43189f292a34c399/image/i68bbfd93c4dd7ced/version/1776632127/image.jpg" alt="Gesellschaftsspiele" class="welcome-photo" />
         <div class="detail-body">
           ${t(`
             <p>Wenn das Wetter einmal nicht mitspielt oder einfach Zeit für eine Pause ist, wird bei uns gerne gespielt. Ob ehrgeizige Jassrunde, spannende Partie oder einfach ein lustiges Spiel mit den Kindern: Für Unterhaltung ist gesorgt.</p>
@@ -470,7 +470,7 @@ const DETAIL_PAGES = {
               Der Ofen im Dachgeschoss ist ein reines Dekorationsstück – er ist <strong>nicht angeschlossen</strong> und darf <strong>nicht benutzt werden</strong>.
             </div>
             <h3>Schwedenofen im Wohnzimmer</h3>
-            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/if7c0ae80d3f4ff4a/version/1776112277/image.jpg" alt="Schwedenofen" class="welcome-photo" />
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i0515b57424e5fe51/version/1776631923/image.jpg" alt="Schwedenofen" class="welcome-photo" />
             <p>Den Abend vor einem knisternden Feuer ausklingen zu lassen gehört für uns zu den schönsten Momenten im Ferienhaus. Damit Sie den Schwedenofen sicher und unkompliziert nutzen können, beachten Sie bitte folgende Hinweise:</p>
             <h4>Sicherheitsregeln</h4>
             <ul>
@@ -492,7 +492,7 @@ const DETAIL_PAGES = {
               The stove in the attic is purely decorative – it is <strong>not connected</strong> and must <strong>not be used</strong>.
             </div>
             <h3>Wood-Burning Stove in the Living Room</h3>
-            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/if7c0ae80d3f4ff4a/version/1776112277/image.jpg" alt="Wood-Burning Stove" class="welcome-photo" />
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i0515b57424e5fe51/version/1776631923/image.jpg" alt="Wood-Burning Stove" class="welcome-photo" />
             <p>For us, ending the evening by a crackling fire is one of the most special moments in this holiday home. To help you use the stove safely and easily, please follow the guidelines below:</p>
             <h4>Safety Rules</h4>
             <ul>
