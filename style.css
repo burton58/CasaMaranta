@@ -654,6 +654,56 @@ html, body {
 /* ═══════════════════════════════════
    UTILITY
 ═══════════════════════════════════ */
+/* ── COLLAPSIBLE APPLIANCE SECTIONS ────────────────────── */
+.appliance-section {
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background: white;
+}
+.appliance-section summary {
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 16px;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+.appliance-section summary::-webkit-details-marker { display: none; }
+.appliance-section summary::after {
+  content: '›';
+  font-size: 20px;
+  color: var(--orange);
+  transform: rotate(90deg);
+  transition: transform 0.2s;
+  display: inline-block;
+}
+.appliance-section[open] summary::after {
+  transform: rotate(270deg);
+}
+.appliance-section[open] summary {
+  border-bottom: 1.5px solid var(--border);
+}
+.appliance-section > *:not(summary) {
+  padding: 0 16px;
+}
+.appliance-section > .welcome-photo {
+  padding: 0;
+  margin-top: 12px;
+}
+.appliance-section > p,
+.appliance-section > h4,
+.appliance-section > ul {
+  margin-top: 12px;
+}
+.appliance-section > *:last-child {
+  margin-bottom: 16px;
+}
+
 /* ── LOGIN OVERLAY ─────────────────────────────────────── */
 #login-overlay {
   position: fixed;

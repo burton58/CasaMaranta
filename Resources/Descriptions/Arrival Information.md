@@ -26,3 +26,10 @@ Ihre Check-in-Zeit ist {{checkin_time}}.
 In manchen Fällen können wir einen früheren Check-in ermöglichen. Bitte kontaktieren Sie uns, falls Sie früher anreisen möchten, und wir werden unser Bestes tun, dies möglich zu machen (leider können wir dies nicht garantieren).
 
 Falls Sie früh ankommen, werfen Sie gerne einen Blick in den Abschnitt „Dein Reiseführer vor Ort“. Dort haben wir viele Tipps zusammengestellt, was Sie in der Umgebung unternehmen können, während Sie warten.
+
+
+**Anreise mit der Bahn**
+Mit der Bahn oder Postauto bis Bahnhof Poschiavo und dann zu Fuss über Via da Clalt bis Via da la Rasiga 12. Distanz 1.1km (ca. 15min). Ansonsten können sie auch ein Taxi vorreservien bei https://www.balzarolo.ch info@balzarolo.ch +41 81 844 10 42
+
+**Mit dem Auto**
+Mit dem Auto direkt bis Via da la Rasiga 12 in 7745 Li Curt. Direkt vor dem Haus platz für 3 Autos. 

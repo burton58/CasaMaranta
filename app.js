@@ -306,8 +306,151 @@ const DETAIL_PAGES = {
     render: () => `
       <div class="detail-section">
         <div class="detail-body">
-          ${t(`<p>Informationen zu den Küchengeräten folgen.</p>`,
-             `<p>Kitchen appliance information coming soon.</p>`)}
+          ${t(`
+            <details class="appliance-section">
+              <summary>Herd</summary>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/icf38368539050731/version/1776714283/image.jpg" alt="Herd" class="welcome-photo" />
+              <p><a href="https://media3.bsh-group.com/Documents/9001148208_C.pdf" target="_blank">Betriebsanleitung (DE)</a></p>
+
+              <h4>Einschalten</h4>
+              <ul>
+                <li>Gerät einschalten <strong>(1)</strong></li>
+                <li>Kochplatte wählen <strong>(2)</strong></li>
+                <li>Im Einstellbereich die gewünschte Temperatur wählen <strong>(3)</strong></li>
+              </ul>
+              <h4>Kochplatte ausschalten</h4>
+              <ul>
+                <li>Kochplatte wählen <strong>(2)</strong></li>
+                <li>Im Einstellbereich auf <strong>0</strong> tippen <strong>(4)</strong></li>
+              </ul>
+              <h4>Kindersicherung</h4>
+              <p>Das Kochfeld muss ausgeschaltet sein.</p>
+              <ul>
+                <li><strong>Einschalten:</strong> Schlüssel-Symbol <strong>(5)</strong> ca. 4 Sekunden berühren. Die Anzeigelampe leuchtet 10 Sekunden – das Kochfeld ist gesperrt.</li>
+                <li><strong>Ausschalten:</strong> Schlüssel-Symbol <strong>(5)</strong> erneut ca. 4 Sekunden berühren. Die Sperre ist aufgehoben.</li>
+              </ul>
+            </details>
+
+            <details class="appliance-section">
+              <summary>Geschirrspüler</summary>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/icd9c77548f0fca49/version/1776714015/image.jpg" alt="Geschirrspüler" class="welcome-photo" />
+              <p><a href="https://media3.bsh-group.com/Documents/9000795435_A.pdf" target="_blank">Kurzanleitung (DE)</a> · <a href="https://www.manualslib.de/manual/664410/Siemens-Sn-Serie.html?page=2#manual" target="_blank">Betriebsanleitung (DE)</a></p>
+              <p>Hinter dem Abfalleimer finden Sie die Spültabs, Klarspüler und Salz für den Bedarfsfall.</p>
+              <p>Wir empfehlen das <strong>Eco-Programm</strong> und nur bei starker Verschmutzung das Intensiv-Programm.</p>
+              <div style="background:#fff3cd;border-left:5px solid var(--orange);border-radius:6px;padding:12px 14px;margin-top:10px;">⚠️ <strong>Bitte keine teflonbeschichteten Pfannen und Töpfe in den Geschirrspüler geben.</strong></div>
+              <h4>Einschalten</h4>
+              <ul>
+                <li>Gerät einschalten <strong>(1)</strong></li>
+                <li>Eco-Programm wählen <strong>(2)</strong></li>
+                <li>Start drücken <strong>(3)</strong></li>
+              </ul>
+              <p><strong>Hinweis:</strong> Während des Programmablaufs erscheint ein roter Lichtpunkt auf dem Fussboden unterhalb der Gerätetür. Die Geschirrspülertür erst öffnen, wenn der Lichtpunkt nicht mehr sichtbar ist.</p>
+            </details>
+
+            <details class="appliance-section">
+              <summary>Dampfabzug</summary>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/if6067981cf4078c3/version/1776714795/image.jpg" alt="Dampfabzug" class="welcome-photo" />
+              <p><a href="https://www.bedienungsanleitu.ng/elica/65414590a/anleitung" target="_blank">Betriebsanleitung (DE/EN)</a></p>
+              <ul>
+                <li>Stand-by: LED ausgeschaltet</li>
+                <li>Stufe 1: grünes LED</li>
+                <li>Stufe 2: gelbes LED (bernsteinfarbig)</li>
+                <li>Stufe 3: rotes LED</li>
+                <li>Stufe 4: rot blinkendes LED <em>(schaltet nach 5 Minuten automatisch auf Stufe 2 zurück)</em></li>
+              </ul>
+              <h4>Beleuchtung</h4>
+              <ul>
+                <li><strong>Kurz tippen</strong> auf Beleuchtungstaste <strong>(2)</strong>: untere Lichter ein/aus</li>
+                <li><strong>Gedrückt halten</strong> der Beleuchtungstaste <strong>(2)</strong>: obere Deckenlichter ein/aus</li>
+              </ul>
+            </details>
+
+            <details class="appliance-section">
+              <summary>Mikrowelle</summary>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i7bbaf1bf1d9fa79d/version/1776714670/image.jpg" alt="Mikrowelle" class="welcome-photo" />
+              <p><a href="https://d.otto.de/files/e2a72c22-b9ab-4ef9-9024-e8bb6587cf21.pdf" target="_blank">Betriebsanleitung (DE)</a></p>
+
+              <h4>Einschalten</h4>
+              <ul>
+                <li>Mikrowellen-Symbol wählen <strong>(1)</strong></li>
+                <li>Start drücken <strong>(2)</strong></li>
+                <li>Temperatur über +/–-Taste einstellen <strong>(3)</strong></li>
+                <li>Start drücken <strong>(2)</strong></li>
+              </ul>
+            </details>
+          `, `
+            <details class="appliance-section">
+              <summary>Hob / Cooktop</summary>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/icf38368539050731/version/1776714283/image.jpg" alt="Hob" class="welcome-photo" />
+              <p><a href="https://media3.bsh-group.com/Documents/9001154082_C.pdf" target="_blank">Operating manual (EN)</a></p>
+
+              <h4>Switching on</h4>
+              <ul>
+                <li>Switch the appliance on <strong>(1)</strong></li>
+                <li>Select the cooking zone <strong>(2)</strong></li>
+                <li>Select the desired temperature in the control area <strong>(3)</strong></li>
+              </ul>
+              <h4>Switching off a zone</h4>
+              <ul>
+                <li>Select the cooking zone <strong>(2)</strong></li>
+                <li>Tap <strong>0</strong> in the control area <strong>(4)</strong></li>
+              </ul>
+              <h4>Child lock</h4>
+              <p>The hob must be switched off.</p>
+              <ul>
+                <li><strong>Activate:</strong> Touch the key symbol <strong>(5)</strong> for approx. 4 seconds. The indicator light will glow for 10 seconds – the hob is locked.</li>
+                <li><strong>Deactivate:</strong> Touch the key symbol <strong>(5)</strong> again for approx. 4 seconds. The lock is released.</li>
+              </ul>
+            </details>
+
+            <details class="appliance-section">
+              <summary>Dishwasher</summary>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/icd9c77548f0fca49/version/1776714015/image.jpg" alt="Dishwasher" class="welcome-photo" />
+              <p><a href="https://media3.bsh-group.com/Documents/9000795435_A.pdf" target="_blank">Quick guide (DE)</a> · <a href="https://www.manualslib.de/manual/664410/Siemens-Sn-Serie.html?page=2#manual" target="_blank">Operating manual (DE)</a></p>
+              <p>Behind the bin you will find dishwasher tabs, rinse aid and salt for when they run out.</p>
+              <p>We recommend the <strong>Eco programme</strong> and only Intensive for heavily soiled loads.</p>
+              <div style="background:#fff3cd;border-left:5px solid var(--orange);border-radius:6px;padding:12px 14px;margin-top:10px;">⚠️ <strong>Please do not put Teflon-coated pans and pots in the dishwasher.</strong></div>
+              <h4>Switching on</h4>
+              <ul>
+                <li>Switch the appliance on <strong>(1)</strong></li>
+                <li>Select the Eco programme <strong>(2)</strong></li>
+                <li>Press Start <strong>(3)</strong></li>
+              </ul>
+              <p><strong>Note:</strong> During the programme, a red light dot appears on the floor beneath the appliance door. Only open the door once the light dot is no longer visible.</p>
+            </details>
+
+            <details class="appliance-section">
+              <summary>Extractor Hood</summary>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/if6067981cf4078c3/version/1776714795/image.jpg" alt="Extractor Hood" class="welcome-photo" />
+              <p><a href="https://www.bedienungsanleitu.ng/elica/65414590a/anleitung" target="_blank">Operating manual (DE/EN)</a></p>
+              <ul>
+                <li>Stand-by: LED off</li>
+                <li>Speed 1: green LED</li>
+                <li>Speed 2: yellow LED (amber)</li>
+                <li>Speed 3: red LED</li>
+                <li>Speed 4: flashing red LED <em>(automatically returns to speed 2 after 5 minutes)</em></li>
+              </ul>
+              <h4>Lighting</h4>
+              <ul>
+                <li><strong>Short tap</strong> on lighting button <strong>(2)</strong>: lower lights on/off</li>
+                <li><strong>Hold</strong> lighting button <strong>(2)</strong>: upper ceiling lights on/off</li>
+              </ul>
+            </details>
+
+            <details class="appliance-section">
+              <summary>Microwave</summary>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i7bbaf1bf1d9fa79d/version/1776714670/image.jpg" alt="Microwave" class="welcome-photo" />
+              <p><a href="https://www.manua.ls/bauknecht/mw-254-sm/manual?p=6" target="_blank">Operating manual (EN)</a></p>
+
+              <h4>Switching on</h4>
+              <ul>
+                <li>Select the microwave symbol <strong>(1)</strong></li>
+                <li>Press Start <strong>(2)</strong></li>
+                <li>Adjust power using the +/– button <strong>(3)</strong></li>
+                <li>Press Start <strong>(2)</strong></li>
+              </ul>
+            </details>
+          `)}
         </div>
       </div>`
   },
@@ -319,25 +462,41 @@ const DETAIL_PAGES = {
       <div class="detail-section">
         <div class="detail-body">
           ${t(`
-            <h3>Hauseingangstüre</h3>
-            <p>Die Hauseingangstüre ist mit einem Nuki Go sowie einem Keypad an der Aussenseite ausgestattet. Sie können die Türe bequem über den Code am Keypad öffnen. Die Türe verriegelt sich automatisch jeden Abend um 23:00 Uhr. Bitte achten Sie darauf, den korrekten Code zu verwenden und die Türe nach dem Eintreten vollständig zu schliessen.</p>
-            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i64d1fb88fd9ffce8/version/1776114586/image.jpg" alt="Nuki Schloss" class="welcome-photo" style="max-height:none;object-fit:contain;" />
-            <h3>Dachfenster</h3>
-            <p>Die Dachfenster lassen sich mit einer Stange öffnen und schliessen – diese befindet sich hinter der Tür im Dachschlafzimmer. Bitte achten Sie darauf, die Fenster bei schlechter Witterung sowie beim Verlassen des Hauses immer zu schliessen.</p>
-            <h3>Verschlossene Türen im Erdgeschoss</h3>
-            <p>Die entsprechend gekennzeichneten Türen im Erdgeschoss führen zu Keller- und Heizungsräumen und sind nicht zugänglich. Sie sind mit <strong>„Privat"</strong> beschriftet.</p>
-            <h3>Verschlossene Tür im Dachgeschoss</h3>
-            <p>Auch im Dachgeschoss gibt es eine als <strong>„Privat"</strong> gekennzeichnete Tür. Dieser Raum ist nicht zugänglich.</p>
+            <details class="appliance-section">
+              <summary>Hauseingangstüre</summary>
+              <p>Die Hauseingangstüre ist mit einem Nuki Go sowie einem Keypad an der Aussenseite ausgestattet. Sie können die Türe bequem über den Code am Keypad öffnen. Die Türe verriegelt sich automatisch jeden Abend um 23:00 Uhr. Bitte achten Sie darauf, den korrekten Code zu verwenden und die Türe nach dem Eintreten vollständig zu schliessen.</p>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i64d1fb88fd9ffce8/version/1776114586/image.jpg" alt="Nuki Schloss" class="welcome-photo" style="max-height:none;object-fit:contain;" />
+            </details>
+            <details class="appliance-section">
+              <summary>Dachfenster</summary>
+              <p>Die Dachfenster lassen sich mit einer Stange öffnen und schliessen – diese befindet sich hinter der Tür im Dachschlafzimmer. Bitte achten Sie darauf, die Fenster bei schlechter Witterung sowie beim Verlassen des Hauses immer zu schliessen.</p>
+            </details>
+            <details class="appliance-section">
+              <summary>Verschlossene Türen im Erdgeschoss</summary>
+              <p>Die entsprechend gekennzeichneten Türen im Erdgeschoss führen zu Keller- und Heizungsräumen und sind nicht zugänglich. Sie sind mit <strong>„Privat"</strong> beschriftet.</p>
+            </details>
+            <details class="appliance-section">
+              <summary>Verschlossene Tür im Dachgeschoss</summary>
+              <p>Auch im Dachgeschoss gibt es eine als <strong>„Privat"</strong> gekennzeichnete Tür. Dieser Raum ist nicht zugänglich.</p>
+            </details>
           `, `
-            <h3>Front Door</h3>
-            <p>The front door is equipped with a Nuki Go smart lock and an external keypad. You can open the door conveniently using the code on the keypad. The door locks automatically every evening at 11:00 pm. Please make sure to use the correct code and close the door fully behind you.</p>
-            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i43c9c5b48ebbd6f4/version/1776114581/image.jpg" alt="Nuki Lock" class="welcome-photo" style="max-height:none;object-fit:contain;" />
-            <h3>Skylight Windows</h3>
-            <p>The skylight windows in the attic can be opened and closed using a pole — you'll find it behind the door in the attic bedroom. Please always close the windows when the weather turns or when leaving the house.</p>
-            <h3>Locked Doors on the Ground Floor</h3>
-            <p>The marked doors on the ground floor lead to the cellar and utility rooms and are not accessible to guests. They are labelled <strong>"Privat"</strong>.</p>
-            <h3>Locked Door in the Attic</h3>
-            <p>There is also a door in the attic marked <strong>"Privat"</strong>. This room is not accessible to guests.</p>
+            <details class="appliance-section">
+              <summary>Front Door</summary>
+              <p>The front door is equipped with a Nuki Go smart lock and an external keypad. You can open the door conveniently using the code on the keypad. The door locks automatically every evening at 11:00 pm. Please make sure to use the correct code and close the door fully behind you.</p>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i43c9c5b48ebbd6f4/version/1776114581/image.jpg" alt="Nuki Lock" class="welcome-photo" style="max-height:none;object-fit:contain;" />
+            </details>
+            <details class="appliance-section">
+              <summary>Skylight Windows</summary>
+              <p>The skylight windows in the attic can be opened and closed using a pole — you'll find it behind the door in the attic bedroom. Please always close the windows when the weather turns or when leaving the house.</p>
+            </details>
+            <details class="appliance-section">
+              <summary>Locked Doors on the Ground Floor</summary>
+              <p>The marked doors on the ground floor lead to the cellar and utility rooms and are not accessible to guests. They are labelled <strong>"Privat"</strong>.</p>
+            </details>
+            <details class="appliance-section">
+              <summary>Locked Door in the Attic</summary>
+              <p>There is also a door in the attic marked <strong>"Privat"</strong>. This room is not accessible to guests.</p>
+            </details>
           `)}
         </div>
       </div>`
@@ -349,8 +508,69 @@ const DETAIL_PAGES = {
     render: () => `
       <div class="detail-section">
         <div class="detail-body">
-          ${t(`<p>Informationen zu TV und Radio folgen.</p>`,
-             `<p>TV and radio information coming soon.</p>`)}
+          ${t(`
+            <details class="appliance-section">
+              <summary>Fernsehgerät Wohnzimmer</summary>
+              <p><a href="https://www.manualslib.de/manual/1007774/Technisat-S3-Isio.html?page=2#manual" target="_blank">Betriebsanleitung TechniSat (DE)</a></p>
+              <p>Das Haus ist mit Satellit-TV ausgestattet. Dieses System bietet keine modernen Funktionen wie Pause, Replay oder 7-Tage-Rückblick – das Programm wird klassisch live empfangen.</p>
+              <p>Sie können Ihr Handy, Tablet oder Laptop über HDMI oder USB-C anschliessen, um auf Streaming-Dienste und eigene Wiedergabefunktionen zuzugreifen.</p>
+              <h4>Satellit-TV</h4>
+              <ul>
+                <li>Fernseher über die <strong>LG Fernbedienung</strong> einschalten <strong>(1)</strong></li>
+                <li>Satellitenreceiver über die <strong>TechniSat Fernbedienung</strong> einschalten <strong>(A)</strong></li>
+                <li>Kein Bild? HDMI-Eingang <strong>HDMI1</strong> wählen</li>
+                <li>Programmübersicht: Taste <strong>SFI (C)</strong> oder mit <strong>+P– (B)</strong> zappen</li>
+                <li>Zurück: Taste <strong>Zurück (D)</strong></li>
+              </ul>
+              <h4>Eigenes Gerät (Streaming)</h4>
+              <ul>
+                <li>Gerät über das mit <strong>„Your device"</strong> beschriftete HDMI-Kabel verbinden (HDMI oder USB-C Adapter)</li>
+                <li>Fernseher über die <strong>LG Fernbedienung</strong> einschalten <strong>(1)</strong></li>
+                <li>Eingang <strong>HDMI2</strong> wählen</li>
+              </ul>
+            </details>
+
+            <details class="appliance-section">
+              <summary>Fernsehgerät Dachgeschoss</summary>
+              <p>Dieses Gerät verfügt über keinen Satelliten- oder Kabelempfang. Sie können jedoch Ihr eigenes Gerät per HDMI oder USB-C verbinden.</p>
+            </details>
+
+            <details class="appliance-section">
+              <summary>Radio Esszimmer</summary>
+              <p>Über das Radio beim Esstisch können Sie DAB+ Sender empfangen oder Ihr eigenes Gerät per <strong>Bluetooth</strong> verbinden und Musik abspielen.</p>
+            </details>
+          `, `
+            <details class="appliance-section">
+              <summary>TV – Living Room</summary>
+              <p><a href="https://www.manualslib.de/manual/1007774/Technisat-S3-Isio.html?page=2#manual" target="_blank">Operating manual TechniSat (DE)</a></p>
+              <p>The house has satellite TV. The system does not offer modern features such as pause, replay or a 7-day catch-up – it is classic live TV only.</p>
+              <p>You can connect your phone, tablet or laptop via HDMI or USB-C to access streaming services and your own playback.</p>
+              <h4>Satellite TV</h4>
+              <ul>
+                <li>Switch on the TV using the <strong>LG remote</strong> <strong>(1)</strong></li>
+                <li>Switch on the satellite receiver using the <strong>TechniSat remote</strong> <strong>(A)</strong></li>
+                <li>No picture? Select input <strong>HDMI1</strong></li>
+                <li>Programme guide: press <strong>SFI (C)</strong> or browse with <strong>+P– (B)</strong></li>
+                <li>Go back: press <strong>Back (D)</strong></li>
+              </ul>
+              <h4>Your own device (streaming)</h4>
+              <ul>
+                <li>Connect your device using the HDMI cable labelled <strong>"Your device"</strong> (with or without USB-C adapter)</li>
+                <li>Switch on the TV using the <strong>LG remote</strong> <strong>(1)</strong></li>
+                <li>Select input <strong>HDMI2</strong></li>
+              </ul>
+            </details>
+
+            <details class="appliance-section">
+              <summary>TV – Attic</summary>
+              <p>This TV has no satellite or cable reception. You are welcome to connect your own device via HDMI or USB-C.</p>
+            </details>
+
+            <details class="appliance-section">
+              <summary>Radio – Dining Room</summary>
+              <p>The radio next to the dining table receives <strong>DAB+</strong> stations and can also be connected to your own device via <strong>Bluetooth</strong> for music playback.</p>
+            </details>
+          `)}
         </div>
       </div>`
   },
@@ -362,29 +582,45 @@ const DETAIL_PAGES = {
       <div class="detail-section">
         <div class="detail-body">
           ${t(`
-            <h3>Hängematten</h3>
-            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ifa6c18f05905d17a/version/1776110400/image.jpg" alt="Hängematten" class="welcome-photo" />
-            <p>Gönnen Sie sich eine wohlverdiente Auszeit in einer unserer Hängematten. Zu beiden Seiten der Pergola befinden sich Metallringe, in die Sie die Karabiner einhaken können. Bitte nehmen Sie die Hängematten jeweils am Abend und bei schlechtem Wetter wieder mit ins Haus.</p>
-            <h3>Spielhaus</h3>
-            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=441x10000:format=jpg/path/s43189f292a34c399/image/i95cf1bfa57506cd1/version/1776110340/image.jpg" alt="Spielhaus" class="welcome-photo" />
-            <p>Unsere Kinder lieben dieses Spielhaus – und wir hoffen, Ihren Kindern geht es genauso! Wir freuen uns über einen sorgsamen Umgang.</p>
-            <h3>Liegestühle</h3>
-            <p>Weitere Liegestühle und Sitzgelegenheiten finden Sie unter der Treppe im Haus.</p>
-            <h3>Feuerschale und Grillrost</h3>
-            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i3a613047bf17fa35/version/1776110877/image.jpg" alt="Feuerschale und Grillrost" class="welcome-photo" />
-            <p>Was gibt es Schöneres als ein gutes Stück Fleisch vom Grill? Sie können das Feuerholz aus dem Vorrat beim Schwedenofen verwenden. Bitte entsorgen Sie die vollständig abgekühlte Asche im Feuereimer neben dem Schwedenofen. Den Grillrost bitten wir Sie nach dem Gebrauch zu reinigen – damit auch der nächste Gast seine Freude daran hat.</p>
+            <details class="appliance-section">
+              <summary>Hängematten</summary>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ifa6c18f05905d17a/version/1776110400/image.jpg" alt="Hängematten" class="welcome-photo" />
+              <p>Gönnen Sie sich eine wohlverdiente Auszeit in einer unserer Hängematten. Zu beiden Seiten der Pergola befinden sich Metallringe, in die Sie die Karabiner einhaken können. Bitte nehmen Sie die Hängematten jeweils am Abend und bei schlechtem Wetter wieder mit ins Haus.</p>
+            </details>
+            <details class="appliance-section">
+              <summary>Spielhaus</summary>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=441x10000:format=jpg/path/s43189f292a34c399/image/i95cf1bfa57506cd1/version/1776110340/image.jpg" alt="Spielhaus" class="welcome-photo" />
+              <p>Unsere Kinder lieben dieses Spielhaus – und wir hoffen, Ihren Kindern geht es genauso! Wir freuen uns über einen sorgsamen Umgang.</p>
+            </details>
+            <details class="appliance-section">
+              <summary>Liegestühle</summary>
+              <p>Weitere Liegestühle und Sitzgelegenheiten finden Sie unter der Treppe im Haus.</p>
+            </details>
+            <details class="appliance-section">
+              <summary>Feuerschale und Grillrost</summary>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i3a613047bf17fa35/version/1776110877/image.jpg" alt="Feuerschale und Grillrost" class="welcome-photo" />
+              <p>Was gibt es Schöneres als ein gutes Stück Fleisch vom Grill? Sie können das Feuerholz aus dem Vorrat beim Schwedenofen verwenden. Bitte entsorgen Sie die vollständig abgekühlte Asche im Feuereimer neben dem Schwedenofen. Den Grillrost bitten wir Sie nach dem Gebrauch zu reinigen – damit auch der nächste Gast seine Freude daran hat.</p>
+            </details>
           `, `
-            <h3>Hammocks</h3>
-            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ifa6c18f05905d17a/version/1776110400/image.jpg" alt="Hammocks" class="welcome-photo" />
-            <p>Treat yourself to a well-deserved break in one of our hammocks. Metal rings on both sides of the pergola allow you to attach the carabiners easily. Please bring the hammocks inside each evening and whenever the weather turns.</p>
-            <h3>Playhouse</h3>
-            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=441x10000:format=jpg/path/s43189f292a34c399/image/i95cf1bfa57506cd1/version/1776110340/image.jpg" alt="Playhouse" class="welcome-photo" />
-            <p>Our children adore this little playhouse — and we hope yours will too! We simply ask that you treat it with care.</p>
-            <h3>Sun Loungers</h3>
-            <p>Additional sun loungers and chairs are stored under the stairs inside the house.</p>
-            <h3>Fire Bowl and BBQ Grate</h3>
-            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i3a613047bf17fa35/version/1776110877/image.jpg" alt="Fire Bowl and BBQ Grate" class="welcome-photo" />
-            <p>Is there anything better than a good piece of meat fresh off the grill? Feel free to use the firewood stored by the Swedish stove. Please dispose of fully cooled ash in the fire bucket next to the stove, and give the grill grate a quick clean after use — so the next guests can enjoy it just as much.</p>
+            <details class="appliance-section">
+              <summary>Hammocks</summary>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ifa6c18f05905d17a/version/1776110400/image.jpg" alt="Hammocks" class="welcome-photo" />
+              <p>Treat yourself to a well-deserved break in one of our hammocks. Metal rings on both sides of the pergola allow you to attach the carabiners easily. Please bring the hammocks inside each evening and whenever the weather turns.</p>
+            </details>
+            <details class="appliance-section">
+              <summary>Playhouse</summary>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=441x10000:format=jpg/path/s43189f292a34c399/image/i95cf1bfa57506cd1/version/1776110340/image.jpg" alt="Playhouse" class="welcome-photo" />
+              <p>Our children adore this little playhouse — and we hope yours will too! We simply ask that you treat it with care.</p>
+            </details>
+            <details class="appliance-section">
+              <summary>Sun Loungers</summary>
+              <p>Additional sun loungers and chairs are stored under the stairs inside the house.</p>
+            </details>
+            <details class="appliance-section">
+              <summary>Fire Bowl and BBQ Grate</summary>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i3a613047bf17fa35/version/1776110877/image.jpg" alt="Fire Bowl and BBQ Grate" class="welcome-photo" />
+              <p>Is there anything better than a good piece of meat fresh off the grill? Feel free to use the firewood stored by the Swedish stove. Please dispose of fully cooled ash in the fire bucket next to the stove, and give the grill grate a quick clean after use — so the next guests can enjoy it just as much.</p>
+            </details>
           `)}
         </div>
       </div>`
