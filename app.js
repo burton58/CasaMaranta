@@ -31,7 +31,11 @@ function checkLogin() {
 // ─────────────────────────────────────────────────────────────
 // LANGUAGE
 // ─────────────────────────────────────────────────────────────
-let currentLang = localStorage.getItem('lang') || 'de';
+let currentLang = 'de';
+
+document.addEventListener('DOMContentLoaded', () => {
+  setLang(localStorage.getItem('lang') || 'de');
+});
 
 function setLang(lang) {
   currentLang = lang;
@@ -75,6 +79,17 @@ function showDetail(key) {
   document.getElementById('detail-title').textContent = cfg.title();
   document.getElementById('detail-content').innerHTML = cfg.render();
   document.getElementById('screen-detail').scrollTop = 0;
+  if (key === 'checkout') {
+    const saved = JSON.parse(localStorage.getItem('cm_checkout_checks') || '{}');
+    document.querySelectorAll('.checklist-cb').forEach(cb => {
+      if (saved[cb.id]) cb.checked = true;
+      cb.addEventListener('change', () => {
+        const s = JSON.parse(localStorage.getItem('cm_checkout_checks') || '{}');
+        s[cb.id] = cb.checked;
+        localStorage.setItem('cm_checkout_checks', JSON.stringify(s));
+      });
+    });
+  }
   document.getElementById('detail-back-btn').onclick = cfg.backToDetail
     ? () => showDetail(cfg.backToDetail)
     : cfg.backTo
@@ -583,7 +598,7 @@ const DETAIL_PAGES = {
   },
 
   checkout: {
-    title: () => t('Check-out', 'Check-out Time'),
+    title: () => t('Check-out Checkliste', 'Check-out Checklist'),
     backTo: 'screen-info',
     backNavId: 'nav-info',
     render: () => `
@@ -595,15 +610,39 @@ const DETAIL_PAGES = {
           </div>
         </div>
         <div class="detail-body">
-          ${t(`
-            <p>Das Check-out ist strikt um 10:00 Uhr.</p>
-            <p>Falls Sie einen späteren Check-out benötigen, geben wir unser Bestes, dies zu ermöglichen. Bitte teilen Sie uns dies jedoch im Voraus mit.</p>
-            <p>Wenn an diesem Tag neue Gäste ankommen, ist ein späterer Check-out leider kaum möglich, da die Reinigung das Haus vorbereiten muss.</p>
-          `, `
-            <p>Check-out time is strictly 10:00 AM.</p>
-            <p>If you require a later check-out, we'll do our best to accommodate it. But please bear in mind you'll need to let us know beforehand.</p>
-            <p>If we have guests arriving that day it will be almost impossible to offer a late check-out due to the cleaners needing to prepare for those guests.</p>
-          `)}
+          ${t(
+            '<p>Das Check-out ist strikt um 10:00 Uhr.</p><p>Falls Sie einen späteren Check-out benötigen, teilen Sie uns dies bitte im Voraus mit.</p>',
+            '<p>Check-out time is strictly 10:00 AM.</p><p>If you require a later check-out, please let us know in advance.</p>'
+          )}
+        </div>
+        <div class="detail-body" style="padding-top:0">
+          <div style="background:#fff3cd;border-left:5px solid var(--orange);border-radius:6px;padding:14px 16px;">
+            ${t(
+              'Um Ihnen eventuelle Mehrkosten zu ersparen, möchten wir Sie freundlich bitten, die nachfolgenden Punkte vor Ihrer Abreise zu beachten. Sie erhalten diese Punkte auch noch als Papier-Checkliste, welche Sie bitte vor Ihrer Abreise abgeben.',
+              'To help you avoid any additional charges, we kindly ask you to go through the following points before your departure. You will also receive these points as a paper checklist, which we ask you to hand in before leaving.'
+            )}
+          </div>
+        </div>
+        <div class="checklist" style="padding-top:20px;">
+          ${[
+            t('Herd, Kochfelder und alle Lichter sind ausgeschaltet.', 'The oven, hobs and all lights are switched off.'),
+            t('Der Kühlschrank ist leer.', 'The fridge is empty.'),
+            t('Das Geschirr ist sauber und eingeräumt.', 'Dishes are clean and put in their place.'),
+            t('Alle Wasserhähne sind zugedreht.', 'All the taps are closed.'),
+            t('Die Bettwäsche wurde abgezogen und zusammen mit den Handtüchern in der roten Interhome-Tasche abgelegt.', "All bedding was removed and collected with the towels in Interhome's provided red bag."),
+            t('Alle Fenster und Balkontüren sind vollständig geschlossen (nicht gekippt).', 'All windows and balcony doors are fully closed (not tilted).'),
+            t('Das Mobiliar steht an seinem angestammten Platz.', 'The furniture is in its original place.'),
+            t('Die Wohnung ist aufgeräumt und eventuelle Beschädigungen wurden gemeldet.', 'The apartment has been tidied up and any damage has been reported.'),
+            t('Alle Abfälle wurden entsorgt: Kehricht zur Sammelstelle, Recyclingmaterial (Glas, PET, Papier etc.) zur Recyclingstation. <a href="#" onclick="event.preventDefault();showDetail(\'house_waste\')" style="color:var(--orange)">→ Abfall &amp; Entsorgung</a>', 'All waste has been disposed of: general waste to the collection point, recyclables (glass, PET, paper, etc.) to the recycling station. <a href="#" onclick="event.preventDefault();showDetail(\'house_waste\')" style="color:var(--orange)">→ Waste &amp; Disposal</a>'),
+            t('Asche aus dem Schwedenofen und der Feuerschale ist vollständig abgekühlt und wurde im Ascheeimer (neben dem Schwedenofen) entsorgt.', 'Ash from the wood-burning stove and fire bowl has fully cooled and been disposed of in the ash bucket (next to the stove).'),
+            t('Alle Gartenmöbel (Hängematten, Liegestühle, Sitzkissen) wurden wieder im Haus verräumt.<br><small style="color:var(--text-muted)">Hinweis: Nur der Tisch unter der Pergola und die dazugehörigen Stühle (ohne Sitzkissen) können draussen bleiben.</small>', 'All garden furniture (hammocks, sun loungers, seat cushions) has been put back inside the house.<br><small style="color:var(--text-muted)">Note: Only the table under the pergola and its chairs (without cushions) may remain outside.</small>'),
+          ].map((text, i) => `
+            <label class="checklist-item">
+              <input type="checkbox" class="checklist-cb" id="chk-co-${i}">
+              <span class="checklist-icon"><svg viewBox="0 0 12 10" fill="none"><polyline points="1,5 4,9 11,1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <span class="checklist-text">${text}</span>
+            </label>
+          `).join('')}
         </div>
       </div>`
   },
@@ -659,21 +698,18 @@ const DETAIL_PAGES = {
     backNavId: 'nav-info',
     render: () => `
       <div class="detail-section">
+        <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ic84a6eab1436503a/version/1776081120/image.jpg" alt="Casa Maranta" class="welcome-photo" />
         <div class="detail-body">
           ${t(`
             <p>Herzlichen Dank, dass Sie bei uns zu Gast waren. Wir hoffen, Sie haben Ihren Aufenthalt in vollen Zügen genossen!</p>
             <p>Falls es während Ihres Aufenthalts etwas zu bemängeln gab, zögern Sie nicht, uns zu informieren – wir möchten sicherstellen, dass wir es für den nächsten Gast verbessern können.</p>
-            <p><strong>Wir lieben Online-Bewertungen!</strong></p>
-            <p>Wenn Sie aufgefordert werden, eine Bewertung abzugeben, freuen wir uns sehr über eine Sternebewertung sowie einen kurzen Kommentar darüber, was Ihnen besonders gut gefallen hat.</p>
-            <p>Falls Sie uns keine 5 Sterne geben können, wären wir Ihnen dankbar, wenn Sie uns vorher kontaktieren würden – Ihr Feedback ist uns wichtig und hilft uns, besser zu werden.</p>
-            <p>Herzlichen Dank! 🙏</p>
+            <p>Kommen Sie gut nach Hause und bis auf hoffentlich bald im schönen Poschiavo.</p>
+            <p>Liebe Grüsse<br>Christine &amp; Markus</p>
           `, `
-            <p>Thank you for staying with us, and we hope you enjoyed your stay.</p>
-            <p>If there were any issues with your stay, please don't hesitate to tell us, as we want to ensure we can resolve them for the next guest.</p>
-            <p><strong>We love online reviews!</strong></p>
-            <p>When you're prompted to leave a review please give us a star rating, and write a sentence or two about what you liked the best during your stay. Was it the comfy bed? The detailed information and local recommendations? Or maybe the location itself?</p>
-            <p>If you are unable to leave us 5 stars, please don't hesitate to contact us first to let us know why — you are key to helping us improve.</p>
-            <p>Thank you! 🙏</p>
+            <p>Thank you so much for staying with us. We hope you enjoyed every moment of your time here!</p>
+            <p>If there was anything that didn't meet your expectations during your stay, please don't hesitate to let us know – we'd love to make it even better for the next guest.</p>
+            <p>Safe travels home, and we hope to see you again soon in beautiful Poschiavo.</p>
+            <p>Warm regards,<br>Christine &amp; Markus</p>
           `)}
         </div>
       </div>`

@@ -52,7 +52,7 @@ html, body {
 .home-hero {
   position: relative;
   height: calc(100vh - var(--nav-height));
-  background: url('https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i4e402980def2a3d2/version/1776631260/image.jpg') center center / cover no-repeat;
+  background: url('https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ie9beb54c6695d5f6/version/1776070134/image.jpg') center center / cover no-repeat;
   background-color: #1E2D40;
   display: flex;
   align-items: flex-end;
@@ -659,7 +659,7 @@ html, body {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: var(--dark-blue) url('https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ie9beb54c6695d5f6/version/1776070134/image.jpg') center/cover no-repeat;
+  background: var(--dark-blue) url('https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i4e402980def2a3d2/version/1776631260/image.jpg') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -706,6 +706,57 @@ html, body {
   font-size: 13px;
   min-height: 18px;
   margin: 0 0 8px;
+}
+
+/* ── CHECKOUT CHECKLIST ─────────────────────────────────── */
+.checklist {
+  padding: 0 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+.checklist-item:has(.checklist-cb:checked) {
+  border-color: var(--orange);
+  background: #fffbf0;
+}
+.checklist-cb { display: none; }
+.checklist-icon {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border: 2px solid var(--border);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, border-color 0.2s;
+  margin-top: 1px;
+}
+.checklist-icon svg { opacity: 0; transition: opacity 0.15s; }
+.checklist-item:has(.checklist-cb:checked) .checklist-icon {
+  background: var(--orange);
+  border-color: var(--orange);
+}
+.checklist-item:has(.checklist-cb:checked) .checklist-icon svg { opacity: 1; }
+.checklist-item:has(.checklist-cb:checked) .checklist-text {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+.checklist-text {
+  font-size: 14px;
+  line-height: 1.45;
+  transition: opacity 0.2s;
 }
 
 /* ── MAPS EMBED ─────────────────────────────────────── */
