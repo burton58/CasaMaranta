@@ -1242,12 +1242,10 @@ function initMap() {
     const infoWindow = new google.maps.InfoWindow({
       content: `<div style="font-family:sans-serif;min-width:140px">` +
         `<strong>${currentLang === 'de' ? place.title_de : place.title_en}</strong>` +
-        (place.cat !== 'home'
-          ? `<br><a href="${mapsNavUrl}" target="_blank" rel="noopener noreferrer" ` +
-            `style="display:inline-flex;align-items:center;gap:4px;margin-top:6px;font-size:13px;color:#1a73e8;text-decoration:none">` +
-            `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>` +
-            `${currentLang === 'de' ? 'In Google Maps öffnen' : 'Open in Google Maps'}</a>`
-          : '') +
+        `<br><a href="${mapsNavUrl}" target="_blank" rel="noopener noreferrer" ` +
+        `style="display:inline-flex;align-items:center;gap:4px;margin-top:6px;font-size:13px;color:#1a73e8;text-decoration:none">` +
+        `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>` +
+        `${currentLang === 'de' ? 'In Google Maps öffnen' : 'Open in Google Maps'}</a>` +
         `</div>`
     });
     marker.addListener('click', () => infoWindow.open(googleMap, marker));
