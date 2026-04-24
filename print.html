@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casa Maranta – Gästemappe · Guest Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ───── VARIABLES ───── */
+    :root {
+      --orange: #E8980A;
+      --orange-light: #FFF4D6;
+      --dark-blue: #1E2D40;
+      --white: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #555;
+      --text-en: #444;
+      --border: #d8d8d8;
+    }
+
+    /* ───── RESET ───── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 10pt; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      background: #f0f0f0;
+      line-height: 1.55;
+    }
+
+    /* ───── PRINT BUTTON ───── */
+    .print-bar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: var(--dark-blue);
+      color: white;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      z-index: 1000;
+      font-size: 13px;
+    }
+    .print-bar span { opacity: 0.8; }
+    .btn-print {
+      background: var(--orange);
+      color: white;
+      border: none;
+      padding: 9px 22px;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+    }
+    .btn-print:hover { background: #c47d00; }
+    .print-hint {
+      font-size: 11px;
+      opacity: 0.65;
+    }
+
+    /* ───── PAGES ───── */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 70px auto 0;
+      background: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .page + .page { margin-top: 12px; }
+    .page:last-child { margin-bottom: 40px; }
+
+    /* ───── COVER PAGE ───── */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      height: 297mm;
+      background: var(--dark-blue);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover-photo {
+      flex: 1;
+      background: url('https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ie9beb54c6695d5f6/version/1776070134/image.jpg') center 30% / cover no-repeat;
+      position: relative;
+    }
+    .cover-photo::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(30,45,64,0.3) 0%, rgba(30,45,64,0.85) 100%);
+    }
+    .cover-body {
+      padding: 40px 44px 44px;
+      background: var(--dark-blue);
+      flex-shrink: 0;
+    }
+    .cover-label {
+      font-size: 9pt;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+    .cover-title {
+      font-size: 42pt;
+      font-weight: 700;
+      letter-spacing: -1px;
+      line-height: 1;
+      color: white;
+      margin-bottom: 8px;
+    }
+    .cover-address {
+      font-size: 11pt;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 28px;
+    }
+    .cover-divider {
+      width: 48px;
+      height: 3px;
+      background: var(--orange);
+      margin-bottom: 22px;
+      border-radius: 2px;
+    }
+    .cover-meta {
+      display: flex;
+      gap: 40px;
+    }
+    .cover-meta-item {}
+    .cover-meta-label {
+      font-size: 7.5pt;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 2px;
+    }
+    .cover-meta-value {
+      font-size: 13pt;
+      font-weight: 600;
+      color: white;
+    }
+    .cover-meta-value small {
+      font-size: 9pt;
+      font-weight: 400;
+      opacity: 0.65;
+    }
+
+    /* ───── PAGE HEADER (non-cover) ───── */
+    .page-header {
+      background: var(--dark-blue);
+      color: white;
+      padding: 14px 24px 13px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .page-header-title {
+      font-size: 8pt;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+    .page-header-logo {
+      font-size: 11pt;
+      font-weight: 700;
+      color: var(--orange);
+      letter-spacing: 0.5px;
+    }
+
+    /* ───── CONTENT AREA ───── */
+    .page-content {
+      padding: 28px 28px 28px;
+    }
+
+    /* ───── SECTION TITLE ───── */
+    .section-title {
+      font-size: 18pt;
+      font-weight: 700;
+      color: var(--dark-blue);
+      margin-bottom: 4px;
+      line-height: 1.15;
+    }
+    .section-title-en {
+      font-size: 10pt;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .section-rule {
+      width: 36px;
+      height: 3px;
+      background: var(--orange);
+      border-radius: 2px;
+      margin-bottom: 18px;
+    }
+
+    /* ───── BILINGUAL BLOCKS ───── */
+    .bi-block { margin-bottom: 14px; }
+    .bi-de { font-size: 9.5pt; color: var(--text); margin-bottom: 4px; }
+    .bi-en { font-size: 8.5pt; color: var(--text-en); font-style: italic; border-left: 2px solid var(--border); padding-left: 8px; margin-bottom: 2px; }
+    .bi-de p, .bi-en p { margin-bottom: 5px; }
+    .bi-de p:last-child, .bi-en p:last-child { margin-bottom: 0; }
+    .bi-de strong { font-weight: 600; }
+    .bi-en strong { font-weight: 500; }
+
+    /* ───── INFO BOXES ───── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .info-box {
+      background: var(--orange-light);
+      border: 1px solid #f0c860;
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .info-box.full { grid-column: 1 / -1; }
+    .info-box.blue {
+      background: #e8f0f8;
+      border-color: #b0c8e0;
+    }
+    .info-box-label {
+      font-size: 7pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .info-box-value {
+      font-size: 16pt;
+      font-weight: 700;
+      color: var(--dark-blue);
+      line-height: 1.1;
+    }
+    .info-box-value small {
+      font-size: 9pt;
+      font-weight: 400;
+      color: var(--text-muted);
+      display: block;
+      margin-top: 2px;
+    }
+    .info-box-value .monospace {
+      font-family: 'Courier New', monospace;
+      font-size: 14pt;
+      letter-spacing: 1px;
+    }
+
+    /* ───── CONTACT CARDS ───── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .contact-card {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .contact-card.emergency {
+      background: #fff2f2;
+      border-color: #e8b0b0;
+      grid-column: 1 / -1;
+    }
+    .contact-card h4 {
+      font-size: 7.5pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+      font-size: 9pt;
+    }
+    .contact-row:last-child { margin-bottom: 0; }
+    .contact-name { font-weight: 600; }
+    .contact-phone { color: var(--dark-blue); font-weight: 500; }
+    .contact-dot { color: var(--border); }
+    .emergency-number {
+      font-size: 22pt;
+      font-weight: 700;
+      color: #c0392b;
+      line-height: 1;
+    }
+    .emergency-label { font-size: 8.5pt; color: var(--text-muted); margin-top: 2px; }
+
+    /* ───── CHECKLISTS ───── */
+    .checklist { list-style: none; }
+    .checklist li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 9pt;
+      line-height: 1.45;
+    }
+    .checklist li:last-child { border-bottom: none; }
+    .check-box {
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      border: 1.5px solid #999;
+      border-radius: 3px;
+      margin-top: 1px;
+      flex-shrink: 0;
+    }
+    .checklist .en-note {
+      display: block;
+      font-size: 8pt;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 2px;
+    }
+
+    /* ───── PLACE CARDS (restaurants, etc.) ───── */
+    .place-list { list-style: none; }
+    .place-item {
+      padding: 9px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .place-item:last-child { border-bottom: none; }
+    .place-name {
+      font-size: 10pt;
+      font-weight: 600;
+      color: var(--dark-blue);
+      margin-bottom: 2px;
+    }
+    .place-desc-de { font-size: 8.5pt; color: var(--text); margin-bottom: 2px; }
+    .place-desc-en { font-size: 8pt; color: var(--text-muted); font-style: italic; }
+
+    /* ───── WARNING BOX ───── */
+    .warning-box {
+      background: #fff9e6;
+      border-left: 4px solid var(--orange);
+      border-radius: 0 6px 6px 0;
+      padding: 10px 14px;
+      font-size: 8.5pt;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+    .warning-box strong { color: var(--dark-blue); }
+
+    /* ───── TWO-COLUMN LAYOUT ───── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .two-col-wide { display: grid; grid-template-columns: 3fr 2fr; gap: 20px; }
+
+    /* ───── SMALL SECTION HEADING ───── */
+    h3.sub {
+      font-size: 10pt;
+      font-weight: 700;
+      color: var(--dark-blue);
+      margin: 14px 0 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    h3.sub::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    h3.sub-en {
+      font-size: 8pt;
+      font-weight: 400;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 8px;
+      margin-top: -4px;
+    }
+
+    /* ───── FOOTER STRIP ───── */
+    .page-footer {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: var(--dark-blue);
+      height: 6px;
+    }
+    .page-footer-bar {
+      background: var(--orange);
+      width: 48px;
+      height: 100%;
+    }
+
+    /* ───── QR WIFI ───── */
+    .wifi-qr-section {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 12px;
+    }
+    .wifi-qr-section img { width: 80px; height: 80px; }
+    .wifi-qr-hint { font-size: 8pt; color: var(--text-muted); font-style: italic; }
+
+    /* ───── WELCOME PHOTO ───── */
+    .welcome-img {
+      width: 100%;
+      max-height: 160px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 14px;
+    }
+
+    /* ───── PRINT STYLES ───── */
+    @media print {
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      html { font-size: 10pt; }
+      body { background: white; }
+
+      .print-bar { display: none !important; }
+
+      .page {
+        width: 210mm;
+        height: 297mm;
+        min-height: 297mm;
+        max-height: 297mm;
+        margin: 0 !important;
+        page-break-after: always;
+        break-after: page;
+        overflow: hidden;
+      }
+      .page:last-child {
+        page-break-after: auto;
+        break-after: auto;
+      }
+
+      .cover { height: 297mm; }
+
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PRINT BUTTON BAR ═══════════════════════ -->
+<div class="print-bar">
+  <div>
+    <strong>Casa Maranta – Gästemappe / Guest Guide</strong>
+    <span class="print-hint"> · Öffnen Sie diesen Ausdruck in Chrome oder Edge für beste Ergebnisse / Open in Chrome or Edge for best results</span>
+  </div>
+  <button class="btn-print" onclick="window.print()">🖨 Drucken / Print</button>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 1 – COVER
+════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="cover">
+    <div class="cover-photo"></div>
+    <div class="cover-body">
+      <div class="cover-label">Gästemappe · Guest Guide</div>
+      <div class="cover-title">Casa Maranta</div>
+      <div class="cover-address">Via da la Rasiga 12, Li Curt · 7745 Poschiavo · CH</div>
+      <div class="cover-divider"></div>
+      <div class="cover-meta">
+        <div class="cover-meta-item">
+          <div class="cover-meta-label">Check-in</div>
+          <div class="cover-meta-value">ab 16:00 <small>after / nach</small></div>
+        </div>
+        <div class="cover-meta-item">
+          <div class="cover-meta-label">Check-out</div>
+          <div class="cover-meta-value">bis 10:00 <small>by / bis</small></div>
+        </div>
+        <div class="cover-meta-item">
+          <div class="cover-meta-label">WLAN · WiFi</div>
+          <div class="cover-meta-value" style="font-family:'Courier New',monospace;font-size:11pt">LaRasigaGuest</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 2 – QUICK REFERENCE / SCHNELLÜBERSICHT
+════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Schnellübersicht · Quick Reference</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="section-title">Wichtige Informationen</div>
+    <div class="section-title-en">Important Information at a Glance</div>
+    <div class="section-rule"></div>
+
+    <!-- Times -->
+    <div class="info-grid">
+      <div class="info-box">
+        <div class="info-box-label">Check-in</div>
+        <div class="info-box-value">ab 16:00
+          <small>after 4:00 pm</small>
+        </div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-label">Check-out</div>
+        <div class="info-box-value">bis 10:00
+          <small>by 10:00 am</small>
+        </div>
+      </div>
+
+      <!-- WiFi -->
+      <div class="info-box blue">
+        <div class="info-box-label">WLAN Netzwerk · WiFi Network</div>
+        <div class="info-box-value"><span class="monospace">LaRasigaGuest</span></div>
+      </div>
+      <div class="info-box blue">
+        <div class="info-box-label">WLAN Passwort · WiFi Password</div>
+        <div class="info-box-value"><span class="monospace">larasiga585</span></div>
+      </div>
+
+      <!-- Address -->
+      <div class="info-box full">
+        <div class="info-box-label">Adresse · Address &amp; GPS</div>
+        <div class="info-box-value" style="font-size:12pt">Via da la Rasiga 12, Li Curt, 7745 Poschiavo, CH
+          <small>GPS: 46.31669 N, 10.05890 E</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- QR Code for WiFi -->
+    <div class="wifi-qr-section">
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&ecc=M&data=WIFI%3AT%3AWPA%3BS%3ALaRasigaGuest%3BP%3Alarasiga585%3B%3B" alt="WiFi QR Code" />
+      <div>
+        <div style="font-size:9pt;font-weight:600;color:var(--dark-blue);margin-bottom:4px">QR-Code zum WLAN-Verbinden · QR code to connect to WiFi</div>
+        <div class="wifi-qr-hint">Kamera-App öffnen und QR-Code scannen – Verbindung automatisch.<br>Open your camera app and scan – your phone connects automatically.</div>
+      </div>
+    </div>
+
+    <!-- Emergency contacts summary -->
+    <h3 class="sub" style="margin-top:18px">Wichtige Nummern · Important Numbers</h3>
+
+    <div class="contact-grid">
+      <div class="contact-card emergency">
+        <h4>Notruf · Emergency</h4>
+        <div style="display:flex;align-items:baseline;gap:16px">
+          <div class="emergency-number">112</div>
+          <div class="emergency-label">Allgemeiner Notruf / General Emergency · Polizei 117 · Feuerwehr 118 · Rettung 144</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h4>Lokale Ansprechpartnerin · Local Contact</h4>
+        <div class="contact-row">
+          <span class="contact-name">Anna</span>
+          <span class="contact-dot">·</span>
+          <span class="contact-phone">+41 79 422 16 08</span>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h4>Eigentümer · Owners</h4>
+        <div class="contact-row">
+          <span class="contact-name">Markus</span>
+          <span class="contact-dot">·</span>
+          <span class="contact-phone">+41 79 571 27 90</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-name">Christine</span>
+          <span class="contact-dot">·</span>
+          <span class="contact-phone">+41 78 740 31 80</span>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h4>Arzt · Doctor</h4>
+        <div class="contact-row" style="font-size:8.5pt">
+          <span>Centro Medico Valposchiavo</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-phone">+41 81 839 01 80</span>
+        </div>
+      </div>
+      <div class="contact-card">
+        <h4>Apotheke · Pharmacy</h4>
+        <div class="contact-row" style="font-size:8.5pt">
+          <span>Apotheke Bernina</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-phone">+41 81 844 02 51</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 3 – WELCOME / WILLKOMMEN
+════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Willkommen · Welcome</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <img
+      src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i9d2beec054121602/version/1776072036/image.jpg"
+      alt="Christine &amp; Markus"
+      class="welcome-img"
+      style="max-height:130px;object-position:center 30%"
+    />
+
+    <div class="section-title">Willkommen</div>
+    <div class="section-title-en">Welcome</div>
+    <div class="section-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <div class="bi-de">
+          <p>Wir sind Christine und Markus – zusammen mit unseren Töchtern Nora und Olivia – und freuen uns sehr, Sie in unserem Ferienhaus begrüssen zu dürfen.</p>
+          <p>Dieses Haus ist seit Generationen im Besitz der Familie Maranta. Christines Vater wurde hier geboren und verbrachte seine Kindheit und Jugend in diesen Mauern. In den 1970er-Jahren übernahm er das Haus und machte es zu einem Ferienort für die Familie.</p>
+          <p>Im Jahr 2013 durften wir das Haus übernehmen und mit viel Sorgfalt und Herzblut renovieren. In dieser Mappe finden Sie alle wichtigen Informationen sowie unsere persönlichen Highlights.</p>
+          <p style="margin-top:10px"><strong>Herzliche Grüsse,<br>Christine &amp; Markus</strong></p>
+        </div>
+      </div>
+      <div>
+        <div class="bi-en">
+          <p>We are Christine and Markus, together with our daughters Nora and Olivia, and we are delighted to welcome you to our holiday home.</p>
+          <p>This house has been in the Maranta family for generations. Christine's father was born here and spent his childhood within these walls. In the 1970s he took over the house and turned it into a family holiday retreat.</p>
+          <p>In 2013 we were fortunate to take over the house and carefully renovate it with great love. In this guide you will find all important information and our personal highlights.</p>
+          <p style="margin-top:10px"><em>Warm regards,<br>Christine &amp; Markus</em></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 4 – ARRIVAL / ANREISE
+════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Anreise · Arrival</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="section-title">Anreise &amp; Zugang</div>
+    <div class="section-title-en">Arrival &amp; Access</div>
+    <div class="section-rule"></div>
+
+    <div class="info-grid" style="margin-bottom:16px">
+      <div class="info-box">
+        <div class="info-box-label">Check-in ab · Check-in after</div>
+        <div class="info-box-value">16:00</div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-label">Adresse · Address</div>
+        <div class="info-box-value" style="font-size:10pt">Via da la Rasiga 12<br>Li Curt, 7745 Poschiavo</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <h3 class="sub">Zugangscode · Access Code</h3>
+        <div class="bi-de">
+          <p>Wir stellen Ihnen vor Ihrer Anreise einen Code für das Nuki-Schloss an der Haustür bereit. Die Tür verriegelt sich täglich automatisch um 23:00 Uhr.</p>
+          <p>Wenn Sie uns ungefähr mitteilen, wann Sie ankommen, begrüsst Sie unsere lokale Ansprechpartnerin <strong>Anna (+41 79 422 16 08)</strong> gerne und zeigt Ihnen alles.</p>
+        </div>
+        <div class="bi-en" style="margin-top:6px">
+          <p>We will provide an access code for the Nuki smart lock on the front door before your arrival. The door locks automatically at 11 pm every night.</p>
+          <p>If you let us know your estimated arrival time, our local contact <strong>Anna</strong> will gladly welcome you and show you around.</p>
+        </div>
+
+        <h3 class="sub" style="margin-top:14px">Früher Check-in · Early Check-in</h3>
+        <div class="bi-de"><p>In manchen Fällen ist ein früherer Check-in möglich. Bitte kontaktieren Sie uns.</p></div>
+        <div class="bi-en"><p>An early check-in can sometimes be arranged. Please contact us in advance.</p></div>
+      </div>
+
+      <div>
+        <h3 class="sub">🚂 Mit der Bahn · By Train</h3>
+        <div class="bi-de">
+          <p>Bahn oder PostAuto bis <strong>Bahnhof Poschiavo</strong>, dann zu Fuss via Via da Clalt bis Via da la Rasiga 12 (ca. 1,1 km / 15 Min.).</p>
+          <p>Taxi-Vorbestellung: <strong>balzarolo.ch</strong><br>+41 81 844 10 42</p>
+        </div>
+        <div class="bi-en" style="margin-top:4px">
+          <p>Train or PostBus to <strong>Poschiavo station</strong>, then walk via Via da Clalt to Via da la Rasiga 12 (approx. 1.1 km, 15 min).</p>
+          <p>Pre-book a taxi: balzarolo.ch · +41 81 844 10 42</p>
+        </div>
+
+        <h3 class="sub" style="margin-top:14px">🚗 Mit dem Auto · By Car</h3>
+        <div class="bi-de">
+          <p>Navigation: <strong>Via da la Rasiga 12, 7745 Li Curt</strong>.<br>Direkt vor dem Haus gibt es Platz für 3 Autos.</p>
+        </div>
+        <div class="bi-en" style="margin-top:4px">
+          <p>Enter <strong>Via da la Rasiga 12, 7745 Li Curt</strong> in your navigation. There is parking for 3 cars directly in front of the house.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 5 – ABOUT THE HOUSE / DAS HAUS
+════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Das Haus · About the House</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="section-title">Das Haus</div>
+    <div class="section-title-en">About the Accommodation</div>
+    <div class="section-rule"></div>
+
+    <div class="two-col">
+      <div>
+
+        <!-- SCHWEDENOFEN -->
+        <h3 class="sub">🔥 Schwedenofen · Wood-Burning Stove</h3>
+        <div class="warning-box">
+          <strong>⚠️ Der Ofen im Dachgeschoss ist dekorativ – nicht angeschlossen und darf nicht benutzt werden.</strong><br>
+          <em>The stove in the attic is purely decorative – not connected and must not be used.</em>
+        </div>
+        <div class="bi-de">
+          <p><strong>Schwedenofen im Wohnzimmer:</strong></p>
+          <ul style="padding-left:16px;font-size:9pt;margin-top:3px">
+            <li>Abluftrohr öffnen (Hebel senkrecht)</li>
+            <li>Türe während des Betriebs immer geschlossen halten</li>
+            <li>Nichts auf den Ofen stellen</li>
+            <li>Asche vollständig abkühlen lassen, dann im Eimer entsorgen</li>
+          </ul>
+        </div>
+        <div class="bi-en" style="margin-top:5px">
+          <ul style="padding-left:16px;font-size:8pt;margin-top:3px">
+            <li>Open the flue (lever vertical)</li>
+            <li>Keep door closed while in use</li>
+            <li>Do not place anything on top</li>
+            <li>Let ash cool fully before placing in bucket</li>
+          </ul>
+        </div>
+
+        <!-- TV -->
+        <h3 class="sub" style="margin-top:14px">📺 TV &amp; Radio</h3>
+        <div class="bi-de">
+          <p><strong>Wohnzimmer (Sat-TV):</strong> LG-Fernbedienung für TV, TechniSat-Fernbedienung für Receiver. Eingang HDMI1 für Sat-TV. Eigenes Gerät (Streaming) via HDMI-Kabel «Your device» → Eingang HDMI2.</p>
+          <p><strong>Radio Esszimmer:</strong> DAB+ oder Bluetooth.</p>
+        </div>
+        <div class="bi-en" style="margin-top:4px">
+          <p><strong>Living room (Sat-TV):</strong> LG remote for TV, TechniSat remote for receiver. Select HDMI1 for satellite TV. Connect your own device via the cable labelled "Your device" → HDMI2.</p>
+          <p><strong>Dining room radio:</strong> DAB+ or Bluetooth.</p>
+        </div>
+
+      </div>
+
+      <div>
+
+        <!-- DOORS -->
+        <h3 class="sub">🚪 Türen &amp; Fenster · Doors &amp; Windows</h3>
+        <div class="bi-de">
+          <p><strong>Haustür:</strong> Nuki-Schloss mit Keypad-Code. Tür schliessen sich täglich um 23:00 Uhr automatisch.</p>
+          <p><strong>Dachfenster:</strong> Stange hinter der Tür im Dachschlafzimmer. Bei Regen und beim Verlassen immer schliessen.</p>
+          <p><strong>«Privat»-Türen:</strong> Markierte Türen im EG und Dachgeschoss führen zu Keller- und Privat-räumen – nicht zugänglich.</p>
+        </div>
+        <div class="bi-en" style="margin-top:5px">
+          <p><strong>Front door:</strong> Nuki smart lock with keypad code. Locks automatically at 11 pm.</p>
+          <p><strong>Skylights:</strong> Pole behind attic bedroom door. Always close in bad weather and when leaving.</p>
+          <p><strong>"Privat" doors:</strong> Marked doors on ground floor and attic are locked private areas.</p>
+        </div>
+
+        <!-- GARDEN -->
+        <h3 class="sub" style="margin-top:14px">🌿 Garten &amp; Grill · Garden &amp; BBQ</h3>
+        <div class="bi-de">
+          <p>Hängematten, Liegestühle und Sitzkissen abends und bei schlechtem Wetter ins Haus bringen. Feuerholz beim Schwedenofen. Grillrost nach Gebrauch reinigen. Asche im Feuereimer entsorgen.</p>
+        </div>
+        <div class="bi-en" style="margin-top:4px">
+          <p>Bring hammocks, loungers and cushions inside in the evening or in bad weather. Firewood is by the stove. Please clean the BBQ grate after use. Dispose of cooled ash in the fire bucket.</p>
+        </div>
+
+        <!-- ABFALL -->
+        <h3 class="sub" style="margin-top:14px">🗑 Abfall · Waste &amp; Recycling</h3>
+        <div class="bi-de">
+          <p>Für Hauskehricht offizielle Abfallsäcke (erhältlich im Coop) benötigt. Sammelstelle ca. 300 m entfernt. Altglas &amp; PET zur Recyclingstation in Poschiavo.</p>
+        </div>
+        <div class="bi-en" style="margin-top:4px">
+          <p>Official waste bags required for household rubbish (available at Coop). Collection point approx. 300 m away. Glass &amp; PET to the recycling station in Poschiavo.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 6 – KITCHEN APPLIANCES / KÜCHENGERÄTE
+════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Küchengeräte · Kitchen Appliances</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="section-title">Küchengeräte</div>
+    <div class="section-title-en">Kitchen Appliances</div>
+    <div class="section-rule"></div>
+
+    <div class="two-col">
+      <div>
+        <h3 class="sub">🍳 Kochfeld · Hob / Cooktop</h3>
+        <div class="bi-de">
+          <p><strong>Ein:</strong> Gerät (1) → Kochplatte (2) → Temperatur (3) wählen.</p>
+          <p><strong>Aus:</strong> Kochplatte (2) → auf 0 tippen (4).</p>
+          <p><strong>Kindersicherung:</strong> Schlüssel-Symbol (5) ca. 4 Sek. halten. Erneut halten zum Aufheben.</p>
+        </div>
+        <div class="bi-en" style="margin-top:5px">
+          <p><strong>On:</strong> Appliance (1) → zone (2) → temperature (3).</p>
+          <p><strong>Off:</strong> Zone (2) → tap 0 in control area (4).</p>
+          <p><strong>Child lock:</strong> Hold key symbol (5) ~4 sec. Hold again to unlock.</p>
+        </div>
+
+        <h3 class="sub" style="margin-top:14px">🍽 Geschirrspüler · Dishwasher</h3>
+        <div class="warning-box" style="margin-top:4px">
+          ⚠️ <strong>Keine Teflon-Pfannen</strong> in den Geschirrspüler!<br>
+          <em>Do not put Teflon-coated cookware in the dishwasher!</em>
+        </div>
+        <div class="bi-de">
+          <p>Spültabs, Klarspüler und Salz: hinter dem Abfalleimer. Empfehlung: <strong>Eco-Programm</strong>. Während des Betriebs ist ein roter Lichtpunkt am Boden sichtbar – Tür erst öffnen, wenn dieser erlischt.</p>
+          <p><strong>Ein:</strong> (1) → Eco (2) → Start (3).</p>
+        </div>
+        <div class="bi-en" style="margin-top:4px">
+          <p>Tabs, rinse aid and salt are behind the bin. We recommend the <strong>Eco programme</strong>. A red light dot appears on the floor during operation – only open door once it disappears.</p>
+          <p><strong>On:</strong> (1) → Eco (2) → Start (3).</p>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="sub">💨 Dampfabzug · Extractor Hood</h3>
+        <div class="bi-de">
+          <p>LED-Farben: grün = Stufe 1, gelb = Stufe 2, rot = Stufe 3, rot blinkend = Stufe 4 (kehrt nach 5 Min. auf Stufe 2 zurück).</p>
+          <p><strong>Beleuchtung:</strong> kurz tippen = untere Lichter, halten = Deckenlichter.</p>
+        </div>
+        <div class="bi-en" style="margin-top:4px">
+          <p>LED colours: green = speed 1, amber = speed 2, red = speed 3, flashing red = speed 4 (returns to speed 2 after 5 min).</p>
+          <p><strong>Lighting:</strong> short tap = lower lights, hold = ceiling lights.</p>
+        </div>
+
+        <h3 class="sub" style="margin-top:14px">📡 Mikrowelle · Microwave</h3>
+        <div class="bi-de">
+          <p><strong>Ein:</strong> Mikrowellen-Symbol (1) → Start (2) → Leistung mit +/– (3) einstellen → Start (2).</p>
+        </div>
+        <div class="bi-en" style="margin-top:4px">
+          <p><strong>On:</strong> Microwave symbol (1) → Start (2) → adjust power +/– (3) → Start (2).</p>
+        </div>
+
+        <h3 class="sub" style="margin-top:14px">📚 Leseecke / Gesellschaftsspiele</h3>
+        <div class="bi-de">
+          <p><strong>Bücher:</strong> Im Dachgeschoss, für alle Gäste. Bitte im Haus lassen.</p>
+          <p><strong>Spiele:</strong> Jasskarten, Uno, Schach, Skip-Bo, Rummikub, Scrabble, Ticket to Ride, Yatzy u.v.m.</p>
+        </div>
+        <div class="bi-en" style="margin-top:4px">
+          <p><strong>Books:</strong> In the attic, for all guests. Please leave them in the house.</p>
+          <p><strong>Games:</strong> Jass cards, Uno, Chess, Skip-Bo, Rummikub, Scrabble, Ticket to Ride, Yatzy and more.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 7 – CHECK-OUT CHECKLIST
+════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Check-out Checkliste · Checklist</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="section-title">Check-out Checkliste</div>
+    <div class="section-title-en">Check-out Checklist</div>
+    <div class="section-rule"></div>
+
+    <div class="info-grid" style="margin-bottom:12px">
+      <div class="info-box">
+        <div class="info-box-label">Check-out spätestens · Check-out no later than</div>
+        <div class="info-box-value">10:00</div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-label">Später abreisen? · Late check-out?</div>
+        <div class="info-box-value" style="font-size:10pt">Bitte im Voraus anfragen<br><small>Please request in advance</small></div>
+      </div>
+    </div>
+
+    <div class="warning-box">
+      Um eventuelle Mehrkosten zu vermeiden, bitten wir Sie, alle Punkte vor der Abreise zu prüfen. Diese Checkliste bitte bei Abreise abgeben.<br>
+      <em>To avoid any additional charges, please check all items before departure. Please hand in this checklist when leaving.</em>
+    </div>
+
+    <ul class="checklist">
+      <li>
+        <div class="check-box"></div>
+        <div>Herd, Kochfelder und alle Lichter sind ausgeschaltet.
+          <span class="en-note">The oven, hobs and all lights are switched off.</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div>Der Kühlschrank ist leer.
+          <span class="en-note">The fridge is empty.</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div>Das Geschirr ist sauber und eingeräumt.
+          <span class="en-note">Dishes are clean and put in their place.</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div>Alle Wasserhähne sind zugedreht.
+          <span class="en-note">All taps are turned off.</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div>Die Bettwäsche wurde abgezogen und zusammen mit den Handtüchern in der roten Interhome-Tasche abgelegt.
+          <span class="en-note">All bedding removed and collected with towels in the red Interhome bag.</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div>Alle Fenster und Balkontüren sind vollständig geschlossen (nicht gekippt).
+          <span class="en-note">All windows and balcony doors are fully closed (not tilted open).</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div>Das Mobiliar steht an seinem angestammten Platz.
+          <span class="en-note">The furniture is in its original position.</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div>Die Wohnung ist aufgeräumt und eventuelle Beschädigungen wurden gemeldet.
+          <span class="en-note">The apartment has been tidied and any damage has been reported.</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div>Kehricht zur Sammelstelle, Recyclingmaterial (Glas, PET, Papier) zur Recyclingstation.
+          <span class="en-note">General waste to the collection point; glass, PET and paper to the recycling station.</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div>Asche aus Schwedenofen und Feuerschale vollständig abgekühlt und im Ascheeimer entsorgt.
+          <span class="en-note">Ash from stove and fire bowl fully cooled and disposed of in the ash bucket.</span>
+        </div>
+      </li>
+      <li>
+        <div class="check-box"></div>
+        <div>Alle Gartenmöbel (Hängematten, Liegestühle, Sitzkissen) wurden im Haus verräumt.
+          <span class="en-note">All garden furniture (hammocks, sun loungers, seat cushions) put back inside. The pergola table and chairs (without cushions) may stay outside.</span>
+        </div>
+      </li>
+    </ul>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 8 – RESTAURANTS
+════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Restaurants &amp; Einkaufen · Dining &amp; Shopping</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="section-title">Restaurants</div>
+    <div class="section-title-en">Our Favourite Restaurants</div>
+    <div class="section-rule"></div>
+
+    <div class="warning-box" style="margin-bottom:12px">
+      <strong>🍽 Gourmet-Tipp:</strong> Apéro in der <strong>Hostaria del Borgo</strong>, Hauptgang in der <strong>Pizzeria Albrici</strong>, Dessert-Glace im <strong>Bio-Bistro Semadeni</strong>.<br>
+      <em>Aperitivo at Hostaria del Borgo · main course at Pizzeria Albrici · ice cream dessert at Bio-Bistro Semadeni.</em>
+    </div>
+
+    <div class="two-col">
+      <ul class="place-list">
+        <li class="place-item">
+          <div class="place-name">🍕 Pizzeria Albrici</div>
+          <div class="place-desc-de">Direkt am Dorfplatz · Pizzen, Fleisch, lokale Spezialitäten</div>
+          <div class="place-desc-en">Right on the town square · pizzas, quality meats, local dishes</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">🍦 Bio-Bistro Semadeni</div>
+          <div class="place-desc-de">Kaffee &amp; fantastisches Glacé · direkt im Dorfzentrum</div>
+          <div class="place-desc-en">Coffee and amazing Italian ice cream · town centre</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">🥂 Hostaria del Borgo</div>
+          <div class="place-desc-de">Stilvolle Wein- &amp; Aperobar im historischen Zentrum · lokale Weine aus Valposchiavo</div>
+          <div class="place-desc-en">Stylish wine and aperitivo bar in the historic centre · local Valposchiavo wines</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">🍽 Ristorante Croce Bianca</div>
+          <div class="place-desc-de">Ausgezeichnete Küche &amp; elegantes Ambiente</div>
+          <div class="place-desc-en">Excellent cuisine and a refined atmosphere</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">🍽 Risturant al Bernina</div>
+          <div class="place-desc-de">Regionale Küche, Pizza &amp; klassische Gerichte · unkomplizierte Atmosphäre</div>
+          <div class="place-desc-en">Regional dishes, pizza and classics · relaxed and friendly atmosphere</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">🌿 Ristorante giardino – La Romantica</div>
+          <div class="place-desc-de">Am Lago di Poschiavo · schöner Garten, Kinderspielplatz, Minigolf nebenan</div>
+          <div class="place-desc-en">On Lake Poschiavo · beautiful garden, children's playground, minigolf next door</div>
+        </li>
+      </ul>
+
+      <ul class="place-list">
+        <li class="place-item">
+          <div class="place-name">💧 Ristorante Grotto Miralago</div>
+          <div class="place-desc-de">Direkt am See · historisches Ambiente · Terrasse mit Seeblick</div>
+          <div class="place-desc-en">On the lake shore · historic atmosphere · terrace with lake views</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">🏠 Hotel Sport / Raselli</div>
+          <div class="place-desc-de">Traditionell &amp; familiengeführt · Bündner Stube, regionale Spezialitäten, Holzofen-Pizza</div>
+          <div class="place-desc-en">Traditional family-run hotel · Graubünden dining room, regional specialities, wood-fired pizza</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">⛰ Ristorante Selva (~1 800 m)</div>
+          <div class="place-desc-de">Abgeschieden in der Natur · ideal als Wanderpause · einfach &amp; authentisch. Hinweis: enge Zufahrtstrasse.</div>
+          <div class="place-desc-en">Secluded in nature · perfect hiking break · simple and authentic. Note: narrow access road.</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">🚂 Alp Grüm Restaurant (2 091 m)</div>
+          <div class="place-desc-de">Spektakuläre Lage an der Berninabahn (UNESCO) · Blick auf Palügletscher</div>
+          <div class="place-desc-en">Spectacular setting on the Bernina Railway (UNESCO) · views of Palü glacier</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">🏰 Ristoro Castel Grumello (Italien)</div>
+          <div class="place-desc-de">Bei Burgruine Grumello oberhalb Tirano · Panorama über das Veltlin</div>
+          <div class="place-desc-en">By Grumello castle ruins above Tirano · panorama over the Valtellina</div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 9 – SHOPPING & ACTIVITIES
+════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Einkaufen &amp; Aktivitäten · Shopping &amp; Activities</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="two-col-wide">
+
+      <!-- SHOPPING -->
+      <div>
+        <div class="section-title" style="font-size:14pt">Einkaufen</div>
+        <div class="section-title-en">Grocery Shopping</div>
+        <div class="section-rule"></div>
+
+        <ul class="place-list">
+          <li class="place-item">
+            <div class="place-name">🛒 Supermarkt Coop Poschiavo</div>
+            <div class="place-desc-de">Grösster Supermarkt der Umgebung</div>
+            <div class="place-desc-en">Largest supermarket in the area</div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">🏪 Pozzi Alimentari – Prima</div>
+            <div class="place-desc-de">Kleiner Nahversorger im Dorfzentrum</div>
+            <div class="place-desc-en">Small local grocery store in the village centre</div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">🥩 Metzgerei Scalino</div>
+            <div class="place-desc-de">Die besten Fleischprodukte der Region – <strong>ein absolutes Muss!</strong></div>
+            <div class="place-desc-en">The best meat products in the region – <em>an absolute must-visit!</em></div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">🥐 Bäckerei Bordoni (Panetteria)</div>
+            <div class="place-desc-de">Frische Backwaren &amp; Patisserie · Via da Spultri</div>
+            <div class="place-desc-en">Fresh baked goods and pastries · Via da Spultri</div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">🥩 Metzgerei Zanetti</div>
+            <div class="place-desc-de">Lokale Metzgerei mit hervorragenden Produkten</div>
+            <div class="place-desc-en">Local butcher with excellent products</div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- ACTIVITIES -->
+      <div>
+        <div class="section-title" style="font-size:14pt">Aktivitäten</div>
+        <div class="section-title-en">Activities &amp; Excursions</div>
+        <div class="section-rule"></div>
+
+        <ul class="place-list">
+          <li class="place-item">
+            <div class="place-name">💎 Lago di Saoseo</div>
+            <div class="place-desc-de">Kristallblauer Bergsee im Naturschutzgebiet Val da Camp · Wanderung ab Sfazù. PostBus reservieren!</div>
+            <div class="place-desc-en">Crystal-blue mountain lake in Val da Camp nature reserve · hike from Sfazù. Book PostBus in advance!</div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">🧊 Gletschergarten Cavaglia</div>
+            <div class="place-desc-de">Gletschermühlen &amp; Schlucht · ab Station Cavaglia der Rhätischen Bahn (UNESCO)</div>
+            <div class="place-desc-en">Giant's pots &amp; gorge · from Cavaglia station on the Rhaetian Railway (UNESCO)</div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">⛳ Minigolf Le Prese</div>
+            <div class="place-desc-de">18 Loch neben Hotel La Romantica · perfekt für Familien · nur Barzahlung</div>
+            <div class="place-desc-en">18 holes next to Hotel La Romantica · family favourite · cash only</div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">🗿 Legend Trail (San Piero)</div>
+            <div class="place-desc-de">Kunstweg mit Skulpturen durch alte Lärchen · 2 km · alle Altersgruppen</div>
+            <div class="place-desc-en">Sculpture trail through old larches · 2 km · suitable for all ages</div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">⛪ Chiesa di San Romerio</div>
+            <div class="place-desc-de">Mittelalterliche Kirche auf Felskante hoch über dem Lago di Poschiavo · grandiose Aussicht</div>
+            <div class="place-desc-en">Medieval church on a ridge high above Lake Poschiavo · magnificent views</div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">🏔 Diavolezza (Bernina)</div>
+            <div class="place-desc-de">Spektakuläres Berggebiet · Gletscher, Wandern, Klettersteige · Piz Palü &amp; Piz Bernina</div>
+            <div class="place-desc-en">Spectacular mountain world · glacier, hiking, via ferratas · Piz Palü &amp; Piz Bernina</div>
+          </li>
+        </ul>
+
+        <div style="margin-top:10px;font-size:8pt;color:var(--text-muted);font-style:italic">
+          Mehr Ideen: valposchiavo.ch/de/explore<br>
+          More ideas: valposchiavo.ch/de/explore
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════════════════════
+     PAGE 10 – FAREWELL / AUF WIEDERSEHEN
+════════════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Auf Wiedersehen · Farewell</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <img
+      src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ic84a6eab1436503a/version/1776081120/image.jpg"
+      alt="Casa Maranta"
+      class="welcome-img"
+      style="max-height:150px"
+    />
+
+    <div class="section-title">Auf Wiedersehen</div>
+    <div class="section-title-en">So Long, Farewell!</div>
+    <div class="section-rule"></div>
+
+    <div class="two-col">
+      <div class="bi-de">
+        <p>Herzlichen Dank, dass Sie bei uns zu Gast waren. Wir hoffen, Sie haben Ihren Aufenthalt in vollen Zügen genossen!</p>
+        <p>Falls es während Ihres Aufenthalts etwas zu bemängeln gab, zögern Sie nicht, uns zu informieren – wir möchten sicherstellen, dass wir es für den nächsten Gast verbessern können.</p>
+        <p>Kommen Sie gut nach Hause und bis auf hoffentlich bald im schönen Poschiavo.</p>
+        <p style="margin-top:12px"><strong>Liebe Grüsse,<br>Christine &amp; Markus</strong></p>
+      </div>
+      <div class="bi-en">
+        <p>Thank you so much for staying with us. We hope you enjoyed every moment of your time here!</p>
+        <p>If there was anything that didn't quite meet your expectations, please don't hesitate to let us know – we'd love to make it even better for the next guest.</p>
+        <p>Safe travels home, and we hope to see you again soon in beautiful Poschiavo.</p>
+        <p style="margin-top:12px"><em>Warm regards,<br>Christine &amp; Markus</em></p>
+      </div>
+    </div>
+
+    <!-- Final contact reminder -->
+    <div style="margin-top:28px;padding:16px 20px;background:var(--orange-light);border-radius:8px;border:1px solid #f0c860">
+      <div style="font-size:8pt;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-muted);margin-bottom:10px">Kontakt · Contact</div>
+      <div style="display:flex;gap:32px;flex-wrap:wrap;font-size:9.5pt">
+        <div><strong>Anna (lokal)</strong> · +41 79 422 16 08</div>
+        <div><strong>Markus</strong> · +41 79 571 27 90</div>
+        <div><strong>Christine</strong> · +41 78 740 31 80</div>
+        <div><strong>Notruf · Emergency</strong> · <span style="color:#c0392b;font-weight:700">112</span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;text-align:center;font-size:7.5pt;color:var(--text-muted)">
+      Casa Maranta · Via da la Rasiga 12, Li Curt · 7745 Poschiavo · CH
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+</body>
+</html>

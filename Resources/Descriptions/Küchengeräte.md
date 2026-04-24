@@ -51,23 +51,17 @@ Kindersicherung ein- und ausschalten
 
 Bildlink: https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/icd9c77548f0fca49/version/1776714015/image.jpg
 
+Deutsch (Kurzanleitung)\[https://media3.bsh-group.com/Documents/9000795435\_A.pdf]
 
+Deutsch (Betriebsaleitung)\[https://www.manualslib.de/manual/664410/Siemens-Sn-Serie.html?page=2#manual]
 
 Hinter dem Abfalleimer finden Sie die Spühltaps welche Sie für jeden Waschgang brauchen. Des weiteren sind dort auch Klarspüler und Salz für den Fall sollte dieses aufgebraucht sein.
 
 Wir entfehlen den Eco Waschgang zu benutzen und nur bei starker Verschmutzung Intensiv zu wählen. 
+**Bitte keine Teflonbeschitete Pfannen und Töpfe in den Geschirrspühler**
 
 
-
-Deutsch (Kurzanleitung)\[https://media3.bsh-group.com/Documents/9000795435\_A.pdf]
-
-Deutsch (Betriebsaleitung)\[https://media3.bsh-group.com/Documents/9000798291\_K.pdf]
-
-
-
-
-
-Schritte:
+Einschalten:
 
 
 
@@ -75,7 +69,8 @@ Schritte:
 * Eco Programm wählen (2)
 * Start drücken (3)
 
-
+Während des Programmablaufs erscheint ein roter Lichtpunkt auf dem Fußboden unterhalb der Gerätetür.
+Geschirrspülertür erst dann öffnen, wenn der Lichtpunkt am Fußboden nicht mehr sichtbar ist.
 
 
 

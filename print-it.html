@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casa Maranta – Guida per gli Ospiti (Italiano)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --orange: #E8980A;
+      --orange-dark: #c47d00;
+      --orange-light: #FFF4D6;
+      --dark-blue: #1E2D40;
+      --white: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #555;
+      --border: #d8d8d8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 10pt; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text);
+      background: #e8e8e8;
+      line-height: 1.55;
+    }
+
+    /* ── PRINT BAR ── */
+    .print-bar {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: var(--dark-blue); color: white;
+      padding: 10px 24px; display: flex; align-items: center;
+      justify-content: space-between; gap: 12px; z-index: 1000; font-size: 13px;
+    }
+    .print-bar .hint { font-size: 11px; opacity: 0.6; }
+    .btn-print {
+      background: var(--orange); color: white; border: none;
+      padding: 9px 22px; border-radius: 6px; font-family: inherit;
+      font-size: 13px; font-weight: 600; cursor: pointer;
+    }
+    .btn-print:hover { background: var(--orange-dark); }
+
+    /* ── PAGE STRUCTURE ── */
+    .page {
+      width: 210mm; min-height: 297mm;
+      margin: 70px auto 0; background: white;
+      position: relative; overflow: hidden;
+    }
+    .page + .page { margin-top: 14px; }
+    .page:last-child { margin-bottom: 48px; }
+
+    /* ── COVER ── */
+    .cover { display: flex; flex-direction: column; height: 297mm; background: var(--dark-blue); color: white; }
+    .cover-photo {
+      flex: 1;
+      background: url('https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ie9beb54c6695d5f6/version/1776070134/image.jpg') center 30% / cover no-repeat;
+      position: relative;
+    }
+    .cover-photo::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(30,45,64,0.85) 0%, rgba(30,45,64,0.85) 10%, transparent calc(10% + 2cm), transparent 100%);
+    }
+    .cover-body { padding: 40px 48px 48px; flex-shrink: 0; }
+    .cover-label { font-size: 14pt; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--orange); margin-bottom: 10px; }
+    .cover-title { font-size: 44pt; font-weight: 700; letter-spacing: -1px; line-height: 1; margin-bottom: 8px; }
+    .cover-address { font-size: 11pt; color: rgba(255,255,255,0.6); margin-bottom: 28px; }
+    .cover-divider { width: 48px; height: 3px; background: var(--orange); border-radius: 2px; margin-bottom: 24px; }
+    .cover-meta { display: flex; gap: 48px; }
+    .cover-meta-label { font-size: 7.5pt; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 3px; }
+    .cover-meta-value { font-size: 13pt; font-weight: 600; color: white; }
+    .cover-meta-value small { font-size: 9pt; font-weight: 400; opacity: 0.6; display: block; margin-top: 2px; }
+
+    /* ── PAGE HEADER / FOOTER ── */
+    .page-header {
+      background: var(--dark-blue); color: white;
+      padding: 13px 24px 13px calc(24px + 1cm); display: flex; align-items: center; justify-content: space-between;
+    }
+    .page-header-title { font-size: 8pt; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+    .page-header-logo { font-size: 11pt; font-weight: 700; color: var(--orange); }
+    .page-footer { position: absolute; bottom: 0; left: 0; right: 0; background: var(--dark-blue); height: 6px; }
+    .page-footer-bar { background: var(--orange); width: 48px; height: 100%; }
+
+    /* ── CONTENT ── */
+    .page-content { padding: 24px 28px 32px calc(28px + 1cm); }
+
+    /* ── SECTION HEADINGS ── */
+    .section-title { font-size: 20pt; font-weight: 700; color: var(--dark-blue); margin-bottom: 3px; line-height: 1.1; }
+    .section-rule { width: 36px; height: 3px; background: var(--orange); border-radius: 2px; margin: 8px 0 18px; }
+
+    h3.sub {
+      font-size: 10.5pt; font-weight: 700; color: var(--dark-blue);
+      margin: 18px 0 8px; display: flex; align-items: center; gap: 8px;
+    }
+    h3.sub::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    h3.sub:first-child { margin-top: 0; }
+
+    h4.mini { font-size: 9pt; font-weight: 700; color: var(--dark-blue); margin: 10px 0 4px; }
+
+    /* ── BODY TEXT ── */
+    .body-text { font-size: 9.5pt; line-height: 1.6; color: var(--text); }
+    .body-text p { margin-bottom: 6px; }
+    .body-text p:last-child { margin-bottom: 0; }
+    .body-text ul { padding-left: 17px; margin: 4px 0 6px; }
+    .body-text li { margin-bottom: 3px; }
+    .body-text strong { font-weight: 600; }
+
+    /* ── INFO BOXES ── */
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+    .info-box { background: var(--orange-light); border: 1px solid #f0c860; border-radius: 8px; padding: 13px 15px; }
+    .info-box.blue { background: #e8f0f8; border-color: #b0c8e0; }
+    .info-box.full { grid-column: 1 / -1; }
+    .info-box-label { font-size: 7pt; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 4px; }
+    .info-box-value { font-size: 15pt; font-weight: 700; color: var(--dark-blue); line-height: 1.1; }
+    .info-box-value small { font-size: 8.5pt; font-weight: 400; color: var(--text-muted); display: block; margin-top: 2px; }
+    .info-box-value .mono { font-family: 'Courier New', monospace; font-size: 13pt; letter-spacing: 0.5px; }
+
+    /* ── WARNING / NOTICE BOX ── */
+    .warning-box {
+      background: #fff9e6; border-left: 4px solid var(--orange);
+      border-radius: 0 6px 6px 0; padding: 10px 14px;
+      font-size: 9pt; line-height: 1.5; margin-bottom: 14px;
+    }
+    .warning-box strong { color: var(--dark-blue); }
+    .warning-box.red { background: #fff2f2; border-color: #cc3333; }
+
+    /* ── CONTACT CARDS ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+    .contact-card { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; }
+    .contact-card.emergency { background: #fff2f2; border-color: #e8b0b0; grid-column: 1 / -1; }
+    .contact-card h4 { font-size: 7.5pt; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 7px; }
+    .contact-row { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; font-size: 9pt; }
+    .contact-row:last-child { margin-bottom: 0; }
+    .c-name { font-weight: 600; }
+    .c-dot { color: #ccc; }
+    .c-phone { color: var(--dark-blue); font-weight: 500; }
+    .emergency-number { font-size: 24pt; font-weight: 700; color: #c0392b; line-height: 1; }
+    .emergency-row { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+    .emergency-extra { font-size: 8.5pt; color: var(--text-muted); }
+
+    /* ── APPLIANCE LAYOUT ── */
+    .appliance-grid {
+      display: grid; grid-template-columns: 220px 1fr;
+      gap: 16px; margin-bottom: 20px; align-items: start;
+    }
+    .appliance-img {
+      width: 100%; height: auto; max-height: 240px;
+      object-fit: contain; border-radius: 6px;
+      border: 1px solid var(--border); background: #f5f5f5;
+    }
+
+    /* ── FULL WIDTH IMAGES ── */
+    .full-img {
+      width: 100%; height: 150px; object-fit: cover;
+      border-radius: 7px; margin-bottom: 10px; display: block;
+    }
+    .full-img.tall { height: 200px; }
+
+    /* ── TWO COLUMN ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .two-col-3-2 { display: grid; grid-template-columns: 3fr 2fr; gap: 20px; }
+
+    /* ── CHECKLIST ── */
+    .checklist { list-style: none; }
+    .checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; border-bottom: 1px solid #f0f0f0; font-size: 9pt; line-height: 1.5; }
+    .checklist li:last-child { border-bottom: none; }
+    .check-box { width: 16px; height: 16px; min-width: 16px; border: 1.5px solid #999; border-radius: 3px; margin-top: 1px; flex-shrink: 0; }
+
+    /* ── PLACE LIST ── */
+    .place-list { list-style: none; }
+    .place-item { padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
+    .place-item:last-child { border-bottom: none; }
+    .place-name { font-size: 10pt; font-weight: 600; color: var(--dark-blue); margin-bottom: 2px; }
+    .place-desc { font-size: 8.5pt; color: var(--text-muted); line-height: 1.4; }
+
+    /* ── WIFI QR ── */
+    .wifi-qr-row { display: flex; align-items: center; gap: 18px; margin-top: 12px; }
+    .wifi-qr-row img { width: 80px; height: 80px; flex-shrink: 0; }
+    .wifi-qr-hint { font-size: 8.5pt; color: var(--text-muted); }
+
+    /* ── PLACE ITEM IMAGE ── */
+    .place-item-img { width: 100%; height: 52px; object-fit: cover; border-radius: 4px; margin-bottom: 4px; display: block; }
+
+    /* ── MULTILINGUAL CHECKLIST – Italian as primary ── */
+    .checklist-multi { width: 100%; border-collapse: collapse; }
+    .checklist-multi-head th { background: var(--dark-blue); color: white; font-size: 7.5pt; font-weight: 500; padding: 6px 10px; text-align: left; }
+    .checklist-multi-head th.ok-cell { text-align: center; font-weight: 700; font-size: 9pt; width: 32px; }
+    .checklist-multi tr:not(.checklist-multi-head) { border-bottom: 1px solid #ebebeb; }
+    .checklist-multi tr:not(.checklist-multi-head):last-child { border-bottom: none; }
+    .checklist-multi td.item-cell { padding: 4px 10px 4px 0; vertical-align: top; }
+    .checklist-multi td.ok-cell { width: 32px; text-align: center; vertical-align: middle; padding: 4px 0; }
+    .lang-it { display: block; font-size: 7.5pt; font-weight: 600; color: var(--dark-blue); line-height: 1.3; }
+    .lang-de, .lang-fr, .lang-en { display: block; font-size: 7pt; color: var(--text-muted); line-height: 1.25; }
+
+    /* ── PRINT ── */
+    @media print {
+      @page { size: A4; margin: 0; }
+      html { font-size: 10pt; }
+      body { background: white; }
+      .print-bar { display: none !important; }
+      .page {
+        width: 210mm; height: 297mm; min-height: 297mm; max-height: 297mm;
+        margin: 0 !important; page-break-after: always; break-after: page; overflow: hidden;
+      }
+      .page:last-child { page-break-after: auto; break-after: auto; }
+      .cover { height: 297mm; }
+      a { color: inherit; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="print-bar">
+  <div>
+    <strong>Casa Maranta – Guida per gli Ospiti</strong>
+    <span class="hint"> · Italiano · Apri in Chrome o Edge per i migliori risultati di stampa</span>
+  </div>
+  <button class="btn-print" onclick="window.print()">🖨 Stampa</button>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGINA 1 – COPERTINA
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="cover">
+    <div class="cover-photo">
+      <div style="position:absolute;top:20px;right:24px;z-index:2;display:flex;gap:6px;align-items:center">
+        <span style="font-size:14pt;font-weight:500;letter-spacing:1.5px;color:rgba(255,255,255,0.35);padding:5px 14px">DE</span>
+        <span style="font-size:14pt;font-weight:500;letter-spacing:1.5px;color:rgba(255,255,255,0.35);padding:5px 14px">EN</span>
+        <span style="font-size:14pt;font-weight:700;letter-spacing:1.5px;color:var(--orange);background:rgba(30,45,64,0.55);padding:5px 14px;border-radius:5px">IT</span>
+      </div>
+    </div>
+    <div class="cover-body">
+      <div class="cover-label">Guida per gli Ospiti</div>
+      <div class="cover-title">Casa Maranta</div>
+      <div class="cover-address">Via da la Rasiga 12, 7745 Li Curt · Svizzera</div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGINA 2 – RIFERIMENTO RAPIDO
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Riferimento Rapido</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="info-box blue full" style="display:flex;align-items:center;gap:20px;margin-bottom:20px;padding:18px 22px;border-width:2px">
+      <img src="Resources/Pics/qrcode_burton58.github.io.png" alt="App QR Code" style="width:100px;height:100px;flex-shrink:0;border-radius:6px" />
+      <div>
+        <div style="font-size:9pt;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--orange);margin-bottom:5px">🌐 Guida per gli Ospiti Digitale</div>
+        <div style="font-size:12pt;font-weight:700;color:var(--dark-blue);margin-bottom:5px">Tutte le informazioni come app – con mappa interattiva, navigazione e molto altro:</div>
+        <div style="font-family:'Courier New',monospace;font-size:10pt;font-weight:700;color:var(--dark-blue);margin-bottom:5px">https://burton58.github.io/CasaMaranta</div>
+        <div style="font-size:9.5pt;color:var(--text-muted);margin-bottom:3px">Password: <span style="font-family:'Courier New',monospace;font-weight:700;font-size:10.5pt;color:var(--dark-blue)">larasiga585</span></div>
+        <div style="font-size:9pt;color:var(--text-muted)">Scansiona il codice QR con la fotocamera del tuo smartphone per aprire la guida digitale.</div>
+      </div>
+    </div>
+
+    <div class="section-title">Informazioni Importanti</div>
+    <div class="section-rule"></div>
+
+    <div class="info-grid">
+      <div class="info-box">
+        <div class="info-box-label">Check-in dalle</div>
+        <div class="info-box-value">16:00</div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-label">Check-out entro le</div>
+        <div class="info-box-value">10:00</div>
+      </div>
+      <div class="info-box blue full" style="padding:12px 16px">
+        <div class="info-box-label">WiFi</div>
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:4px">
+          <div>
+            <div style="font-size:7pt;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:2px">Rete</div>
+            <div class="info-box-value"><span class="mono">LaRasigaGuest</span></div>
+          </div>
+          <div style="width:1px;height:38px;background:var(--border)"></div>
+          <div>
+            <div style="font-size:7pt;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:2px">Password</div>
+            <div class="info-box-value"><span class="mono">larasiga585</span></div>
+          </div>
+          <div style="flex:1;display:flex;align-items:center;gap:10px;justify-content:flex-end">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&ecc=M&data=WIFI%3AT%3AWPA%3BS%3ALaRasigaGuest%3BP%3Alarasiga585%3B%3B" alt="WiFi QR" style="width:68px;height:68px" />
+            <div class="wifi-qr-hint" style="font-size:8pt">Scansiona per<br>connetterti automaticamente</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="sub" style="margin-top:20px">Numeri Importanti</h3>
+
+    <div class="contact-grid">
+      <div class="contact-card emergency">
+        <h4>Emergenza</h4>
+        <div class="emergency-row">
+          <div class="emergency-number">112</div>
+          <div class="emergency-extra">Emergenza Generale · Polizia 117 · Vigili del Fuoco 118 · Ambulanza 144</div>
+        </div>
+      </div>
+      <div class="contact-card" style="background:var(--orange-light);border-color:var(--orange);border-width:2px">
+        <h4 style="color:var(--orange-dark)">Referente Locale</h4>
+        <div class="contact-row"><span class="c-name">Anna</span><span class="c-dot">·</span><span class="c-phone">+41 79 422 16 08</span></div>
+      </div>
+      <div class="contact-card">
+        <h4>Proprietari</h4>
+        <div class="contact-row"><span class="c-name">Markus</span><span class="c-dot">·</span><span class="c-phone">+41 79 571 27 90</span></div>
+        <div class="contact-row"><span class="c-name">Christine</span><span class="c-dot">·</span><span class="c-phone">+41 78 740 31 80</span></div>
+      </div>
+      <div class="contact-card">
+        <h4>Medico</h4>
+        <div class="contact-row" style="font-size:8.5pt"><span>Centro Medico Valposchiavo</span></div>
+        <div class="contact-row"><span class="c-phone">+41 81 839 01 80</span></div>
+      </div>
+      <div class="contact-card">
+        <h4>Farmacia</h4>
+        <div class="contact-row" style="font-size:8.5pt"><span>Apotheke Bernina</span></div>
+        <div class="contact-row"><span class="c-phone">+41 81 844 02 51</span></div>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGINA 3 – BENVENUTO
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Benvenuto</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="section-title">Benvenuti!</div>
+    <div class="section-rule"></div>
+
+    <div class="two-col-3-2" style="align-items:start">
+      <div class="body-text">
+        <p>Siamo Christine e Markus, insieme alle nostre figlie Nora e Olivia, e siamo felici di darvi il benvenuto nella nostra casa vacanze.</p>
+        <p>Questa casa appartiene alla famiglia Maranta da generazioni. Il padre di Christine è nato qui e ha trascorso la sua infanzia e giovinezza tra queste mura, prima di trasferirsi a Zurigo da giovane adulto. Negli anni '70, dopo la scomparsa dei suoi genitori, ha preso in carico la casa e l'ha trasformata in una casa vacanze di famiglia.</p>
+        <p>Per Christine, Poschiavo è sempre stato un luogo ricco di ricordi speciali, legati a tante felici vacanze in famiglia. Nel 2013 abbiamo avuto la fortuna di rilevare la casa noi stessi e di ristrutturarla con grande cura e amore. Il nostro legame con Poschiavo – la sua natura, la sua gente e il suo meraviglioso cibo – è cresciuto costantemente da allora.</p>
+        <p>In questa guida troverete non solo tutte le informazioni importanti sulla casa, ma anche i nostri punti salienti personali: ristoranti preferiti, idee per escursioni, luoghi da scoprire e consigli per fare acquisti e godersi la regione.</p>
+        <p style="margin-top:14px"><strong>Cordiali saluti,<br>Christine &amp; Markus</strong></p>
+      </div>
+      <div>
+        <img
+          src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i9d2beec054121602/version/1776072036/image.jpg"
+          alt="Christine &amp; Markus"
+          style="width:100%;height:auto;border-radius:8px;box-shadow:0 3px 14px rgba(0,0,0,0.15)"
+        />
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGINA 4 – ARRIVO E ACCESSO
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Arrivo e Accesso</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="section-title">Arrivo e Accesso</div>
+    <div class="section-rule"></div>
+
+    <div class="info-grid" style="margin-bottom:18px">
+      <div class="info-box">
+        <div class="info-box-label">Check-in dalle</div>
+        <div class="info-box-value">16:00</div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-label">Indirizzo</div>
+        <div class="info-box-value" style="font-size:10pt">Via da la Rasiga 12<br>7745 Li Curt, Svizzera</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <h3 class="sub">🔑 Codice di Accesso</h3>
+        <div class="body-text">
+          <p>La porta d'ingresso è dotata di una serratura intelligente <strong>Nuki Go</strong> e di una <strong>tastiera esterna</strong>. Vi forniremo il vostro codice di accesso personale prima dell'arrivo.</p>
+          <p>La porta si chiude automaticamente ogni sera alle <strong>23:00</strong>. Assicuratevi di chiudere bene la porta dopo essere entrati.</p>
+          <p>Se ci comunicate l'orario approssimativo del vostro arrivo, la nostra referente locale <strong>Anna (+41 79 422 16 08)</strong> sarà felice di accogliervi di persona e mostrarvi la casa.</p>
+        </div>
+
+        <h3 class="sub">⏰ Check-in Anticipato</h3>
+        <div class="body-text">
+          <p>A volte possiamo organizzare un check-in anticipato. Contattateci in anticipo se prevedete di arrivare prima.</p>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="sub">🚂 Arrivo in Treno</h3>
+        <div class="body-text">
+          <p>Prendete il treno o il PostBus fino alla <strong>stazione di Poschiavo</strong>, poi camminate via Via da Clalt fino a Via da la Rasiga 12.</p>
+          <p>Distanza circa 1,1 km / 15 minuti a piedi.</p>
+          <p><strong>Prenotate un taxi in anticipo:</strong><br>
+          balzarolo.ch<br>
+          +41 81 844 10 42<br>
+          info@balzarolo.ch</p>
+        </div>
+
+        <h3 class="sub">🚗 Arrivo in Auto</h3>
+        <div class="body-text">
+          <p>Inserite <strong>Via da la Rasiga 12, 7745 Li Curt</strong> nel navigatore.</p>
+          <p>C'è parcheggio per <strong>3 auto</strong> direttamente davanti alla casa.</p>
+        </div>
+
+        <h3 class="sub">📍 Coordinate GPS</h3>
+        <div class="body-text">
+          <p style="font-family:'Courier New',monospace;font-size:9pt">46.31669 N, 10.05890 E</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGINA 5 – LA CASA E LA STUFA A LEGNA
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">La Casa</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="section-title">La Casa</div>
+    <div class="section-rule"></div>
+
+    <div class="two-col-3-2" style="align-items:start;margin-bottom:18px">
+      <div class="body-text">
+        <p>Abbiamo arredato la nostra casa vacanze con grande cura per renderla il più accogliente, confortevole e funzionale possibile – per noi e per i nostri ospiti. Il nostro obiettivo è che vi sentiate a casa vostra proprio come ci sentiamo noi.</p>
+        <p>Nelle pagine seguenti troverete informazioni utili sulla casa – dall'utilizzo degli impianti ai consigli pratici per la vita quotidiana.</p>
+      </div>
+      <div>
+        <img
+          src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/iec6caefdbf66df07/version/1776631199/image.jpg"
+          alt="Casa Maranta"
+          style="width:100%;height:auto;max-height:130px;object-fit:cover;border-radius:7px"
+        />
+      </div>
+    </div>
+
+    <h3 class="sub">🔥 Stufa a Legna nel Soggiorno</h3>
+
+    <div class="appliance-grid">
+      <img
+        src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i24f5c7a4ed947a35/version/1776632945/image.jpg"
+        alt="Stufa a Legna" class="appliance-img"
+      />
+      <div class="body-text">
+        <p>Per noi, concludere la serata davanti al fuoco scoppiettante è uno dei momenti più speciali in questa casa vacanze. Per aiutarvi a usare la stufa in modo sicuro e semplice, seguite queste linee guida:</p>
+        <h4 class="mini">Regole di Sicurezza</h4>
+        <ul>
+          <li>Assicurarsi che il tiraggio sia aperto: la leva deve essere in posizione <strong>verticale</strong></li>
+          <li>Tenere sempre la porta <strong>chiusa</strong> durante l'uso</li>
+          <li>Non appoggiare nulla sopra la stufa</li>
+          <li>Lasciare sempre raffreddare <strong>completamente</strong> le ceneri prima di metterle nel secchio</li>
+          <li>In caso di dubbio, contattare Anna (+41 79 422 16 08)</li>
+        </ul>
+        <h4 class="mini">Dopo l'Uso</h4>
+        <ul>
+          <li>Smaltire le ceneri raffreddate nel secchio accanto alla stufa</li>
+          <li>Pulire il vetro se necessario</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="sub">🎭 Stufa Decorativa in Mansarda</h3>
+
+    <div class="appliance-grid">
+      <img
+        src="Resources/Pics/Dekoofen.jpg"
+        alt="Stufa Decorativa" class="appliance-img"
+      />
+      <div class="body-text">
+        <div class="warning-box red">
+          <strong>⚠️ IMPORTANTE:</strong> La stufa in mansarda è puramente decorativa – <strong>non è collegata</strong> e <strong>non deve essere utilizzata</strong>.
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGINA 6 – CUCINA: PIANO COTTURA E LAVASTOVIGLIE
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Elettrodomestici da Cucina</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="section-title">Elettrodomestici da Cucina</div>
+    <div class="section-rule"></div>
+
+    <h3 class="sub">🍳 Piano Cottura</h3>
+    <div class="appliance-grid">
+      <img
+        src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/icf38368539050731/version/1776714283/image.jpg"
+        alt="Piano Cottura" class="appliance-img"
+      />
+      <div class="body-text">
+        <h4 class="mini">Accensione</h4>
+        <ul>
+          <li>Accendere l'apparecchio <strong>(1)</strong></li>
+          <li>Selezionare la zona di cottura <strong>(2)</strong></li>
+          <li>Selezionare la temperatura desiderata nell'area di controllo <strong>(3)</strong></li>
+        </ul>
+        <h4 class="mini">Spegnimento di una Zona</h4>
+        <ul>
+          <li>Selezionare la zona di cottura <strong>(2)</strong></li>
+          <li>Toccare <strong>0</strong> nell'area di controllo <strong>(4)</strong></li>
+        </ul>
+        <h4 class="mini">Blocco Bambini</h4>
+        <p>Il piano cottura deve essere prima spento.</p>
+        <ul>
+          <li><strong>Attivare:</strong> Toccare il simbolo della chiave <strong>(5)</strong> per circa 4 secondi. La spia si illumina per 10 secondi – piano cottura bloccato.</li>
+          <li><strong>Disattivare:</strong> Toccare nuovamente il simbolo della chiave <strong>(5)</strong> per ~4 secondi.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="sub">🍽 Lavastoviglie</h3>
+
+    <div class="warning-box">
+      ⚠️ <strong>Non mettere le pentole e le padelle rivestite in Teflon nella lavastoviglie.</strong>
+    </div>
+
+    <div class="appliance-grid">
+      <img
+        src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/icd9c77548f0fca49/version/1776714015/image.jpg"
+        alt="Lavastoviglie" class="appliance-img"
+      />
+      <div class="body-text">
+        <p>Pastiglie, brillantante e sale: dietro il bidone.</p>
+        <p>Consigliamo il programma <strong>Eco</strong>. Utilizzare Intensivo solo per carichi molto sporchi.</p>
+        <h4 class="mini">Accensione</h4>
+        <ul>
+          <li>Accendere l'apparecchio <strong>(1)</strong></li>
+          <li>Selezionare il programma Eco <strong>(2)</strong></li>
+          <li>Premere Start <strong>(3)</strong></li>
+        </ul>
+        <p><strong>Nota:</strong> Durante il programma appare un punto luminoso rosso sul pavimento sotto la porta. Aprire la porta solo quando il punto luminoso non è più visibile.</p>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGINA 7 – CUCINA: CAPPA E MICROONDE
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Elettrodomestici da Cucina</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <h3 class="sub" style="margin-top:0">💨 Cappa Aspirante</h3>
+    <div class="appliance-grid">
+      <img
+        src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/if6067981cf4078c3/version/1776714795/image.jpg"
+        alt="Cappa Aspirante" class="appliance-img"
+      />
+      <div class="body-text">
+        <h4 class="mini">Indicatore LED di Velocità</h4>
+        <ul>
+          <li>Stand-by: LED spento</li>
+          <li>Velocità 1: LED <strong>verde</strong></li>
+          <li>Velocità 2: LED <strong>ambra</strong> (giallo)</li>
+          <li>Velocità 3: LED <strong>rosso</strong></li>
+          <li>Velocità 4: LED <strong>rosso lampeggiante</strong> <em>(torna automaticamente alla velocità 2 dopo 5 minuti)</em></li>
+        </ul>
+        <h4 class="mini">Illuminazione</h4>
+        <ul>
+          <li><strong>Tocco breve</strong> sul pulsante di illuminazione <strong>(2)</strong>: luci inferiori on/off</li>
+          <li><strong>Tenere premuto</strong> il pulsante di illuminazione <strong>(2)</strong>: luci soffitto superiori on/off</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="sub">📡 Microonde</h3>
+    <div class="appliance-grid">
+      <img
+        src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i7bbaf1bf1d9fa79d/version/1776714670/image.jpg"
+        alt="Microonde" class="appliance-img"
+      />
+      <div class="body-text">
+        <h4 class="mini">Accensione</h4>
+        <ul>
+          <li>Selezionare il simbolo del microonde <strong>(1)</strong></li>
+          <li>Premere Start <strong>(2)</strong></li>
+          <li>Regolare la potenza con il pulsante +/– <strong>(3)</strong></li>
+          <li>Premere Start <strong>(2)</strong></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGINA 8 – PORTE E FINESTRE
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Porte e Finestre</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="section-title">Porte e Finestre</div>
+    <div class="section-rule"></div>
+
+    <h3 class="sub" style="margin-top:0">🚪 Porta d'Ingresso</h3>
+    <img
+      src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i43c9c5b48ebbd6f4/version/1776114581/image.jpg"
+      alt="Nuki Lock"
+      style="width:100%;height:auto;max-height:540px;object-fit:contain;border-radius:6px;border:1px solid var(--border);background:#f5f5f5;margin-bottom:12px"
+    />
+    <div class="body-text">
+      <p>La porta d'ingresso è dotata di una serratura intelligente <strong>Nuki Go</strong> e di una <strong>tastiera esterna</strong>. Utilizzate il vostro codice di accesso personale per aprire la porta.</p>
+      <p>La porta si chiude automaticamente ogni sera alle <strong>23:00</strong>. Chiudere bene la porta dopo essere entrati.</p>
+    </div>
+
+    <h3 class="sub">🪟 Finestre del Lucernario</h3>
+    <div class="body-text">
+      <p>Le finestre del lucernario in mansarda possono essere aperte e chiuse con un'asta – la troverete dietro la porta nella camera da letto in mansarda. Chiudere sempre le finestre in caso di maltempo e quando si lascia la casa.</p>
+    </div>
+
+    <h3 class="sub">🔒 Porte Chiuse a Chiave</h3>
+    <div class="body-text">
+      <p>Le porte contrassegnate con <strong>"Privat"</strong> al piano terra e in mansarda conducono a cantine, locali tecnici e stanze private – non accessibili agli ospiti.</p>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGINA 8B – TV E RADIO
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">TV e Radio</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="section-title">TV e Radio</div>
+    <div class="section-rule"></div>
+
+    <h3 class="sub" style="margin-top:0">📺 TV – Soggiorno</h3>
+    <img src="Resources/Pics/SateliltenTV.jpg" alt="TV Satellitare" style="width:100%;height:auto;border-radius:6px;border:1px solid var(--border);margin-bottom:12px" />
+    <div class="body-text">
+      <p>La casa dispone di <strong>TV satellitare</strong> (senza pausa/replay). È possibile collegare il proprio dispositivo tramite HDMI per lo streaming.</p>
+      <h4 class="mini">TV Satellitare</h4>
+      <ul>
+        <li>Accendere la TV: <strong>telecomando LG (1)</strong></li>
+        <li>Accendere il ricevitore: <strong>telecomando TechniSat (A)</strong></li>
+        <li>Nessuna immagine? → Selezionare ingresso <strong>HDMI1</strong></li>
+        <li>Guida programmi: premere <strong>SFI (C)</strong> o sfogliare con <strong>+P– (B)</strong></li>
+      </ul>
+      <h4 class="mini">Proprio Dispositivo (Streaming)</h4>
+      <ul>
+        <li>Collegare il cavo etichettato "Il tuo dispositivo" (HDMI / USB-C)</li>
+        <li>Selezionare ingresso <strong>HDMI2</strong></li>
+      </ul>
+    </div>
+
+    <h3 class="sub">📺 TV – Mansarda</h3>
+    <div class="body-text">
+      <p>Nessuna ricezione satellitare o via cavo. Collegare il proprio dispositivo tramite HDMI o USB-C.</p>
+    </div>
+
+    <h3 class="sub">📻 Radio – Sala da Pranzo</h3>
+    <div class="body-text">
+      <p>Riceve stazioni <strong>DAB+</strong>. Collegare il proprio dispositivo tramite <strong>Bluetooth</strong> per la riproduzione musicale.</p>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGINA 9 – GIARDINO E RIFIUTI
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Giardino e Rifiuti</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="two-col" style="align-items:end;margin-bottom:0">
+      <div><div class="section-title">Giardino &amp; BBQ</div><div class="section-rule"></div></div>
+      <div><div class="section-title">Rifiuti e Riciclaggio</div><div class="section-rule"></div></div>
+    </div>
+
+    <div class="two-col" style="align-items:start">
+      <div>
+        <h3 class="sub" style="margin-top:0">🛌 Amache</h3>
+        <img
+          src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ifa6c18f05905d17a/version/1776110400/image.jpg"
+          alt="Amache"
+          style="width:100%;height:auto;max-height:150px;object-fit:cover;border-radius:7px;margin-bottom:8px"
+        />
+        <div class="body-text">
+          <p>Gli anelli metallici su entrambi i lati della pergola permettono di agganciare i moschettoni. Portare le amache all'interno ogni sera e in caso di maltempo.</p>
+        </div>
+
+        <h3 class="sub">🏠 Casetta dei Bambini</h3>
+        <img
+          src="https://image.jimcdn.com/app/cms/image/transf/dimension=441x10000:format=jpg/path/s43189f292a34c399/image/i95cf1bfa57506cd1/version/1776110340/image.jpg"
+          alt="Casetta dei Bambini"
+          style="width:100%;height:auto;max-height:130px;object-fit:cover;border-radius:7px;margin-bottom:8px"
+        />
+        <div class="body-text">
+          <p>I nostri figli adorano questa casetta – speriamo che anche i vostri la amino! Vi chiediamo semplicemente di trattarla con cura.</p>
+        </div>
+
+        <h3 class="sub">🪑 Lettini da Sole</h3>
+        <div class="body-text">
+          <p>Lettini e sedie aggiuntivi sono riposti sotto le scale all'interno della casa.</p>
+        </div>
+
+        <h3 class="sub">🔥 Braciere e Barbecue</h3>
+        <img
+          src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i3a613047bf17fa35/version/1776110877/image.jpg"
+          alt="Braciere e Barbecue"
+          style="width:100%;height:auto;max-height:160px;object-fit:cover;border-radius:7px;margin-bottom:8px"
+        />
+        <div class="body-text">
+          <p>Usare la legna da ardere riposta vicino alla stufa. Far raffreddare completamente le ceneri prima di smaltirle nel secchio accanto alla stufa.</p>
+          <p>Pulire la griglia del barbecue dopo l'uso in modo che anche i prossimi ospiti possano goderla.</p>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="sub" style="margin-top:0;display:none">🗑 Rifiuti e Riciclaggio</h3>
+        <div class="body-text">
+          <p>Per i rifiuti domestici sono necessari i <strong>sacchetti ufficiali</strong> (disponibili al Coop).</p>
+        </div>
+        <h3 class="sub">🗑 Punto di Raccolta Rifiuti</h3>
+        <div class="body-text">
+          <p>Circa 180 m verso Li Curt. Nel comune di Poschiavo i rifiuti domestici vengono smaltiti nei punti di raccolta centrali – purtroppo non ci sono bidoni direttamente vicino alla casa.</p>
+          <img src="Resources/Pics/Abfall.jpg" alt="Percorso verso il punto di raccolta rifiuti" style="max-width:80%;width:auto;height:auto;display:block;border-radius:6px;border:1px solid var(--border);margin:4px 0 6px" />
+          <img src="Resources/Pics/Abfall2.jpg" alt="Punto di raccolta rifiuti" style="max-width:80%;width:auto;height:auto;display:block;border-radius:6px;border:1px solid var(--border);margin:0 0 4px" />
+        </div>
+        <h3 class="sub">♻️ Riciclaggio Vetro e PET</h3>
+        <div class="body-text">
+          <p>Circa 800 m verso il paese – punto di raccolta nel parcheggio RePower.</p>
+          <img src="Resources/Pics/Altglas.jpg" alt="Percorso verso il punto di riciclaggio vetro/PET" style="max-width:80%;width:auto;height:auto;display:block;border-radius:6px;border:1px solid var(--border);margin:4px 0 4px" />
+          <p>Smaltire i rifiuti correttamente e regolarmente.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGINA 10 – GIOCHI DA TAVOLO E ANGOLO LETTURA
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Giochi da Tavolo e Angolo Lettura</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="two-col" style="align-items:start">
+      <div>
+        <div class="section-title" style="font-size:16pt">Giochi da Tavolo</div>
+        <div class="section-rule"></div>
+        <img
+          src="https://image.jimcdn.com/app/cms/image/transf/dimension=10000x740:format=jpg:rotate=270/path/s43189f292a34c399/image/i68bbfd93c4dd7ced/version/1776632127/image.jpg"
+          alt="Giochi da Tavolo"
+          style="width:100%;height:auto;max-height:200px;object-fit:cover;border-radius:7px;margin-bottom:10px"
+        />
+        <div class="body-text">
+          <p>Quando il tempo non è favorevole o è semplicemente il momento di fare una pausa, il divertimento è garantito! Troverete una selezione di giochi per varie fasce d'età:</p>
+          <ul style="columns:2;column-gap:12px">
+            <li>Carte da Jass (DE &amp; FR)</li>
+            <li>Uno</li>
+            <li>Scacchi</li>
+            <li>Skip-Bo</li>
+            <li>Fiesta de los Muertos</li>
+            <li>Verfuxt</li>
+            <li>Scarabeo</li>
+            <li>Ticket to Ride: SF</li>
+            <li>Kahuna</li>
+            <li>Yatzy</li>
+            <li>Rummikub</li>
+            <li>The Walking Pet</li>
+          </ul>
+          <p style="margin-top:6px">Le istruzioni sono disponibili nell'<strong>app della guida per gli ospiti</strong>.</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title" style="font-size:16pt">Angolo Lettura</div>
+        <div class="section-rule"></div>
+        <img
+          src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/id75b187f1dc6bb10/version/1776112971/image.jpg"
+          alt="Angolo Lettura"
+          style="width:100%;height:auto;max-height:200px;object-fit:cover;border-radius:7px;margin-bottom:10px"
+        />
+        <div class="body-text">
+          <p>In mansarda troverete una piccola raccolta eclettica di libri. Siete benvenuti a sfogliarli e scegliere qualcosa da leggere.</p>
+          <p>Vi preghiamo di lasciare i libri in casa affinché anche i futuri ospiti possano goderne.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGINA 11 – LISTA DI CONTROLLO CHECK-OUT
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Lista di Controllo Check-out</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="section-title">Lista per la Partenza</div>
+    <div class="section-rule"></div>
+
+    <div class="info-grid" style="margin-bottom:10px">
+      <div class="info-box">
+        <div class="info-box-label">Check-out entro le</div>
+        <div class="info-box-value">10:00</div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-label">Check-out tardivo?</div>
+        <div class="info-box-value" style="font-size:10pt">Si prega di richiederlo in anticipo</div>
+      </div>
+    </div>
+
+    <table class="checklist-multi">
+      <thead>
+        <tr class="checklist-multi-head">
+          <th>Per evitare costi aggiuntivi, verificare tutti i punti prima della partenza e consegnare questa lista al check-out.</th>
+          <th class="ok-cell">OK</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="item-cell">
+            <span class="lang-it">Il forno, il piano cottura e tutte le luci sono spenti.</span>
+            <span class="lang-de">Herd, Kochfelder und alle Lichter sind ausgeschaltet.</span>
+            <span class="lang-fr">Le four, les plaques de cuisson et toutes les lumières sont éteints.</span>
+            <span class="lang-en">The oven, hobs and all lights are switched off.</span>
+          </td>
+          <td class="ok-cell"><div class="check-box"></div></td>
+        </tr>
+        <tr>
+          <td class="item-cell">
+            <span class="lang-it">Il frigorifero è vuoto.</span>
+            <span class="lang-de">Der Kühlschrank ist leer.</span>
+            <span class="lang-fr">Le réfrigérateur est vide.</span>
+            <span class="lang-en">The fridge is empty.</span>
+          </td>
+          <td class="ok-cell"><div class="check-box"></div></td>
+        </tr>
+        <tr>
+          <td class="item-cell">
+            <span class="lang-it">Le stoviglie sono pulite e messe al loro posto.</span>
+            <span class="lang-de">Das Geschirr ist sauber und eingeräumt.</span>
+            <span class="lang-fr">La vaisselle est propre et rangée.</span>
+            <span class="lang-en">Dishes are clean and put in their place.</span>
+          </td>
+          <td class="ok-cell"><div class="check-box"></div></td>
+        </tr>
+        <tr>
+          <td class="item-cell">
+            <span class="lang-it">Tutti i rubinetti sono chiusi.</span>
+            <span class="lang-de">Alle Wasserhähne sind zugedreht.</span>
+            <span class="lang-fr">Tous les robinets sont fermés.</span>
+            <span class="lang-en">All the taps are closed.</span>
+          </td>
+          <td class="ok-cell"><div class="check-box"></div></td>
+        </tr>
+        <tr>
+          <td class="item-cell">
+            <span class="lang-it">Tutta la biancheria da letto è stata rimossa e raccolta con gli asciugamani nell'apposito sacco rosso di Interhome.</span>
+            <span class="lang-de">Die Bettwäsche wurde abgezogen und zusammen mit den Handtüchern in der roten Interhome-Tasche abgelegt.</span>
+            <span class="lang-fr">Tous les draps ont été retirés et rassemblés avec les serviettes de bain dans le sac rouge Interhome prévu à cet effet.</span>
+            <span class="lang-en">All bedding was removed and collected with the towels in Interhome's provided red bag.</span>
+          </td>
+          <td class="ok-cell"><div class="check-box"></div></td>
+        </tr>
+        <tr>
+          <td class="item-cell">
+            <span class="lang-it">Tutte le finestre e le porte dei balconi sono completamente chiuse (non inclinate).</span>
+            <span class="lang-de">Alle Fenster und Balkontüren sind vollständig geschlossen (nicht gekippt).</span>
+            <span class="lang-fr">Toutes les fenêtres et portes de balcon sont complètement fermées (pas entrouvertes).</span>
+            <span class="lang-en">All windows and balcony doors are fully closed (not tilted).</span>
+          </td>
+          <td class="ok-cell"><div class="check-box"></div></td>
+        </tr>
+        <tr>
+          <td class="item-cell">
+            <span class="lang-it">I mobili sono al loro posto originale.</span>
+            <span class="lang-de">Das Mobiliar steht an seinem angestammten Platz.</span>
+            <span class="lang-fr">Les meubles sont à leur place d'origine.</span>
+            <span class="lang-en">The furniture is in its original place.</span>
+          </td>
+          <td class="ok-cell"><div class="check-box"></div></td>
+        </tr>
+        <tr>
+          <td class="item-cell">
+            <span class="lang-it">L'appartamento è stato riordinato e sono stati segnalati eventuali danni.</span>
+            <span class="lang-de">Die Wohnung ist aufgeräumt und eventuelle Beschädigungen wurden gemeldet.</span>
+            <span class="lang-fr">L'appartement a été rangé et tout dégât éventuel a été signalé.</span>
+            <span class="lang-en">The apartment has been tidied up and any damage has been reported.</span>
+          </td>
+          <td class="ok-cell"><div class="check-box"></div></td>
+        </tr>
+        <tr>
+          <td class="item-cell">
+            <span class="lang-it">I rifiuti sono stati depositati negli appositi contenitori esterni.</span>
+            <span class="lang-de">Alle Abfälle wurden in den vorgesehenen Aussenbehältern entsorgt.</span>
+            <span class="lang-fr">Les déchets ont été déposés dans les conteneurs extérieurs prévus à cet effet.</span>
+            <span class="lang-en">All garbage has been disposed of in the outdoor containers provided.</span>
+          </td>
+          <td class="ok-cell"><div class="check-box"></div></td>
+        </tr>
+        <tr>
+          <td class="item-cell">
+            <span class="lang-it">I rifiuti riciclabili (vetro, PET, carta, ecc.) sono stati portati al centro di riciclaggio.</span>
+            <span class="lang-de">Recyclebare Abfälle (Glas, PET, Papier etc.) wurden zur Recyclingstation gebracht.</span>
+            <span class="lang-fr">Les déchets recyclables (verre, PET, papier, etc.) ont été apportés au centre de recyclage.</span>
+            <span class="lang-en">Recyclable waste (glass, PET, paper, etc.) has been brought to the recycling station.</span>
+          </td>
+          <td class="ok-cell"><div class="check-box"></div></td>
+        </tr>
+        <tr>
+          <td class="item-cell">
+            <span class="lang-it">Le ceneri della stufa e del braciere si sono completamente raffreddate e sono state smaltite nel secchio.</span>
+            <span class="lang-de">Asche aus dem Schwedenofen und der Feuerschale ist vollständig abgekühlt und im Ascheeimer entsorgt.</span>
+            <span class="lang-fr">Les cendres du poêle et du brasero ont entièrement refroidi et ont été déposées dans le seau à cendres.</span>
+            <span class="lang-en">Ash from the stove and fire bowl has cooled completely and been disposed of in the ash bucket.</span>
+          </td>
+          <td class="ok-cell"><div class="check-box"></div></td>
+        </tr>
+        <tr>
+          <td class="item-cell">
+            <span class="lang-it">Tutti i mobili da giardino (amache, sdraio, cuscini) sono stati riposti all'interno.</span>
+            <span class="lang-de">Alle Gartenmöbel (Hängematten, Liegestühle, Sitzkissen) wurden im Haus verräumt.</span>
+            <span class="lang-fr">Tous les meubles de jardin (hamacs, chaises longues, coussins) ont été rangés à l'intérieur.</span>
+            <span class="lang-en">All garden furniture (hammocks, sun loungers, cushions) has been stored inside the house.</span>
+          </td>
+          <td class="ok-cell"><div class="check-box"></div></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGINA 12 – RISTORANTI
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Ristoranti</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="section-title">Ristoranti</div>
+    <div class="section-rule"></div>
+
+    <div class="warning-box" style="margin-bottom:14px">
+      🍽 <strong>Consiglio gastronomico:</strong> Aperitivo all'<strong>Hostaria del Borgo</strong> · piatto principale alla <strong>Pizzeria Albrici</strong> · gelato al <strong>Bio-Bistro Semadeni</strong>.
+    </div>
+
+    <div class="two-col">
+      <ul class="place-list">
+        <li class="place-item">
+          <div class="place-name">🍕 Pizzeria Albrici</div>
+          <div class="place-desc">Direttamente sulla piazza del paese · ottime pizze, carni di qualità, specialità locali</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">🍦 Bio-Bistro Semadeni</div>
+          <div class="place-desc">Caffè e straordinario gelato artigianale · centro del paese</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">🥂 Hostaria del Borgo</div>
+          <div class="place-desc">Elegante bar per vini e aperitivi nel centro storico · vini locali della Valposchiavo</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">🍽 Ristorante Croce Bianca</div>
+          <div class="place-desc">Cucina eccellente e atmosfera raffinata</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">🍽 Risturant al Bernina</div>
+          <div class="place-desc">Piatti regionali, pizza e classici · atmosfera rilassata e accogliente</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">🌿 Ristorante giardino – La Romantica</div>
+          <div class="place-desc">Sul Lago di Poschiavo · bel giardino, parco giochi per bambini, minigolf accanto</div>
+        </li>
+      </ul>
+
+      <ul class="place-list">
+        <li class="place-item">
+          <div class="place-name">💧 Ristorante Grotto Miralago</div>
+          <div class="place-desc">Direttamente sulla riva del lago · atmosfera storica · terrazza con vista sul lago</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">🏠 Hotel Sport / Raselli</div>
+          <div class="place-desc">Tradizionale a conduzione familiare · sala grigioni, specialità regionali, pizza al forno a legna</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">⛰ Ristorante Selva (~1.800 m)</div>
+          <div class="place-desc">Tranquillo, isolato nella natura · pausa perfetta per gli escursionisti · semplice e autentico. Strada di accesso stretta.</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">🚂 Alp Grüm Restaurant (2.091 m)</div>
+          <div class="place-desc">Posizione spettacolare sulla ferrovia del Bernina (UNESCO) · vista sul ghiacciaio del Palü</div>
+        </li>
+        <li class="place-item">
+          <div class="place-name">🏰 Ristoro Castel Grumello (Italia)</div>
+          <div class="place-desc">Accanto alle rovine del castello di Grumello sopra Tirano · panorama sulla Valtellina</div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGINA 13 – SHOPPING E ATTIVITÀ
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Shopping e Attività</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <div class="two-col-3-2" style="align-items:start">
+
+      <div>
+        <div class="section-title" style="font-size:16pt">Attività ed Escursioni</div>
+        <div class="section-rule"></div>
+
+        <ul class="place-list">
+          <li class="place-item">
+            <div class="place-name">💎 Lago di Saoseo</div>
+            <div class="place-desc">Lago di montagna dal colore cristallino nella riserva naturale Val da Camp. Escursione da Sfazù o con il piccolo PostBus (posti limitati, prenotare in anticipo!).</div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">🧊 Giardino dei Ghiacciai di Cavaglia</div>
+            <div class="place-desc">Impressionanti marmitte dei giganti e una gola. Dalla stazione di Cavaglia sulla Ferrovia Retica (Patrimonio UNESCO). Nuovo sentiero nella gola aggiunto nel 2021.</div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">⛳ Minigolf Le Prese</div>
+            <div class="place-desc">18 buche accanto all'Hotel La Romantica · perfetto per famiglie e amici · solo contanti.</div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">🗿 Sentiero delle Leggende (San Piero)</div>
+            <div class="place-desc">Percorso scultoreo tra vecchi larici. Circa 2 km, nessuna difficoltà particolare. Adatto a tutte le età.</div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">⛪ Chiesa di San Romerio</div>
+            <div class="place-desc">Chiesa medievale su una roccia sopra il Lago di Poschiavo · vista magnifica.</div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">🏔 Diavolezza (Bernina)</div>
+            <div class="place-desc">Spettacolare mondo alpino · ghiacciaio, escursioni, vie ferrate · Piz Palü &amp; Piz Bernina.</div>
+          </li>
+        </ul>
+        <div style="margin-top:8px;font-size:8pt;color:var(--text-muted)">
+          Altre idee: <strong>valposchiavo.ch/de/explore</strong>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title" style="font-size:16pt">Shopping</div>
+        <div class="section-rule"></div>
+
+        <ul class="place-list">
+          <li class="place-item">
+            <div class="place-name">🛒 Coop Poschiavo</div>
+            <div class="place-desc">Il supermercato più grande della zona</div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">🏪 Pozzi Alimentari – Prima</div>
+            <div class="place-desc">Piccolo negozio di alimentari locale nel centro del paese</div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">🥩 Macelleria Scalino</div>
+            <div class="place-desc">I migliori prodotti di carne della regione – <strong>assolutamente da visitare!</strong></div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">🥐 Panetteria Bordoni</div>
+            <div class="place-desc">Prodotti da forno freschi e pasticceria · Via da Spultri</div>
+          </li>
+          <li class="place-item">
+            <div class="place-name">🥩 Macelleria Zanetti</div>
+            <div class="place-desc">Macellaio locale con prodotti eccellenti</div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGINA 14 – ARRIVEDERCI
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <span class="page-header-title">Arrivederci</span>
+    <span class="page-header-logo">Casa Maranta</span>
+  </div>
+  <div class="page-content">
+
+    <img
+      src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ic84a6eab1436503a/version/1776081120/image.jpg"
+      alt="Casa Maranta"
+      style="width:100%;height:320px;object-fit:cover;border-radius:8px;margin-bottom:22px"
+    />
+
+    <div class="section-title">Arrivederci e a Presto!</div>
+    <div class="section-rule"></div>
+
+    <div class="body-text" style="max-width:480px;margin-bottom:28px">
+      <p>Grazie mille per essere stati nostri ospiti. Speriamo che abbiate apprezzato ogni momento del vostro soggiorno!</p>
+      <p>Se durante il vostro soggiorno c'è stato qualcosa che non ha soddisfatto le vostre aspettative, non esitate a farcelo sapere – ci farebbe molto piacere migliorare ancora per i prossimi ospiti.</p>
+      <p>Buon viaggio di ritorno e speriamo di rivedervi presto nella bellissima Poschiavo.</p>
+      <p style="margin-top:14px"><strong>Cordiali saluti,<br>Christine &amp; Markus</strong></p>
+    </div>
+
+  </div>
+  <div class="page-footer"><div class="page-footer-bar"></div></div>
+</div>
+
+</body>
+</html>
