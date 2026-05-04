@@ -259,6 +259,66 @@ const DETAIL_PAGES = {
             <span>${t('TV &amp; Radio', 'TV &amp; Radio')}</span>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon"><polyline points="9 18 15 12 9 6"/></svg>
           </button>
+          <button class="modal-item" onclick="showDetail('house_kids')">
+            <span>${t('Ausstattung für Kinder', 'Equipment for Children')}</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <button class="modal-item" onclick="showDetail('house_cleaning')">
+            <span>${t('Putzschrank', 'Cleaning Cupboard')}</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="arrow-icon"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>`
+  },
+
+  house_cleaning: {
+    title: () => t('Putzschrank', 'Cleaning Cupboard'),
+    backToDetail: 'accommodation',
+    render: () => `
+      <div class="detail-section">
+        <div class="detail-body">
+          ${t(`
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ieddb159937fcccde/version/1777886728/image.jpg" alt="Putzschrank" style="max-width:100%;margin-bottom:0.75rem;">
+            <p>Im Putzschrank hinter der Küche finden Sie die wichtigsten Utensilien für die Reinigung. Dort befinden sich auch ein Bügeleisen und ein Bügelbrett.</p>
+            <p>Sollte etwas fehlen, bitten wir Sie, unseren lokalen Kontakt Anna zu informieren.</p>
+          `, `
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ieddb159937fcccde/version/1777886728/image.jpg" alt="Cleaning Cupboard" style="max-width:100%;margin-bottom:0.75rem;">
+            <p>In the cleaning cupboard behind the kitchen you will find the most important cleaning supplies. You will also find an iron and an ironing board there.</p>
+            <p>If anything is missing, please let our local contact Anna know.</p>
+          `)}
+        </div>
+      </div>`
+  },
+
+  house_kids: {
+    title: () => t('Ausstattung für Kinder', 'Equipment for Children'),
+    backToDetail: 'accommodation',
+    render: () => `
+      <div class="detail-section">
+        <div class="detail-body">
+          ${t(`
+            <p>Die folgenden Artikel sind auf Anfrage verfügbar. Bitte geben Sie uns vor Ihrer Anreise Bescheid, falls Sie etwas davon benötigen.</p>
+            <ul>
+              <li>2 Tripp-Trapp-Stühle (ohne Sicherung)</li>
+              <li>1 IKEA Hochstuhl (mit Sicherung)</li>
+              <li>1 Windeleimer</li>
+              <li>2 Bett-Ausfallschutzgitter</li>
+              <li>1 Baby-Reisebett mit Matratze</li>
+              <li>1 WC-Sitz für Kinder</li>
+              <li>1 Hocker für das Waschbecken</li>
+            </ul>
+          `, `
+            <p>The following items are available on request. Please let us know before your arrival if you need any of them.</p>
+            <ul>
+              <li>2 Tripp Trapp chairs (without harness)</li>
+              <li>1 IKEA high chair (with harness)</li>
+              <li>1 nappy bin</li>
+              <li>2 bed guard rails</li>
+              <li>1 travel cot with mattress</li>
+              <li>1 children's toilet seat</li>
+              <li>1 step stool for the washbasin</li>
+            </ul>
+          `)}
         </div>
       </div>`
   },
@@ -466,10 +526,13 @@ const DETAIL_PAGES = {
               <summary>Hauseingangstüre</summary>
               <p>Die Hauseingangstüre ist mit einem Nuki Go sowie einem Keypad an der Aussenseite ausgestattet. Sie können die Türe bequem über den Code am Keypad öffnen. Die Türe verriegelt sich automatisch jeden Abend um 23:00 Uhr. Bitte achten Sie darauf, den korrekten Code zu verwenden und die Türe nach dem Eintreten vollständig zu schliessen.</p>
               <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i64d1fb88fd9ffce8/version/1776114586/image.jpg" alt="Nuki Schloss" class="welcome-photo" style="max-height:none;object-fit:contain;" />
+              <p>Für Notfälle befindet sich ein Schlüssel in einem Schlüsselsafe in der Pergola (hintere linke Ecke). Den Code erhalten Sie auf Anfrage bei unserem lokalen Kontakt Anna (<a href="tel:+41794221608">+41 79 422 16 08</a>) oder beim Eigentümer Markus (<a href="tel:+41795712790">+41 79 571 27 90</a>) bzw. Christine (<a href="tel:+41787403180">+41 78 740 31 80</a>).</p>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i59b1251cce46d40f/version/1777886984/image.jpg" alt="Schlüsselsafe Pergola" style="max-width:100%;margin-bottom:0.75rem;">
             </details>
             <details class="appliance-section">
               <summary>Dachfenster</summary>
-              <p>Die Dachfenster lassen sich mit einer Stange öffnen und schliessen – diese befindet sich hinter der Tür im Dachschlafzimmer. Bitte achten Sie darauf, die Fenster bei schlechter Witterung sowie beim Verlassen des Hauses immer zu schliessen.</p>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i9a805bd62f755264/version/1777885936/image.jpg" alt="Dachfenster" style="max-width:100%;margin-bottom:0.75rem;">
+              <p>Die Dachfenster lassen sich mit einer Stange öffnen und schliessen – diese befindet sich hinter der Tür im Dachschlafzimmer. Mit derselben Stange kann auch das Rollo geschlossen werden. Bitte achten Sie darauf, die Fenster bei schlechter Witterung sowie beim Verlassen des Hauses immer zu schliessen.</p>
             </details>
             <details class="appliance-section">
               <summary>Verschlossene Türen im Erdgeschoss</summary>
@@ -484,10 +547,13 @@ const DETAIL_PAGES = {
               <summary>Front Door</summary>
               <p>The front door is equipped with a Nuki Go smart lock and an external keypad. You can open the door conveniently using the code on the keypad. The door locks automatically every evening at 11:00 pm. Please make sure to use the correct code and close the door fully behind you.</p>
               <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i43c9c5b48ebbd6f4/version/1776114581/image.jpg" alt="Nuki Lock" class="welcome-photo" style="max-height:none;object-fit:contain;" />
+              <p>In case of emergency, a spare key is stored in a key safe in the pergola (rear left corner). The code is available on request from our local contact Anna (<a href="tel:+41794221608">+41 79 422 16 08</a>) or from the owners Markus (<a href="tel:+41795712790">+41 79 571 27 90</a>) or Christine (<a href="tel:+41787403180">+41 78 740 31 80</a>).</p>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i59b1251cce46d40f/version/1777886984/image.jpg" alt="Key Safe Pergola" style="max-width:100%;margin-bottom:0.75rem;">
             </details>
             <details class="appliance-section">
               <summary>Skylight Windows</summary>
-              <p>The skylight windows in the attic can be opened and closed using a pole — you'll find it behind the door in the attic bedroom. Please always close the windows when the weather turns or when leaving the house.</p>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i9a805bd62f755264/version/1777885936/image.jpg" alt="Skylight Windows" style="max-width:100%;margin-bottom:0.75rem;">
+              <p>The skylight windows in the attic can be opened and closed using a pole — you'll find it behind the door in the attic bedroom. The same pole can also be used to close the blind. Please always close the windows when the weather turns or when leaving the house.</p>
             </details>
             <details class="appliance-section">
               <summary>Locked Doors on the Ground Floor</summary>
@@ -514,30 +580,45 @@ const DETAIL_PAGES = {
               <p><a href="https://www.manualslib.de/manual/1007774/Technisat-S3-Isio.html?page=2#manual" target="_blank">Betriebsanleitung TechniSat (DE)</a></p>
               <p>Das Haus ist mit Satellit-TV ausgestattet. Dieses System bietet keine modernen Funktionen wie Pause, Replay oder 7-Tage-Rückblick – das Programm wird klassisch live empfangen.</p>
               <p>Sie können Ihr Handy, Tablet oder Laptop über HDMI oder USB-C anschliessen, um auf Streaming-Dienste und eigene Wiedergabefunktionen zuzugreifen.</p>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/ie61664a20f7fb4ec/version/1777878218/image.jpg" alt="TV Fernbedienung" style="max-width:100%;margin-bottom:0.75rem;">
               <h4>Satellit-TV</h4>
               <ul>
                 <li>Fernseher über die <strong>LG Fernbedienung</strong> einschalten <strong>(1)</strong></li>
                 <li>Satellitenreceiver über die <strong>TechniSat Fernbedienung</strong> einschalten <strong>(A)</strong></li>
-                <li>Kein Bild? HDMI-Eingang <strong>HDMI1</strong> wählen</li>
+                <li>Kein Bild? HDMI-Eingang <strong>HDMI1 (2)</strong> wählen</li>
                 <li>Programmübersicht: Taste <strong>SFI (C)</strong> oder mit <strong>+P– (B)</strong> zappen</li>
                 <li>Zurück: Taste <strong>Zurück (D)</strong></li>
               </ul>
               <h4>Eigenes Gerät (Streaming)</h4>
               <ul>
-                <li>Gerät über das mit <strong>„Your device"</strong> beschriftete HDMI-Kabel verbinden (HDMI oder USB-C Adapter)</li>
+                <li>Gerät über das mit <strong>„HDMI2"</strong> beschriftete HDMI-Kabel verbinden (HDMI oder USB-C Adapter)</li>
                 <li>Fernseher über die <strong>LG Fernbedienung</strong> einschalten <strong>(1)</strong></li>
-                <li>Eingang <strong>HDMI2</strong> wählen</li>
+                <li>Eingang <strong>HDMI2 (2)</strong> wählen</li>
               </ul>
             </details>
 
             <details class="appliance-section">
               <summary>Fernsehgerät Dachgeschoss</summary>
               <p>Dieses Gerät verfügt über keinen Satelliten- oder Kabelempfang. Sie können jedoch Ihr eigenes Gerät per HDMI oder USB-C verbinden.</p>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i84101a0a5a76f8af/version/1777884830/image.jpg" alt="PS3 Dachgeschoss" style="max-width:100%;margin-bottom:0.75rem;">
+              <p>Im Dachgeschoss steht ausserdem eine <strong>PlayStation 3 (PS3)</strong> mit verschiedenen Spielen zur Verfügung, die Sie gerne benutzen dürfen. Bitte gehen Sie sorgfältig mit den Spiel-DVDs um.</p>
             </details>
 
             <details class="appliance-section">
               <summary>Radio Esszimmer</summary>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i4b3e91c160254c55/version/1777884844/image.jpg" alt="Radio Esszimmer" style="max-width:100%;margin-bottom:0.75rem;">
               <p>Über das Radio beim Esstisch können Sie DAB+ Sender empfangen oder Ihr eigenes Gerät per <strong>Bluetooth</strong> verbinden und Musik abspielen.</p>
+              <ul>
+                <li><strong>(1)</strong> Ein-/Ausschalten</li>
+                <li><strong>(2)</strong> Modus wählen – mit der <strong>„MODE"</strong>-Taste zwischen den Funktionen wechseln:
+                  <ul>
+                    <li>DAB+ (Digitalradio)</li>
+                    <li>Bluetooth (für Verbindung mit dem Handy)</li>
+                  </ul>
+                </li>
+                <li><strong>(3)</strong> Sender wählen und durch Drücken bestätigen</li>
+              </ul>
+              <p><strong>Tipp:</strong> Für den besten Empfang bei DAB+ bitte die Antenne ausziehen.</p>
             </details>
           `, `
             <details class="appliance-section">
@@ -545,30 +626,45 @@ const DETAIL_PAGES = {
               <p><a href="https://www.manualslib.de/manual/1007774/Technisat-S3-Isio.html?page=2#manual" target="_blank">Operating manual TechniSat (DE)</a></p>
               <p>The house has satellite TV. The system does not offer modern features such as pause, replay or a 7-day catch-up – it is classic live TV only.</p>
               <p>You can connect your phone, tablet or laptop via HDMI or USB-C to access streaming services and your own playback.</p>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/ie61664a20f7fb4ec/version/1777878218/image.jpg" alt="TV Remote Control" style="max-width:100%;margin-bottom:0.75rem;">
               <h4>Satellite TV</h4>
               <ul>
                 <li>Switch on the TV using the <strong>LG remote</strong> <strong>(1)</strong></li>
                 <li>Switch on the satellite receiver using the <strong>TechniSat remote</strong> <strong>(A)</strong></li>
-                <li>No picture? Select input <strong>HDMI1</strong></li>
+                <li>No picture? Select input <strong>HDMI1 (2)</strong></li>
                 <li>Programme guide: press <strong>SFI (C)</strong> or browse with <strong>+P– (B)</strong></li>
                 <li>Go back: press <strong>Back (D)</strong></li>
               </ul>
               <h4>Your own device (streaming)</h4>
               <ul>
-                <li>Connect your device using the HDMI cable labelled <strong>"Your device"</strong> (with or without USB-C adapter)</li>
+                <li>Connect your device using the HDMI cable labelled <strong>"HDMI2"</strong> (with or without USB-C adapter)</li>
                 <li>Switch on the TV using the <strong>LG remote</strong> <strong>(1)</strong></li>
-                <li>Select input <strong>HDMI2</strong></li>
+                <li>Select input <strong>HDMI2 (2)</strong></li>
               </ul>
             </details>
 
             <details class="appliance-section">
               <summary>TV – Attic</summary>
               <p>This TV has no satellite or cable reception. You are welcome to connect your own device via HDMI or USB-C.</p>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i84101a0a5a76f8af/version/1777884830/image.jpg" alt="PS3 Attic" style="max-width:100%;margin-bottom:0.75rem;">
+              <p>There is also a <strong>PlayStation 3 (PS3)</strong> with various games in the attic, which you are welcome to use. Please handle the game DVDs with care.</p>
             </details>
 
             <details class="appliance-section">
               <summary>Radio – Dining Room</summary>
+              <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i4b3e91c160254c55/version/1777884844/image.jpg" alt="Radio – Dining Room" style="max-width:100%;margin-bottom:0.75rem;">
               <p>The radio next to the dining table receives <strong>DAB+</strong> stations and can also be connected to your own device via <strong>Bluetooth</strong> for music playback.</p>
+              <ul>
+                <li><strong>(1)</strong> Power on/off</li>
+                <li><strong>(2)</strong> Select mode – use the <strong>"MODE"</strong> button to switch between:
+                  <ul>
+                    <li>DAB+ (digital radio)</li>
+                    <li>Bluetooth (to connect your phone)</li>
+                  </ul>
+                </li>
+                <li><strong>(3)</strong> Select a station and confirm by pressing</li>
+              </ul>
+              <p><strong>Tip:</strong> For the best DAB+ reception, please extend the antenna.</p>
             </details>
           `)}
         </div>
@@ -600,6 +696,7 @@ const DETAIL_PAGES = {
               <summary>Feuerschale und Grillrost</summary>
               <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i3a613047bf17fa35/version/1776110877/image.jpg" alt="Feuerschale und Grillrost" class="welcome-photo" />
               <p>Was gibt es Schöneres als ein gutes Stück Fleisch vom Grill? Sie können das Feuerholz aus dem Vorrat beim Schwedenofen verwenden. Bitte entsorgen Sie die vollständig abgekühlte Asche im Feuereimer neben dem Schwedenofen. Den Grillrost bitten wir Sie nach dem Gebrauch zu reinigen – damit auch der nächste Gast seine Freude daran hat.</p>
+              <p style="background:#fff3cd;border-left:4px solid #f0ad00;padding:0.6rem 0.8rem;border-radius:4px;margin-top:0.75rem;"><strong>⚠️ Wichtig:</strong> Die Feuerschale darf nicht unter der Pergola benutzt werden. Sie steht lediglich dort, um sie vor dem Wetter zu schützen. Bitte stellen Sie sie vor dem Gebrauch ins Freie.</p>
             </details>
           `, `
             <details class="appliance-section">
@@ -620,6 +717,7 @@ const DETAIL_PAGES = {
               <summary>Fire Bowl and BBQ Grate</summary>
               <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i3a613047bf17fa35/version/1776110877/image.jpg" alt="Fire Bowl and BBQ Grate" class="welcome-photo" />
               <p>Is there anything better than a good piece of meat fresh off the grill? Feel free to use the firewood stored by the Swedish stove. Please dispose of fully cooled ash in the fire bucket next to the stove, and give the grill grate a quick clean after use — so the next guests can enjoy it just as much.</p>
+              <p style="background:#fff3cd;border-left:4px solid #f0ad00;padding:0.6rem 0.8rem;border-radius:4px;margin-top:0.75rem;"><strong>⚠️ Important:</strong> The fire bowl must not be used under the pergola. It is stored there only to protect it from the weather. Please move it into the open before use.</p>
             </details>
           `)}
         </div>
@@ -727,6 +825,7 @@ const DETAIL_PAGES = {
             <div style="background:#fff3cd;border-left:5px solid #e6a817;border-radius:6px;padding:14px 16px;margin-bottom:20px;">
               <strong style="font-size:1.05em;">⚠️ ACHTUNG</strong><br>
               Der Ofen im Dachgeschoss ist ein reines Dekorationsstück – er ist <strong>nicht angeschlossen</strong> und darf <strong>nicht benutzt werden</strong>.
+              <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i2c3c2a7c9746bee5/version/1777887247/image.jpg" alt="Deko-Ofen Dachgeschoss" style="max-width:100%;margin-top:0.75rem;border-radius:4px;">
             </div>
             <h3>Schwedenofen im Wohnzimmer</h3>
             <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i0515b57424e5fe51/version/1776632934/image.jpg" alt="Schwedenofen" class="welcome-photo" />
@@ -749,6 +848,7 @@ const DETAIL_PAGES = {
             <div style="background:#fff3cd;border-left:5px solid #e6a817;border-radius:6px;padding:14px 16px;margin-bottom:20px;">
               <strong style="font-size:1.05em;">⚠️ IMPORTANT</strong><br>
               The stove in the attic is purely decorative – it is <strong>not connected</strong> and must <strong>not be used</strong>.
+              <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i2c3c2a7c9746bee5/version/1777887247/image.jpg" alt="Decorative Stove Attic" style="max-width:100%;margin-top:0.75rem;border-radius:4px;">
             </div>
             <h3>Wood-Burning Stove in the Living Room</h3>
             <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i24f5c7a4ed947a35/version/1776632945/image.jpg" alt="Wood-Burning Stove" class="welcome-photo" />
@@ -778,8 +878,59 @@ const DETAIL_PAGES = {
     render: () => `
       <div class="detail-section">
         <div class="detail-body">
-          ${t(`<p>Informationen zu Strom und Sicherungen folgen.</p>`,
-             `<p>Electricity and fuse information coming soon.</p>`)}
+          ${t(`
+            <h4>Sicherungskasten (Treppenhaus, über der Kommode)</h4>
+            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i8812bfa63c1d8811/version/1777884162/image.jpg" alt="Sicherungskasten" style="max-width:100%;margin-bottom:0.75rem;">
+            <p>Der Sicherungskasten befindet sich im Treppenhaus oberhalb der Kommode.</p>
+            <ul>
+              <li>Falls der Strom in einem Bereich ausfällt, prüfen Sie die Sicherungen (Schalter mit Zahlen).</li>
+              <li>Eine ausgelöste Sicherung steht meist auf „OFF" oder in Mittelstellung.</li>
+              <li>Schalten Sie die entsprechende Sicherung wieder nach oben auf „ON".</li>
+            </ul>
+            <h4 style="margin-top:1.25rem;">Belegung der Sicherungen</h4>
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/id63405a3727435b4/version/1777884075/image.jpg" alt="Sicherungsbelegung" style="max-width:100%;margin-bottom:0.75rem;">
+            <ul>
+              <li><strong>1</strong> – 2. Stock: Licht Zimmer / WC &amp; Dusche</li>
+              <li><strong>2</strong> – 1. Stock: Licht Zimmer mit zwei Betten / Küche / Wohnzimmer / WLAN</li>
+              <li><strong>3</strong> – 1. Stock: Licht Zimmer West / Treppe &amp; Dusche</li>
+              <li><strong>4</strong> – Geschirrspüler</li>
+              <li><strong>5</strong> – Kühlschrank</li>
+              <li><strong>6</strong> – Herd / Backofen</li>
+            </ul>
+            <h4 style="margin-top:1.25rem;">Wichtige Hinweise</h4>
+            <ul>
+              <li>Bitte nur die markierten Sicherungen (1–6) verwenden.</li>
+              <li>Die durchgestrichenen Sicherungen nicht bedienen.</li>
+              <li>Wenn eine Sicherung erneut auslöst, angeschlossene Geräte im betroffenen Bereich ausschalten und nochmals versuchen.</li>
+              <li>Bei anhaltenden Problemen bitte unseren lokalen Kontakt Anna kontaktieren.</li>
+            </ul>
+          `, `
+            <h4>Fuse Box (Stairwell, above the dresser)</h4>
+            <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i8812bfa63c1d8811/version/1777884162/image.jpg" alt="Fuse Box" style="max-width:100%;margin-bottom:0.75rem;">
+            <p>The fuse box is located in the stairwell above the dresser.</p>
+            <ul>
+              <li>If the power goes out in a particular area, check the fuses (switches with numbers).</li>
+              <li>A tripped fuse is usually in the "OFF" position or in a middle position.</li>
+              <li>Flip the relevant fuse back up to the "ON" position.</li>
+            </ul>
+            <h4 style="margin-top:1.25rem;">Fuse Assignment</h4>
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/id63405a3727435b4/version/1777884075/image.jpg" alt="Fuse Assignment" style="max-width:100%;margin-bottom:0.75rem;">
+            <ul>
+              <li><strong>1</strong> – 2nd floor: bedroom lights / WC &amp; shower</li>
+              <li><strong>2</strong> – 1st floor: twin bedroom lights / kitchen / living room / Wi-Fi</li>
+              <li><strong>3</strong> – 1st floor: west bedroom lights / stairs &amp; shower</li>
+              <li><strong>4</strong> – Dishwasher</li>
+              <li><strong>5</strong> – Refrigerator</li>
+              <li><strong>6</strong> – Hob / oven</li>
+            </ul>
+            <h4 style="margin-top:1.25rem;">Important Notes</h4>
+            <ul>
+              <li>Please only use the labelled fuses (1–6).</li>
+              <li>Do not operate the crossed-out fuses.</li>
+              <li>If a fuse trips again, switch off connected devices in the affected area and try again.</li>
+              <li>If the problem persists, please contact our local contact Anna.</li>
+            </ul>
+          `)}
         </div>
       </div>`
   },
@@ -825,9 +976,23 @@ const DETAIL_PAGES = {
           ${t(`
             <p>Es gibt kostenloses WLAN. Die Zugangsdaten sind oben aufgeführt.</p>
             <p>Wir stellen diesen Service zu Ihrer Freude und Bequemlichkeit zur Verfügung. Bitte beachten Sie jedoch, dass Sie für eine sichere und angemessene Nutzung verantwortlich sind. Falls es zu Verbindungsproblemen kommt, wenden Sie sich bitte an uns.</p>
+            <h4>Fehlerbehebung</h4>
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i691c483c00b18490/version/1777880764/image.jpg" alt="Router TP-Link" style="max-width:100%;margin-bottom:0.75rem;">
+            <p>Falls das Internet nicht richtig funktioniert, führen Sie bitte folgende Überprüfungen/Massnahmen durch:</p>
+            <ul>
+              <li>Die Kontrollleuchte am TP-Link Router im Wohnzimmer leuchtet <strong>grün</strong>. In diesem Fall sollte das Internet einwandfrei funktionieren.</li>
+              <li>Falls die Leuchte <strong>rot</strong> ist, ziehen Sie das Netzkabel mit der Aufschrift „Internet" aus der Steckdose, warten Sie 10 Sekunden und stecken Sie es wieder ein. Dadurch wird die Verbindung zurückgesetzt. Es kann bis zu 10 Minuten dauern, bis das Internet wieder verfügbar ist. Falls es danach immer noch nicht funktioniert, wenden Sie sich bitte an den Eigentümer Markus: <strong>+41 79 571 27 90</strong>.</li>
+            </ul>
           `, `
             <p>There is free Wi-Fi. The details are shown above.</p>
             <p>We provide this service for your enjoyment and convenience. However, please note that you are responsible for its safe and appropriate use. If there is any loss of service, please contact us.</p>
+            <h4>Troubleshooting</h4>
+            <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i691c483c00b18490/version/1777880764/image.jpg" alt="TP-Link Router" style="max-width:100%;margin-bottom:0.75rem;">
+            <p>If the internet is not working properly, please perform the following checks/actions:</p>
+            <ul>
+              <li>The light on the TP-Link router in the living room is <strong>green</strong>. If this is the case, the internet should be working properly.</li>
+              <li>If the light is <strong>red</strong>, pull the power cable labelled "Internet" from the socket, wait 10 seconds and plug it back in. This should reset the connection. It can take up to 10 minutes for the internet to come back. If it is still not working, please contact the owner Markus: <strong>+41 79 571 27 90</strong>.</li>
+            </ul>
           `)}
         </div>
       </div>`
@@ -1282,13 +1447,26 @@ const SEARCH_INDEX = [
   // section headings
   { type: 'section', key: 'welcome', term_de: 'Willkommen', term_en: 'Welcome', navId: 'nav-info' },
   { type: 'section', key: 'arrival', term_de: 'Anreise Check-in Zugangscode', term_en: 'Arrival Check-in Access Code', navId: 'nav-info' },
-  { type: 'section', key: 'wifi', term_de: 'WLAN Internet Passwort LaRasiga', term_en: 'WiFi Internet Password Network', navId: 'nav-info' },
+  { type: 'section', key: 'wifi', term_de: 'WLAN Internet Passwort LaRasiga Fehlerbehebung Router WiFi', term_en: 'WiFi Internet Password Network Troubleshooting Router', navId: 'nav-info' },
   { type: 'section', key: 'checkout', term_de: 'Check-out Abreise', term_en: 'Check-out Departure', navId: 'nav-info' },
   { type: 'section', key: 'contacts', term_de: 'Kontakt Notfall Arzt Apotheke Anna', term_en: 'Contact Emergency Doctor Pharmacy Anna', navId: 'nav-info' },
   { type: 'section', key: 'farewell', term_de: 'Auf Wiedersehen Bewertung Danke', term_en: 'Farewell Thank You Review', navId: 'nav-info' },
   { type: 'section', key: 'restaurants', term_de: 'Restaurants Essen', term_en: 'Restaurants Food Dining', navId: 'nav-info' },
   { type: 'section', key: 'grocery', term_de: 'Einkaufen Supermarkt Metzger Bäcker', term_en: 'Grocery Shopping Supermarket Butcher Bakery', navId: 'nav-info' },
   { type: 'section', key: 'activities', term_de: 'Aktivitäten Ausflug Wandern', term_en: 'Activities Excursion Hiking', navId: 'nav-info' },
+  { type: 'section', key: 'accommodation', term_de: 'Das Haus Unterkunft Übersicht', term_en: 'House Accommodation Overview', navId: 'nav-info' },
+  { type: 'section', key: 'house_electricity', term_de: 'Strom Sicherungen Sicherungskasten Stromausfall', term_en: 'Electricity Fuses Fuse Box Power Outage', navId: 'nav-info' },
+  { type: 'section', key: 'house_cleaning', term_de: 'Putzschrank Reinigung Putzmittel Bügeleisen Bügelbrett', term_en: 'Cleaning Cupboard Supplies Iron Ironing Board', navId: 'nav-info' },
+  { type: 'section', key: 'house_kids', term_de: 'Kinder Hochstuhl Kinderstuhl Reisebett Babybett Gitterschutz Windeleimer', term_en: 'Children Kids High Chair Travel Cot Bed Guard', navId: 'nav-info' },
+  { type: 'section', key: 'house_stove', term_de: 'Schwedenofen Kamin Holzofen Feuer Anzünden Kaminofen', term_en: 'Wood-Burning Stove Fireplace Fire Lighting', navId: 'nav-info' },
+  { type: 'section', key: 'house_garden', term_de: 'Feuerschale Grill Garten Hängematte Liegestuhl Pergola BBQ', term_en: 'Fire Bowl BBQ Garden Hammock Sun Lounger Pergola', navId: 'nav-info' },
+  { type: 'section', key: 'house_waste', term_de: 'Abfall Entsorgung Müll Kehricht Altglas PET Recycling Abfallsack', term_en: 'Waste Disposal Rubbish Recycling Glass PET Bin Bags', navId: 'nav-info' },
+  { type: 'section', key: 'house_kitchen', term_de: 'Küchengeräte Herd Geschirrspüler Dampfabzug Mikrowelle Kochen Kindersicherung', term_en: 'Kitchen Appliances Hob Dishwasher Extractor Hood Microwave Cooking Child Lock', navId: 'nav-info' },
+  { type: 'section', key: 'house_doors', term_de: 'Türen Fenster Haustür Nuki Zugangscode Schlüsselsafe Dachfenster', term_en: 'Doors Windows Front Door Nuki Access Code Key Safe Skylight', navId: 'nav-info' },
+  { type: 'section', key: 'house_tv', term_de: 'TV Fernseher Radio Satellit PlayStation PS3 DAB Bluetooth Streaming HDMI', term_en: 'TV Television Radio Satellite PlayStation PS3 DAB Bluetooth Streaming HDMI', navId: 'nav-info' },
+  { type: 'section', key: 'house_games', term_de: 'Gesellschaftsspiele Spiele Jass Schach Uno Scrabble Rummikub Yatzy', term_en: 'Board Games Games Chess Uno Scrabble Rummikub Yatzy Cards', navId: 'nav-info' },
+  { type: 'section', key: 'house_reading', term_de: 'Leseecke Bücher Lesen Bibliothek', term_en: 'Reading Corner Books Library', navId: 'nav-info' },
+  { type: 'section', key: 'localguide', term_de: 'Ausflugstipps Umgebung Sehenswürdigkeiten Region', term_en: 'Local Area Guide Excursions Sights Region', navId: 'nav-info' },
   // places with pins
   { type: 'place', key: 'restaurants', term_de: 'Pizzeria Albrici', term_en: 'Pizzeria Albrici', navId: 'nav-info' },
   { type: 'place', key: 'restaurants', term_de: 'Semadeni Bistro', term_en: 'Semadeni Bistro', navId: 'nav-info' },

@@ -1,0 +1,260 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abreise-Checkliste – Casa Maranta / Interhome</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Source Sans 3', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      color: #222;
+      background: #c8c8c8;
+      line-height: 1.5;
+    }
+
+    /* ── PRINT BAR ── */
+    .print-bar {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: #1a2535; color: white;
+      padding: 10px 24px; display: flex; align-items: center;
+      justify-content: space-between; z-index: 1000; font-size: 13px;
+    }
+    .btn-print {
+      background: #e8980a; color: white; border: none;
+      padding: 9px 22px; border-radius: 6px; font-size: 13px;
+      cursor: pointer; font-weight: 600;
+    }
+
+    /* ── A4 PAGE ── */
+    .page {
+      width: 210mm; min-height: 297mm;
+      background: white; margin: 70px auto 14px;
+      position: relative; overflow: hidden;
+    }
+    .page:last-child { margin-bottom: 48px; }
+
+    /* ── PHOTO HEADER ── */
+    .hdr { position: relative; width: 100%; overflow: hidden; display: flex; justify-content: center; background: white; padding-top: 10mm; }
+    .hdr img { width: auto; height: auto; max-width: 100%; display: block; }
+    .hdr-logo {
+      position: absolute; top: 16px; right: 18px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hdr-logo-name {
+      font-size: 21pt; font-weight: 900; color: white;
+      letter-spacing: -0.5px; line-height: 1;
+      text-shadow: 0 1px 5px rgba(0,0,0,0.3);
+    }
+
+    /* ── INTRO SECTIONS ── */
+    .intro { padding: 14px 36px 6px; }
+    .lang-block { display: flex; gap: 11px; align-items: flex-start; margin-bottom: 11px; }
+    .flag { font-size: 14pt; flex-shrink: 0; margin-top: 2px; }
+    .lang-block h2 { font-size: 20pt; font-weight: 300; color: #111; margin-bottom: 2px; line-height: 1.1; }
+    .lang-block p { font-size: 8.5pt; color: #333; line-height: 1.55; }
+
+    /* ── CHECKLIST TABLE ── */
+    .tbl-wrap { padding: 6px 36px 0; }
+    .cl { width: 100%; border-collapse: collapse; table-layout: fixed; border: 2px solid #4d6fa0; }
+    .cl-hd td { background: #4d6fa0; color: white; padding: 6px 8px; font-weight: 700; font-size: 9pt; }
+    .cl-hd .ok { text-align: center; width: 108px; font-size: 10pt; }
+    .cl-r td { padding: 4px 8px 4px 6px; font-size: 8pt; line-height: 1.45; vertical-align: top; border-bottom: 1px solid #b8cde0; word-wrap: break-word; overflow-wrap: break-word; }
+    .cl-r:last-child td { border-bottom: none; }
+    .cl-r .ok { width: 108px; border-left: 1px solid #b8cde0; padding: 4px 0; }
+    .cl-r:nth-child(even) td { background: #eef3f8; }
+    .cl-r:nth-child(odd) td { background: #ffffff; }
+
+    /* ── FOOTER ── */
+    .foot {
+      position: absolute; bottom: 14px; left: 28px; right: 28px;
+      display: flex; justify-content: flex-start; align-items: center;
+    }
+    .foot-url { font-size: 12pt; font-weight: 600; color: #4d6fa0; }
+
+    /* ── FEEDBACK ── */
+    .fb { margin: 18px 36px 0; }
+    .fb-head { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; background: #4d6fa0; color: white; }
+    .fb-col { padding: 8px 10px; font-size: 7.5pt; font-weight: 700; line-height: 1.4; }
+    .fb-col + .fb-col { border-left: 1px solid rgba(255,255,255,0.3); }
+    .fb-box { border: 1px solid #ccc; border-top: none; height: 160px; }
+
+    /* ── FORM FIELDS ── */
+    .frm { padding: 16px 36px 0; }
+    .frm-row { display: flex; align-items: flex-end; gap: 8px; margin-bottom: 17px; }
+    .frm-lbl { font-size: 8.5pt; color: #444; white-space: nowrap; flex-shrink: 0; }
+    .frm-line { flex: 1; border-bottom: 1px solid #666; }
+
+    /* ── PRINT ── */
+    @media print {
+      @page { size: A4; margin: 0; }
+      body { background: white; }
+      .print-bar { display: none !important; }
+      .page {
+        width: 210mm; height: 297mm; min-height: 297mm;
+        margin: 0 !important; page-break-after: always; break-after: page; overflow: hidden;
+      }
+      .page:last-child { page-break-after: auto; break-after: auto; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="print-bar">
+  <div><strong>Abreise-Checkliste / Departure Checklist</strong></div>
+  <button class="btn-print" onclick="window.print()">🖨 Drucken / Print</button>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 1
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="hdr">
+    <img src="Resources/Descriptions/interhomeheader.jpg" alt="Interhome" />
+  </div>
+
+  <div class="intro">
+    <div class="lang-block">
+      <span class="flag">🇩🇪</span>
+      <div>
+        <h2>Abreise-Checkliste</h2>
+        <p>Um Ihnen eventuelle Mehrkosten zu ersparen, möchten wir Sie freundlichst bitten, die nachfolgenden Punkte vor Ihrer Abreise zu beachten. Bitte geben Sie die ausgefüllte Checkliste – zusammen mit den Schlüsseln – ab. Wir bedanken uns für Ihr Vertrauen und wünschen Ihnen eine angenehme Heimreise.</p>
+      </div>
+    </div>
+    <div class="lang-block">
+      <span class="flag">🇫🇷</span>
+      <div>
+        <h2>Fiche de départ</h2>
+        <p>Nous vous prions de bien vouloir vérifier les points suivants avant votre départ afin d'éviter d'éventuels coûts supplémentaires. Merci de retourner cette feuille remplie et signée avec les clés du logement.</p>
+      </div>
+    </div>
+    <div class="lang-block">
+      <span class="flag">🇮🇹</span>
+      <div>
+        <h2>Checklist di partenza</h2>
+        <p>Per evitare eventuali costi aggiuntivi, vi chiediamo gentilmente di prestare attenzione ai seguenti punti prima della vostra partenza. Vi preghiamo di consegnare la checklist compilata insieme alle chiavi. Vi ringraziamo per la vostra fiducia e vi auguriamo un piacevole viaggio di ritorno.</p>
+      </div>
+    </div>
+    <div class="lang-block">
+      <span class="flag">🇬🇧</span>
+      <div>
+        <h2>Departure Checklist</h2>
+        <p>Please check all the points on this list before leaving your accommodation. We would like to avoid having to charge you any additional fee that we may incur after check out. Thank you in advance for signing and returning this checklist together with the keys.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="cl">
+      <tr class="cl-hd"><td></td><td class="ok">OK</td></tr>
+      <tr class="cl-r">
+        <td>Herd, Kochfelder und alle Lichter sind ausgeschaltet.<br>Le four, les plaques de cuisson et toutes les lumières sont éteints.<br>Il forno, il piano cottura e tutte le luci sono spenti.<br>The oven, hobs and all lights are switched off.</td>
+        <td class="ok"></td>
+      </tr>
+      <tr class="cl-r">
+        <td>Der Kühlschrank ist leer.<br>Le réfrigérateur est vide.<br>Il frigorifero è vuoto.<br>The fridge is empty.</td>
+        <td class="ok"></td>
+      </tr>
+      <tr class="cl-r">
+        <td>Das Geschirr ist sauber und eingeräumt.<br>La vaisselle est propre et rangée.<br>Le stoviglie sono pulite e messe al loro posto.<br>Dishes are clean and put in their place.</td>
+        <td class="ok"></td>
+      </tr>
+      <tr class="cl-r">
+        <td>Alle Wasserhähne sind zugedreht.<br>Tous les robinets sont fermés.<br>Tutti i rubinetti sono chiusi.<br>All the taps are closed.</td>
+        <td class="ok"></td>
+      </tr>
+      <tr class="cl-r">
+        <td>Die Bettwäsche wurde abgezogen und zusammen mit den Handtüchern in der dafür vorgesehenen roten Interhome-Tasche abgelegt.<br>Tous les draps ont été retirés et rassemblés avec les serviettes de bain dans le sac rouge Interhome prévu à cet effet.<br>Tutta la biancheria da letto è stata rimossa e raccolta con gli asciugamani nell'apposito sacco rosso di Interhome.<br>All bedding was removed and collected with the towels in Interhome's provided red bag.</td>
+        <td class="ok"></td>
+      </tr>
+      <tr class="cl-r">
+        <td>Alle Fenster und Balkontüren sind vollständig geschlossen (nicht gekippt).<br>Toutes les fenêtres et portes de balcon sont complètement fermées (pas entrouvertes).<br>Tutte le finestre e le porte dei balconi sono completamente chiuse (non inclinate).<br>All windows and balcony doors are fully closed (not tilted).</td>
+        <td class="ok"></td>
+      </tr>
+      <tr class="cl-r">
+        <td>Das Mobiliar steht an seinem angestammten Platz.<br>Les meubles sont à leur place d'origine.<br>I mobili sono al loro posto originale.<br>The furniture is in its original place.</td>
+        <td class="ok"></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="foot">
+    <span class="foot-url">www.interhome.com</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════
+     PAGE 2
+══════════════════════════════════════════ -->
+<div class="page">
+  <div class="hdr">
+    <img src="Resources/Descriptions/interhomeheader.jpg" alt="Interhome" />
+  </div>
+
+  <div style="height:16px"></div>
+
+  <div class="tbl-wrap">
+    <table class="cl">
+      <tr class="cl-hd"><td></td><td class="ok">OK</td></tr>
+      <tr class="cl-r">
+        <td>Die Wohnung ist aufgeräumt und eventuelle Beschädigungen wurden gemeldet.<br>L'appartement a été rangé et tout dégât éventuel a été signalé.<br>L'appartamento è stato riordinato e sono stati segnalati eventuali danni.<br>The apartment has been tidied up and any damage has been reported.</td>
+        <td class="ok"></td>
+      </tr>
+      <tr class="cl-r">
+        <td>Alle Abfälle wurden entsorgt: Kehricht zur Sammelstelle, Recyclingmaterial (Glas, PET, Papier etc.) zur Recyclingstation.<br>Tous les déchets ont été éliminés : ordures ménagères au point de collecte, recyclables (verre, PET, papier, etc.) à la station de recyclage.<br>Tutti i rifiuti sono stati smaltiti: rifiuti domestici al punto di raccolta, riciclabili (vetro, PET, carta, ecc.) alla stazione di riciclaggio.<br>All waste has been disposed of: general waste to the collection point, recyclables (glass, PET, paper, etc.) to the recycling station.</td>
+        <td class="ok"></td>
+      </tr>
+      <!-- NEU / NEW: Asche aus Schwedenofen und Feuerschale -->
+      <tr class="cl-r">
+        <td>Asche aus dem Schwedenofen und der Feuerschale ist vollständig abgekühlt und wurde im Ascheeimer (neben dem Schwedenofen) entsorgt.<br>Les cendres du poêle et du brasero ont entièrement refroidi et ont été déposées dans le seau à cendres (à côté du poêle).<br>Le ceneri della stufa e del braciere si sono completamente raffreddate e sono state smaltite nel secchio (accanto alla stufa).<br>Ash from the wood-burning stove and fire bowl has fully cooled and been disposed of in the ash bucket (next to the stove).</td>
+        <td class="ok"></td>
+      </tr>
+      <!-- NEU / NEW: Gartenmöbel verräumt -->
+      <tr class="cl-r">
+        <td>Alle Gartenmöbel (Hängematten, Liegestühle, Sitzkissen) wurden wieder im Haus verräumt.<br><small>Hinweis: Nur der Tisch unter der Pergola und die dazugehörigen Stühle (ohne Sitzkissen) können draussen bleiben.</small><br>Tous les meubles de jardin (hamacs, chaises longues, coussins) ont été rangés à l'intérieur.<br><small>Remarque : Seuls la table sous la pergola et les chaises assorties (sans coussins) peuvent rester dehors.</small><br>Tutti i mobili da giardino (amache, sdraio, cuscini) sono stati riposti all'interno.<br>All garden furniture (hammocks, sun loungers, seat cushions) has been put back inside the house.<br><small>Note: Only the table under the pergola and its chairs (without cushions) may remain outside.</small></td>
+        <td class="ok"></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="fb">
+    <div class="fb-head">
+      <div class="fb-col">🇩🇪 &nbsp;Wir bedanken uns für Ihr Feedback.</div>
+      <div class="fb-col">🇫🇷 &nbsp;Nous vous remercions pour votre feedback.</div>
+      <div class="fb-col">🇮🇹 &nbsp;Vi ringraziamo per il vostro feedback.</div>
+      <div class="fb-col">🇬🇧 &nbsp;Thank you for your feedback.</div>
+    </div>
+    <div class="fb-box"></div>
+  </div>
+
+  <div class="frm">
+    <div class="frm-row">
+      <span class="frm-lbl">Apartment Name / Nom de l'appartement / Nome dell'appartamento / Apartment name:</span>
+      <div class="frm-line" style="padding-bottom:2px;font-size:8.5pt;font-weight:600;color:#222">Casa Maranta, Via da la Rasiga 12, 7745 Li Curt</div>
+    </div>
+    <div class="frm-row">
+      <span class="frm-lbl">Name / Nom / Nome / Name:</span>
+      <div class="frm-line"></div>
+    </div>
+    <div class="frm-row">
+      <span class="frm-lbl">Datum / Date / Data / Date:</span>
+      <div class="frm-line"></div>
+    </div>
+    <div class="frm-row">
+      <span class="frm-lbl">Unterschrift / Signature / Firma / Signature:</span>
+      <div class="frm-line"></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span class="foot-url">www.interhome.com</span>
+  </div>
+</div>
+
+</body>
+</html>

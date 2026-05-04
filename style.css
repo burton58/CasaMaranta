@@ -278,6 +278,8 @@ html, body {
 .detail-body strong { font-weight: 600; }
 .detail-body a { color: var(--orange); text-decoration: none; }
 .detail-body a:hover { text-decoration: underline; }
+.detail-body ul, .detail-body ol { padding-left: 1.4rem; margin-bottom: 12px; }
+.detail-body li { margin-bottom: 4px; }
 
 .detail-hero-img {
   width: 100%;
