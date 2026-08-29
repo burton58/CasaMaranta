@@ -1237,3 +1237,35 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: roun
 #journey-svg text { stroke: none; }
 #journey-svg { will-change: contents; }
 #jcam { transition: none; }
+
+
+/* Landmarks pop up as the train passes — same stroke grammar as
+   every icon in the app. Stylised vignettes, not surveys. */
+.j-poi {
+  fill: none;
+  stroke: var(--yellow);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.j-poi.lit { opacity: 1; animation: poi-in 0.55s var(--settle); }
+@keyframes poi-in {
+  0% { opacity: 0; transform: scale(0.55); }
+  60% { transform: scale(1.12); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* The trail ends at home */
+.j-home {
+  fill: none;
+  stroke: var(--yellow);
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease) 0.25s;
+}
+.j-home.go { opacity: 1; }
