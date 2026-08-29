@@ -1239,33 +1239,26 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: roun
 #jcam { transition: none; }
 
 
-/* Landmarks pop up as the train passes — same stroke grammar as
-   every icon in the app. Stylised vignettes, not surveys. */
-.j-poi {
-  fill: none;
-  stroke: var(--yellow);
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-}
-.j-poi.lit { opacity: 1; animation: poi-in 0.55s var(--settle); }
-@keyframes poi-in {
-  0% { opacity: 0; transform: scale(0.55); }
-  60% { transform: scale(1.12); }
-  100% { opacity: 1; transform: scale(1); }
-}
 
-/* The trail ends at home */
-.j-home {
+
+
+/* The house itself stands in front of its name — the trail's true
+   endpoint. It receives each arrival with a single pop. */
+.routed { display: flex; align-items: center; gap: 12px; }
+.home-mark {
+  width: 0.92em;
+  height: 0.92em;
+  flex-shrink: 0;
   fill: none;
   stroke: var(--yellow);
   stroke-width: 1.9;
   stroke-linecap: round;
   stroke-linejoin: round;
-  opacity: 0;
-  transition: opacity 0.5s var(--ease) 0.25s;
+  filter: none;
 }
-.j-home.go { opacity: 1; }
+.home-mark.arrived { animation: home-pop 0.6s var(--settle); }
+@keyframes home-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.22); }
+  100% { transform: scale(1); }
+}
