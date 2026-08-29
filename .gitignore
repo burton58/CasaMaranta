@@ -1,0 +1,6 @@
+# Transient QA artefacts from design review rounds
+.impeccable/review/
+.impeccable/questions/
+
+# Temporary screenshot harness
+_shot.html

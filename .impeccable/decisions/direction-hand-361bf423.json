@@ -1,0 +1,138 @@
+{
+  "title": "Choose the visual world for Casa Maranta",
+  "question": "The roll assigned Wanderweg. Keep it, take an alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Wanderweg",
+      "kicker": "THE ROLL",
+      "lineage": "Swiss hiking signposts and SAC hut enamel plates",
+      "thesis": "The guide as the yellow signpost at the trailhead: every destination named on its own plate, with the time it takes to get there. Refuses the tile-grid-of-icons that every guest guide ships.",
+      "palette": ["#FFCC00", "#FFFFFF", "#1A1A1A", "#E30613"],
+      "materials": ["vitreous enamel", "powder-coated steel", "routed plate edge", "the red-white-red blaze"],
+      "viewport": "A photograph of the valley runs full-bleed to every edge. Standing in it, a dark signpost carries a stack of yellow enamel plates — WILLKOMMEN, DAS HAUS, WLAN, AUSFLUGSTIPPS — each with its walking time set right-aligned in the plate. The house name is routed into the post itself. No card, no hero box, no button: the plates are the interface.",
+      "risk": "Signage yellow at full field can tip from alpine into roadworks. And the walking times must be computed from the real coordinates already in the app — the moment one is decorative, the whole conceit is a costume.",
+      "raised": [
+        {
+          "from": "challenger-sneaker-boxes",
+          "raise": "One strict plate schema everywhere: destination, time, category, in fixed positions, so a stack of plates is scannable in one pass."
+        },
+        {
+          "from": "challenger-cloud-quarry",
+          "raise": "Sections carry real mass with deep voids between them, not uniform card gutters."
+        },
+        {
+          "from": "challenger-generative-identity",
+          "raise": "Every measurement in the system derives from one governing constant — the plate height. Nothing is arbitrary."
+        },
+        {
+          "from": "challenger-gameboy",
+          "raise": "A countable palette: four enamel values and no fifth. No gradient anywhere as an escape hatch."
+        },
+        {
+          "from": "challenger-cathode-gauze",
+          "raise": "Group by density and depth, never by drawing a box. The incumbent's reflex of a white card around everything dies here."
+        }
+      ],
+      "hero": "",
+      "board": ""
+    },
+    {
+      "id": "model-pick",
+      "label": "Cardinaux",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Swiss alpine travel lithographs, 1920s–60s",
+      "thesis": "Every section arrives as its own travel poster: one image, one word, one flat field of saturated colour. Two of these already hang framed in your living room.",
+      "palette": ["#0B3C6B", "#F2F0E9", "#D8241F", "#5BA8D4"],
+      "materials": ["stone lithography", "flat colour separation", "airbrushed snow", "poster varnish"],
+      "viewport": "The section name set enormous in condensed caps across a flat cobalt field, the valley photograph cropped hard into a geometric wedge beneath it, a thin red rule holding the baseline.",
+      "risk": "Also the most predictable beautiful answer for an alpine subject, and the framed posters on your wall make it the literal reading of the room. Its bigger danger is competing with your own photographs instead of framing them."
+    },
+    {
+      "id": "challenger-split-flap",
+      "label": "Departure Board",
+      "verdict": "competitive",
+      "lineage": "rail concourse split-flap boards",
+      "thesis": "The guide as the valley's departure board: sections and places as ranked rows that flip into place.",
+      "palette": ["#0E0E0E", "#FFFFFF", "#C8A032", "#8A8F98"],
+      "materials": ["matte flap faces", "brushed steel frame", "amber row lamps"],
+      "viewport": "A ruled board of rows, each destination cascading into place character by character, columns fixed.",
+      "case": "Fuses on arrival — your guests reach Poschiavo on the Rhaetian Railway, and destination-plus-time is exactly what a nav is. Holds audience identification. Loses product clarity: around 60% of this guide is warm long-form prose that a flap grid actively fights.",
+      "risk": "Its register is cold and operational — it runs straight into the corporate hotel app you named as an anti-reference.",
+      "hero": "https://impeccable.style/worlds/cards/signals-instruments-split-flap-concourse-hero.webp",
+      "board": "https://impeccable.style/worlds/cards/signals-instruments-split-flap-concourse.webp"
+    },
+    {
+      "id": "challenger-sneaker-boxes",
+      "label": "Sneaker Archive Wall",
+      "verdict": "declined",
+      "lineage": "stacked shoebox archive walls",
+      "palette": ["#C4562A", "#111111", "#F7F4EE"],
+      "materials": ["box board", "tissue paper"],
+      "case": "Fuses poorly: nothing in sneaker retail speaks to a family house in an alpine valley.",
+      "kept": "One strict label schema, repeated, so a wall of items is scannable at a glance.",
+      "hero": "https://impeccable.style/worlds/cards/textiles-weave-drape-fashion-sneaker-box-stacks-hero.webp"
+    },
+    {
+      "id": "challenger-cloud-quarry",
+      "label": "Cloud Quarry",
+      "verdict": "declined",
+      "lineage": "surreal weather-cutting quarries",
+      "palette": ["#F2F5F8", "#5B7FA6", "#4A4F55"],
+      "materials": ["cut cumulus", "thunder stock"],
+      "case": "Fuses poorly: a guest hunting the WiFi password does not want cut blocks of weather.",
+      "kept": "Sections as blocks with real mass and deep voids between them.",
+      "hero": "https://impeccable.style/worlds/cards/dream-surreal-impossible-worlds-cloud-quarry-hero.webp"
+    },
+    {
+      "id": "challenger-generative-identity",
+      "label": "Parametric Identity",
+      "verdict": "declined",
+      "lineage": "seed-driven generative brand systems",
+      "palette": ["#2B2BFF", "#F0F0F0", "#FF4D00"],
+      "materials": ["parametric SVG", "flat vector"],
+      "case": "Fuses poorly and contradicts the product: an identity that reseeds each visit is the opposite of a house that has carried one family's name for generations.",
+      "kept": "Every measurement derived from one governing constant.",
+      "hero": "https://impeccable.style/worlds/cards/generative-parametric-identity-hero.webp"
+    },
+    {
+      "id": "challenger-gameboy",
+      "label": "Four-Shade Field",
+      "verdict": "declined",
+      "lineage": "the four-green handheld field",
+      "palette": ["#9BBC0F", "#8BAC0F", "#306230", "#0F380F"],
+      "materials": ["dither checker", "8×8 pixel caps"],
+      "case": "Fuses poorly and breaks product truth: one pixel size with no line-height control destroys German long-word legibility, and this guide is read in evening light in a second language.",
+      "kept": "A countable palette — four values and no fifth, no gradient as an escape hatch.",
+      "hero": "https://impeccable.style/worlds/cards/digital-design-canon-gameboy-four-shade-field-hero.webp"
+    },
+    {
+      "id": "challenger-cathode-gauze",
+      "label": "Struck Cathode Gauze",
+      "verdict": "declined",
+      "lineage": "nixie decade counters behind anode gauze",
+      "palette": ["#0A0F1A", "#FF7A18", "#B08D57"],
+      "materials": ["bronze gauze", "cathode glow"],
+      "case": "Fuses poorly: a bench instrument has no bearing on an alpine house, and ghost text at differing depths hurts exactly the evening-light reading this product needs. Its warm orange is also suspiciously close to the palette we are replacing.",
+      "kept": "Group by density and depth, never by drawing a box.",
+      "hero": "https://impeccable.style/worlds/cards/operate-b-struck-cathode-gauze-hero.webp"
+    }
+  ],
+  "reroll": {
+    "registers": ["safer", "bolder"]
+  },
+  "buildPath": {
+    "value": "code",
+    "toggle": false
+  },
+  "canon": true,
+  "canonCard": {
+    "label": "The category standard",
+    "thesis": "The polished hospitality guest-guide app, executed impeccably: photo hero, tidy icon grid, soft neutral cards, one warm accent.",
+    "palette": ["#FFFFFF", "#2C3440", "#E8980A", "#F5F5F5"],
+    "materials": ["rounded cards", "stock line icons", "property photography"],
+    "viewport": "The arrangement every guest already expects, at full craft.",
+    "risk": "Indistinguishable from Touch Stay, Hostfully or your current build — which is the honest description of where you are now."
+  },
+  "steer": true
+}
