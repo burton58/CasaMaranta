@@ -1230,3 +1230,10 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: roun
 @keyframes plate-arrive {
   30% { transform: translateY(-3px); box-shadow: 0 5px 0 var(--yellow-deep), 0 12px 26px rgba(0,0,0,0.5); }
 }
+
+
+/* The global svg stroke rule was outlining every glyph — map text
+   is painted with fill alone. */
+#journey-svg text { stroke: none; }
+#journey-svg { will-change: contents; }
+#jcam { transition: none; }
