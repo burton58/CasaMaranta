@@ -199,7 +199,7 @@ Type is a single family — Archivo variable — and every difference in voice c
 - Red route-blaze is emergency-only and never appears as body text.
 - One typeface, Archivo, with the width axis (78–96) doing the work a second family would.
 - Grouping by rule and spacing, not by boxes.
-- The first viewport is the journey itself: a live-drawn Streckenplan of the ride from Zürich over the Bernina into Poschiavo, ending in a 15-minute walking trail at the post.
+- The first viewport is the journey itself: a live-drawn Streckenplan of the approaches to the valley — Zürich, then Bern, Basel and Genf feeding through the Zürich hub — whose 15-minute walking trail ends at the page's own "Casa Maranta" post title.
 
 ## Colors
 
@@ -350,7 +350,7 @@ Markers are the same signage as the app, drawn as inline SVG data URIs at 44 × 
 - **Easings:** `--ease` (`cubic-bezier(0.22, 1, 0.36, 1)`) for all state transitions, and `--settle` (`cubic-bezier(0.16, 1, 0.3, 1)`) for entrances. Both are exponential ease-outs: fast departure, long soft arrival.
 - **Two authored moments, both arrival stories:**
   - `plate-settle` (0.42s on `--settle`) — each plate arrives from 14px left with a −1.6° tilt and settles square onto the mast, staggered 30ms per plate via a `--i` index. `replayPlates()` re-triggers it every time the signpost is opened.
-  - **The journey** — the home screen's Streckenplan draws itself over ~8s: the route paints in signal yellow behind a travelling train dot that eases out of and into every station (per-segment ease-in-out, duration ∝ length^0.75), stations ignite as bolts with a 1.6× pop, real altitudes fade in at the stations that tell the climb, the Ospizio Bernina summit triangle lights at 2253 m, and arrival dissolves into a dashed walking trail (slow 2.6s dash-march) ending at a house glyph — at which point the LOSLEGEN plate gives a single 0.55s lift. Replayed on every return to the home screen; `prefers-reduced-motion` renders the completed map statically.
+  - **The journey** — the home screen's Streckenplan draws itself over ~8s: the route paints in signal yellow behind a travelling train dot that eases out of and into every station (per-segment ease-in-out, duration ∝ length^0.75), stations ignite as bolts with a 1.6× pop, real altitudes fade in at the stations that tell the climb, the Ospizio Bernina summit triangle lights at 2253 m, and arrival dissolves into a dashed walking trail (slow 2.6s dash-march) that points at the post title below — the page's own "Casa Maranta" is the endpoint, at which the LOSLEGEN plate gives a single 0.55s lift on the first run. The map then cycles through the real approaches — Bern, Basel and Genf, drawn as dim feeder branches converging on the Zürich HB hub, each lighting its own way in before the main line runs again — with a ~4.4s rest between journeys. The cycle stops when the guest leaves the home screen and restarts from Zürich on return; `prefers-reduced-motion` renders the completed Zürich map statically.
 - **Everything else stays under 0.36s:** backdrop fade 0.24s, sheet-up 0.36s, chevron rotations 0.24–0.26s, colour and background transitions 0.16–0.22s.
 - `prefers-reduced-motion: reduce` collapses every animation and transition to 0.01ms.
 

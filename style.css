@@ -1195,24 +1195,35 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: roun
 }
 .j-walk.go { opacity: 1; animation: j-march 2.6s linear infinite; }
 @keyframes j-march { to { stroke-dashoffset: -22; } }
-.j-house { opacity: 0; transition: opacity 0.5s var(--ease); }
-.j-house.go { opacity: 1; }
-.j-house .j-hicon { fill: none; stroke: var(--yellow); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
-.j-house .j-hname {
-  font-size: 13.5px;
-  font-weight: 800;
-  font-variation-settings: 'wdth' 88;
-  letter-spacing: -0.01em;
-  fill: var(--enamel);
-}
-.j-house .j-hwalk {
+/* The trail's own label; the endpoint is the post title below */
+.j-walklabel {
   font-size: 10.5px;
   font-weight: 700;
   font-variation-settings: 'wdth' 80;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   fill: var(--enamel-dim);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease) 0.15s;
 }
+.j-walklabel.go { opacity: 1; }
+
+/* Feeder branches from Bern, Basel and Genf into the Zürich hub */
+.j-feeder {
+  fill: none;
+  stroke: var(--slate-line);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.j-feeder-t {
+  fill: none;
+  stroke: var(--yellow);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.j-head { transition: opacity 0.22s var(--ease); }
 
 /* Arrival nudges the plate the guest is about to press */
 .plate--action.arrived { animation: plate-arrive 0.55s var(--ease); }
