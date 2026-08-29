@@ -66,6 +66,7 @@ function showScreen(id) {
   screen.scrollTop = 0;
   if (id !== 'screen-detail') currentDetailKey = null;
   replayPlates(screen);
+  if (id === 'screen-home') startJourney();
 }
 
 // The plates settle onto the mast each time the signpost is opened.
@@ -1652,6 +1653,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Set language from storage
   setLang(currentLang);
 
+  buildJourney();
+  startJourney();
+
   // previousScreen tracking
   document.querySelectorAll('[onclick*="showScreen"]').forEach(el => {
     const match = el.getAttribute('onclick') && el.getAttribute('onclick').match(/showScreen\('([^']+)'\)/);
@@ -1669,4 +1673,172 @@ function toggleWifiQR(btn) {
   panel.style.display = isVisible ? 'none' : 'flex';
   btn.classList.toggle('active', !isVisible);
   btn.setAttribute('aria-expanded', String(!isVisible));
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// THE JOURNEY — home-screen Streckenplan, Zürich → Poschiavo.
+// 45°-only schematic; horizontal drift encodes altitude, so the
+// line climbs to Ospizio Bernina (2253 m) and falls into the
+// valley. Every altitude is the real one.
+// ─────────────────────────────────────────────────────────────
+const JOURNEY = {
+  stations: [
+    { n: 'Zürich HB',       alt: 408,  x: 51,  y: 48,  showAlt: true },
+    { n: 'Chur',            alt: 585,  x: 67,  y: 86 },
+    { n: 'Filisur',         alt: 1032, x: 107, y: 142 },
+    { n: 'Preda',           alt: 1789, x: 174, y: 219 },
+    { n: 'Samedan',         alt: 1721, x: 168, y: 247 },
+    { n: 'Pontresina',      alt: 1774, x: 173, y: 272 },
+    { n: 'Ospizio Bernina', alt: 2253, x: 216, y: 327, showAlt: true, summit: true },
+    { n: 'Alp Grüm',        alt: 2091, x: 201, y: 358, showAlt: true },
+    { n: 'Poschiavo',       alt: 1014, x: 105, y: 468, showAlt: true, end: true },
+  ],
+  house: { x: 75, y: 498 }
+};
+
+// Schematic elbow: vertical first, then a 45° diagonal into the station.
+function journeyPathD(pts) {
+  let d = 'M' + pts[0].x + ' ' + pts[0].y;
+  for (let i = 1; i < pts.length; i++) {
+    const a = pts[i - 1], b = pts[i];
+    const adx = Math.abs(b.x - a.x), v = (b.y - a.y) - adx;
+    if (v > 0.5) d += ' L' + a.x + ' ' + (a.y + v);
+    d += ' L' + b.x + ' ' + b.y;
+  }
+  return d;
+}
+
+function journeySegLens(pts) {
+  const lens = [0];
+  let acc = 0;
+  for (let i = 1; i < pts.length; i++) {
+    const a = pts[i - 1], b = pts[i];
+    const adx = Math.abs(b.x - a.x), v = Math.max(0, (b.y - a.y) - adx);
+    acc += v + adx * Math.SQRT2;
+    lens.push(acc);
+  }
+  return lens;
+}
+
+function buildJourney() {
+  const host = document.getElementById('journey');
+  if (!host) return;
+  const S = JOURNEY.stations;
+  const railD = journeyPathD(S);
+  const walkD = journeyPathD([S[S.length - 1], JOURNEY.house]);
+  let stops = '';
+  S.forEach((st, i) => {
+    const r = st.end ? 6.5 : 5;
+    stops +=
+      '<g class="j-stop" data-idx="' + i + '">' +
+        '<circle cx="' + st.x + '" cy="' + st.y + '" r="' + r + '"/>' +
+        '<text class="j-name" x="' + (st.x + 16) + '" y="' + (st.y + 4.5) + '">' + st.n + '</text>' +
+        (st.showAlt
+          ? '<text class="j-alt" x="' + (st.x + 16) + '" y="' + (st.y + 18) + '">' + st.alt + ' m</text>'
+          : '') +
+      '</g>' +
+      (st.summit
+        ? '<path class="j-summit" d="M' + st.x + ' ' + (st.y - 20) + ' l5.5 9 h-11 z"/>'
+        : '');
+  });
+  const h = JOURNEY.house;
+  host.innerHTML =
+    '<svg id="journey-svg" viewBox="0 0 390 534" preserveAspectRatio="xMidYMid meet">' +
+      '<text class="j-head" x="28" y="16" data-de="Von Zürich ins Puschlav" data-en="From Zürich into the valley">' +
+        t('Von Zürich ins Puschlav', 'From Zürich into the valley') + '</text>' +
+      '<path class="j-base" d="' + railD + '"/>' +
+      '<path class="j-travel" d="' + railD + '"/>' +
+      '<path class="j-walk" d="' + walkD + '"/>' +
+      stops +
+      '<g class="j-house">' +
+        '<path class="j-hicon" transform="translate(' + (h.x - 8) + ' ' + (h.y + 4) + ')" d="M0 7 L8 0.5 L16 7 V14.5 H10 v-4.5 h-4 v4.5 H0 Z"/>' +
+        '<text class="j-hwalk" x="' + (h.x + 14) + '" y="' + (h.y + 16) + '" data-de="15 Min. zu Fuss" data-en="15 min on foot">' +
+          t('15 Min. zu Fuss', '15 min on foot') + '</text>' +
+      '</g>' +
+      '<g class="j-train" opacity="0" transform="translate(' + S[0].x + ' ' + S[0].y + ')">' +
+        '<circle class="j-train-o" r="7"/><circle class="j-train-i" r="2.4"/>' +
+      '</g>' +
+    '</svg>';
+}
+
+const jAnim = { raf: 0 };
+
+function startJourney() {
+  const svg = document.getElementById('journey-svg');
+  if (!svg) return;
+  const travel = svg.querySelector('.j-travel');
+  const stops = Array.from(svg.querySelectorAll('.j-stop'));
+  const train = svg.querySelector('.j-train');
+  const walk = svg.querySelector('.j-walk');
+  const house = svg.querySelector('.j-house');
+  const plate = document.querySelector('#screen-home .plate--action');
+  const lens = journeySegLens(JOURNEY.stations);
+  const total = travel.getTotalLength();
+  cancelAnimationFrame(jAnim.raf);
+
+  const finish = () => {
+    travel.style.strokeDasharray = total;
+    travel.style.strokeDashoffset = 0;
+    stops.forEach(s => s.classList.add('lit'));
+    svg.querySelectorAll('.j-summit').forEach(s => s.classList.add('lit'));
+    train.setAttribute('opacity', '0');
+    walk.classList.add('go');
+    house.classList.add('go');
+  };
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(); return; }
+
+  // Reset to departure
+  travel.style.strokeDasharray = total;
+  travel.style.strokeDashoffset = total;
+  stops.forEach(s => s.classList.remove('lit'));
+  svg.querySelectorAll('.j-summit').forEach(s => s.classList.remove('lit'));
+  walk.classList.remove('go');
+  house.classList.remove('go');
+  if (plate) plate.classList.remove('arrived');
+  train.setAttribute('opacity', '1');
+  train.setAttribute('transform', 'translate(' + JOURNEY.stations[0].x + ' ' + JOURNEY.stations[0].y + ')');
+
+  // The train eases out of and into every station: one eased leg per
+  // segment, its duration growing with its length.
+  const segs = [];
+  for (let i = 1; i < lens.length; i++) segs.push(lens[i] - lens[i - 1]);
+  const weights = segs.map(s => Math.pow(s, 0.75));
+  const wsum = weights.reduce((a, b) => a + b, 0);
+  const durs = weights.map(w => Math.max(480, (w / wsum) * 7400));
+  const starts = [];
+  let t0 = 400;
+  durs.forEach(d => { starts.push(t0); t0 += d; });
+  const totalT = t0;
+  const ease = p => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2);
+  const begin = performance.now();
+
+  const frame = now => {
+    const el = now - begin;
+    let L = 0;
+    if (el >= starts[0]) {
+      let i = segs.length - 1;
+      for (let k = 0; k < segs.length; k++) {
+        if (el < starts[k] + durs[k]) { i = k; break; }
+      }
+      const p = Math.min(1, (el - starts[i]) / durs[i]);
+      L = lens[i] + ease(p) * segs[i];
+    }
+    travel.style.strokeDashoffset = Math.max(0, total - L);
+    const pt = travel.getPointAtLength(Math.min(L, total));
+    train.setAttribute('transform', 'translate(' + pt.x + ' ' + pt.y + ')');
+    stops.forEach((s, idx) => { if (lens[idx] <= L + 0.5) s.classList.add('lit'); });
+    if (L >= lens[6] - 0.5) svg.querySelectorAll('.j-summit').forEach(s => s.classList.add('lit'));
+    if (el < totalT) {
+      jAnim.raf = requestAnimationFrame(frame);
+    } else {
+      train.setAttribute('opacity', '0');
+      walk.classList.add('go');
+      setTimeout(() => {
+        house.classList.add('go');
+        if (plate) { plate.classList.remove('arrived'); void plate.offsetWidth; plate.classList.add('arrived'); }
+      }, 350);
+    }
+  };
+  jAnim.raf = requestAnimationFrame(frame);
 }
