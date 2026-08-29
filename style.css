@@ -76,22 +76,14 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: roun
 #screen-home { overflow: hidden; }
 #screen-home.active { display: block; }
 
+/* The first viewport is the journey: a Streckenplan of the ride from
+   Zürich over the Bernina down into Poschiavo, ending at the post. */
 .home-hero {
   position: relative;
   height: calc(100dvh - var(--nav));
-  background:
-    url('https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/ie9beb54c6695d5f6/version/1776070134/image.jpg')
-    center / cover no-repeat;
-  background-color: var(--slate);
+  background: var(--slate);
   display: flex;
-  align-items: flex-end;
-}
-/* Legibility scrim — slate alpha only, never a colour ramp */
-.home-hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, var(--slate) 0%, rgba(20,24,28,0.88) 36%, rgba(20,24,28,0.34) 68%, rgba(20,24,28,0.62) 100%);
+  flex-direction: column;
 }
 
 .lang-toggle {
@@ -1124,3 +1116,106 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: roun
    the same statement twice, so the drawn chevrons stand down.
    (.toggle-chevron stays: it means open/closed, not direction.) */
 .arrow-icon, .plate-arrow { display: none; }
+
+
+/* ═══════════ THE JOURNEY (home Streckenplan) ═══════════
+   45-degree schematic in the ZVV grammar, drawn in the world's own
+   enamel: slate ground, yellow route, stations as bolts that ignite
+   as the train passes. Horizontal drift encodes altitude. */
+.journey { flex: 1 1 auto; min-height: 0; position: relative; }
+.journey svg { width: 100%; height: 100%; display: block; }
+
+.j-head {
+  font-size: 11.5px;
+  font-weight: 700;
+  font-variation-settings: 'wdth' 82;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  fill: var(--enamel-dim);
+}
+.j-base {
+  fill: none;
+  stroke: var(--slate-line);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.j-travel {
+  fill: none;
+  stroke: var(--yellow);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.j-stop circle {
+  fill: var(--slate-up);
+  stroke: var(--slate-line);
+  stroke-width: 2;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: fill 0.25s var(--ease), stroke 0.25s var(--ease);
+}
+.j-stop .j-name {
+  font-size: 13px;
+  font-weight: 700;
+  font-variation-settings: 'wdth' 86;
+  letter-spacing: -0.01em;
+  fill: var(--enamel-faint);
+  transition: fill 0.3s var(--ease);
+}
+.j-stop .j-alt {
+  font-size: 10.5px;
+  font-weight: 700;
+  font-variation-settings: 'wdth' 78;
+  letter-spacing: 0.06em;
+  fill: var(--enamel-faint);
+  font-variant-numeric: tabular-nums;
+  opacity: 0;
+  transition: opacity 0.35s var(--ease) 0.1s;
+}
+.j-stop.lit circle { fill: var(--yellow); stroke: var(--slate-deep); animation: j-pop 0.4s var(--settle); }
+.j-stop.lit .j-name { fill: var(--enamel); }
+.j-stop.lit .j-alt { opacity: 1; }
+@keyframes j-pop { 40% { transform: scale(1.6); } }
+.j-summit { fill: var(--yellow); opacity: 0; transition: opacity 0.3s var(--ease) 0.15s; }
+.j-stop.lit + .j-summit, .j-summit.lit { opacity: 1; }
+
+.j-train .j-train-o { fill: var(--yellow); stroke: var(--slate-deep); stroke-width: 1.5; }
+.j-train .j-train-i { fill: var(--slate); }
+
+/* The last 15 minutes are on foot — a dashed trail, marked like a path */
+.j-walk {
+  fill: none;
+  stroke: var(--yellow);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-dasharray: 4 7;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+}
+.j-walk.go { opacity: 1; animation: j-march 2.6s linear infinite; }
+@keyframes j-march { to { stroke-dashoffset: -22; } }
+.j-house { opacity: 0; transition: opacity 0.5s var(--ease); }
+.j-house.go { opacity: 1; }
+.j-house .j-hicon { fill: none; stroke: var(--yellow); stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.j-house .j-hname {
+  font-size: 13.5px;
+  font-weight: 800;
+  font-variation-settings: 'wdth' 88;
+  letter-spacing: -0.01em;
+  fill: var(--enamel);
+}
+.j-house .j-hwalk {
+  font-size: 10.5px;
+  font-weight: 700;
+  font-variation-settings: 'wdth' 80;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: var(--enamel-dim);
+}
+
+/* Arrival nudges the plate the guest is about to press */
+.plate--action.arrived { animation: plate-arrive 0.55s var(--ease); }
+@keyframes plate-arrive {
+  30% { transform: translateY(-3px); box-shadow: 0 5px 0 var(--yellow-deep), 0 12px 26px rgba(0,0,0,0.5); }
+}
