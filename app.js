@@ -65,6 +65,19 @@ function showScreen(id) {
   screen.classList.add('active');
   screen.scrollTop = 0;
   if (id !== 'screen-detail') currentDetailKey = null;
+  replayPlates(screen);
+}
+
+// The plates settle onto the mast each time the signpost is opened.
+function replayPlates(root) {
+  if (!root) return;
+  const plates = root.querySelectorAll('.signpost .plate, .modal-list .plate');
+  if (!plates.length) return;
+  plates.forEach(p => {
+    p.style.animation = 'none';
+    void p.offsetWidth;
+    p.style.animation = '';
+  });
 }
 
 function setNavActive(id) {
@@ -103,23 +116,22 @@ function hideDetail() {
 }
 
 // When local area guide card is clicked, show modal
+// Ausflugstipps is a destination, not an interruption: one route, one schema.
 function showLocalGuideModal() {
-  document.getElementById('modal-localguide').classList.remove('hidden');
-  document.getElementById('modal-backdrop').classList.remove('hidden');
-  // update modal text for language
-  document.querySelectorAll('[data-de]').forEach(el => {
-    el.textContent = currentLang === 'de' ? el.dataset.de : el.dataset.en;
-  });
+  showDetail('localguide');
 }
 
 function closeModal(id) {
-  document.getElementById(id).classList.add('hidden');
-  document.getElementById('modal-backdrop').classList.add('hidden');
+  const el = document.getElementById(id);
+  if (el) el.classList.add('hidden');
+  const bd = document.getElementById('modal-backdrop');
+  if (bd) bd.classList.add('hidden');
 }
 
 function closeAllModals() {
   document.querySelectorAll('.modal').forEach(m => m.classList.add('hidden'));
-  document.getElementById('modal-backdrop').classList.add('hidden');
+  const bd = document.getElementById('modal-backdrop');
+  if (bd) bd.classList.add('hidden');
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -127,10 +139,13 @@ function closeAllModals() {
 // ─────────────────────────────────────────────────────────────
 function togglePlace(id) {
   const body = document.getElementById('body-' + id);
-  const chevron = document.getElementById('chev-' + id);
+  const head = document.getElementById('head-' + id);
   const isOpen = body.classList.contains('open');
   body.classList.toggle('open', !isOpen);
-  if (chevron) chevron.textContent = isOpen ? '∧' : '∨';
+  if (head) {
+    head.classList.toggle('is-open', !isOpen);
+    head.setAttribute('aria-expanded', String(!isOpen));
+  }
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -397,7 +412,7 @@ const DETAIL_PAGES = {
               <p><a href="https://media3.bsh-group.com/Documents/9000795435_A.pdf" target="_blank">Kurzanleitung (DE)</a> · <a href="https://www.manualslib.de/manual/664410/Siemens-Sn-Serie.html?page=2#manual" target="_blank">Betriebsanleitung (DE)</a></p>
               <p>Hinter dem Abfalleimer finden Sie die Spültabs, Klarspüler und Salz für den Bedarfsfall.</p>
               <p>Wir empfehlen das <strong>Eco-Programm</strong> und nur bei starker Verschmutzung das Intensiv-Programm.</p>
-              <div style="background:#fff3cd;border-left:5px solid var(--orange);border-radius:6px;padding:12px 14px;margin-top:10px;">⚠️ <strong>Bitte keine teflonbeschichteten Pfannen und Töpfe in den Geschirrspüler geben.</strong></div>
+              <div class="notice">⚠️ <strong>Bitte keine teflonbeschichteten Pfannen und Töpfe in den Geschirrspüler geben.</strong></div>
               <h4>Einschalten</h4>
               <ul>
                 <li>Gerät einschalten <strong>(1)</strong></li>
@@ -469,7 +484,7 @@ const DETAIL_PAGES = {
               <p><a href="https://media3.bsh-group.com/Documents/9000795435_A.pdf" target="_blank">Quick guide (DE)</a> · <a href="https://www.manualslib.de/manual/664410/Siemens-Sn-Serie.html?page=2#manual" target="_blank">Operating manual (DE)</a></p>
               <p>Behind the bin you will find dishwasher tabs, rinse aid and salt for when they run out.</p>
               <p>We recommend the <strong>Eco programme</strong> and only Intensive for heavily soiled loads.</p>
-              <div style="background:#fff3cd;border-left:5px solid var(--orange);border-radius:6px;padding:12px 14px;margin-top:10px;">⚠️ <strong>Please do not put Teflon-coated pans and pots in the dishwasher.</strong></div>
+              <div class="notice">⚠️ <strong>Please do not put Teflon-coated pans and pots in the dishwasher.</strong></div>
               <h4>Switching on</h4>
               <ul>
                 <li>Switch the appliance on <strong>(1)</strong></li>
@@ -696,7 +711,7 @@ const DETAIL_PAGES = {
               <summary>Feuerschale und Grillrost</summary>
               <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i3a613047bf17fa35/version/1776110877/image.jpg" alt="Feuerschale und Grillrost" class="welcome-photo" />
               <p>Was gibt es Schöneres als ein gutes Stück Fleisch vom Grill? Sie können das Feuerholz aus dem Vorrat beim Schwedenofen verwenden. Bitte entsorgen Sie die vollständig abgekühlte Asche im Feuereimer neben dem Schwedenofen. Den Grillrost bitten wir Sie nach dem Gebrauch zu reinigen – damit auch der nächste Gast seine Freude daran hat.</p>
-              <p style="background:#fff3cd;border-left:4px solid #f0ad00;padding:0.6rem 0.8rem;border-radius:4px;margin-top:0.75rem;"><strong>⚠️ Wichtig:</strong> Die Feuerschale darf nicht unter der Pergola benutzt werden. Sie steht lediglich dort, um sie vor dem Wetter zu schützen. Bitte stellen Sie sie vor dem Gebrauch ins Freie.</p>
+              <p class="notice"><strong>⚠️ Wichtig:</strong> Die Feuerschale darf nicht unter der Pergola benutzt werden. Sie steht lediglich dort, um sie vor dem Wetter zu schützen. Bitte stellen Sie sie vor dem Gebrauch ins Freie.</p>
             </details>
           `, `
             <details class="appliance-section">
@@ -717,7 +732,7 @@ const DETAIL_PAGES = {
               <summary>Fire Bowl and BBQ Grate</summary>
               <img src="https://image.jimcdn.com/app/cms/image/transf/dimension=740x10000:format=jpg/path/s43189f292a34c399/image/i3a613047bf17fa35/version/1776110877/image.jpg" alt="Fire Bowl and BBQ Grate" class="welcome-photo" />
               <p>Is there anything better than a good piece of meat fresh off the grill? Feel free to use the firewood stored by the Swedish stove. Please dispose of fully cooled ash in the fire bucket next to the stove, and give the grill grate a quick clean after use — so the next guests can enjoy it just as much.</p>
-              <p style="background:#fff3cd;border-left:4px solid #f0ad00;padding:0.6rem 0.8rem;border-radius:4px;margin-top:0.75rem;"><strong>⚠️ Important:</strong> The fire bowl must not be used under the pergola. It is stored there only to protect it from the weather. Please move it into the open before use.</p>
+              <p class="notice"><strong>⚠️ Important:</strong> The fire bowl must not be used under the pergola. It is stored there only to protect it from the weather. Please move it into the open before use.</p>
             </details>
           `)}
         </div>
@@ -822,7 +837,7 @@ const DETAIL_PAGES = {
       <div class="detail-section">
         <div class="detail-body">
           ${t(`
-            <div style="background:#fff3cd;border-left:5px solid #e6a817;border-radius:6px;padding:14px 16px;margin-bottom:20px;">
+            <div class="notice">
               <strong style="font-size:1.05em;">⚠️ ACHTUNG</strong><br>
               Der Ofen im Dachgeschoss ist ein reines Dekorationsstück – er ist <strong>nicht angeschlossen</strong> und darf <strong>nicht benutzt werden</strong>.
               <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i2c3c2a7c9746bee5/version/1777887247/image.jpg" alt="Deko-Ofen Dachgeschoss" style="max-width:100%;margin-top:0.75rem;border-radius:4px;">
@@ -845,7 +860,7 @@ const DETAIL_PAGES = {
             </ul>
             <p>Vielen Dank für einen sorgfältigen Umgang – und viel Freude beim Heizen!</p>
           `, `
-            <div style="background:#fff3cd;border-left:5px solid #e6a817;border-radius:6px;padding:14px 16px;margin-bottom:20px;">
+            <div class="notice">
               <strong style="font-size:1.05em;">⚠️ IMPORTANT</strong><br>
               The stove in the attic is purely decorative – it is <strong>not connected</strong> and must <strong>not be used</strong>.
               <img src="https://image.jimcdn.com/app/cms/image/transf/none/path/s43189f292a34c399/image/i2c3c2a7c9746bee5/version/1777887247/image.jpg" alt="Decorative Stove Attic" style="max-width:100%;margin-top:0.75rem;border-radius:4px;">
@@ -1017,7 +1032,7 @@ const DETAIL_PAGES = {
           )}
         </div>
         <div class="detail-body" style="padding-top:0">
-          <div style="background:#fff3cd;border-left:5px solid var(--orange);border-radius:6px;padding:14px 16px;">
+          <div class="notice">
             ${t(
               'Um Ihnen eventuelle Mehrkosten zu ersparen, möchten wir Sie freundlich bitten, die nachfolgenden Punkte vor Ihrer Abreise zu beachten. Sie erhalten diese Punkte auch noch als Papier-Checkliste, welche Sie bitte vor Ihrer Abreise abgeben.',
               'To help you avoid any additional charges, we kindly ask you to go through the following points before your departure. You will also receive these points as a paper checklist, which we ask you to hand in before leaving.'
@@ -1034,9 +1049,9 @@ const DETAIL_PAGES = {
             t('Alle Fenster und Balkontüren sind vollständig geschlossen (nicht gekippt).', 'All windows and balcony doors are fully closed (not tilted).'),
             t('Das Mobiliar steht an seinem angestammten Platz.', 'The furniture is in its original place.'),
             t('Die Wohnung ist aufgeräumt und eventuelle Beschädigungen wurden gemeldet.', 'The apartment has been tidied up and any damage has been reported.'),
-            t('Alle Abfälle wurden entsorgt: Kehricht zur Sammelstelle, Recyclingmaterial (Glas, PET, Papier etc.) zur Recyclingstation. <a href="#" onclick="event.preventDefault();showDetail(\'house_waste\')" style="color:var(--orange)">→ Abfall &amp; Entsorgung</a>', 'All waste has been disposed of: general waste to the collection point, recyclables (glass, PET, paper, etc.) to the recycling station. <a href="#" onclick="event.preventDefault();showDetail(\'house_waste\')" style="color:var(--orange)">→ Waste &amp; Disposal</a>'),
+            t('Alle Abfälle wurden entsorgt: Kehricht zur Sammelstelle, Recyclingmaterial (Glas, PET, Papier etc.) zur Recyclingstation. <a href="#" onclick="event.preventDefault();showDetail(\'house_waste\')" class="accent">→ Abfall &amp; Entsorgung</a>', 'All waste has been disposed of: general waste to the collection point, recyclables (glass, PET, paper, etc.) to the recycling station. <a href="#" onclick="event.preventDefault();showDetail(\'house_waste\')" class="accent">→ Waste &amp; Disposal</a>'),
             t('Asche aus dem Schwedenofen und der Feuerschale ist vollständig abgekühlt und wurde im Ascheeimer (neben dem Schwedenofen) entsorgt.', 'Ash from the wood-burning stove and fire bowl has fully cooled and been disposed of in the ash bucket (next to the stove).'),
-            t('Alle Gartenmöbel (Hängematten, Liegestühle, Sitzkissen) wurden wieder im Haus verräumt.<br><small style="color:var(--text-muted)">Hinweis: Nur der Tisch unter der Pergola und die dazugehörigen Stühle (ohne Sitzkissen) können draussen bleiben.</small>', 'All garden furniture (hammocks, sun loungers, seat cushions) has been put back inside the house.<br><small style="color:var(--text-muted)">Note: Only the table under the pergola and its chairs (without cushions) may remain outside.</small>'),
+            t('Alle Gartenmöbel (Hängematten, Liegestühle, Sitzkissen) wurden wieder im Haus verräumt.<br><small class="muted">Hinweis: Nur der Tisch unter der Pergola und die dazugehörigen Stühle (ohne Sitzkissen) können draussen bleiben.</small>', 'All garden furniture (hammocks, sun loungers, seat cushions) has been put back inside the house.<br><small class="muted">Note: Only the table under the pergola and its chairs (without cushions) may remain outside.</small>'),
           ].map((text, i) => `
             <label class="checklist-item">
               <input type="checkbox" class="checklist-cb" id="chk-co-${i}">
@@ -1057,36 +1072,36 @@ const DETAIL_PAGES = {
         <div class="contact-card">
           <h3>${t('Lokale Ansprechpartnerin', 'Local Contact')}</h3>
           <div class="contact-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--orange)"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.08 2.2 2 2 0 012.08.02h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ci-ico"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.08 2.2 2 2 0 012.08.02h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             <span>Anna – <a href="tel:+41794221608">+41 79 422 16 08</a></span>
           </div>
         </div>
         <div class="contact-card">
           <h3>${t('Eigentümer', 'Owners')}</h3>
           <div class="contact-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--orange)"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.08 2.2 2 2 0 012.08.02h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ci-ico"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.08 2.2 2 2 0 012.08.02h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             <span>Markus – <a href="tel:+41795712790">+41 79 571 27 90</a></span>
           </div>
           <div class="contact-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--orange)"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.08 2.2 2 2 0 012.08.02h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ci-ico"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.08 2.2 2 2 0 012.08.02h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             <span>Christine – <a href="tel:+41787403180">+41 78 740 31 80</a></span>
           </div>
         </div>
         <div class="contact-card">
           <h3>${t('Notfall', 'Emergency')}</h3>
           <div class="contact-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--orange)"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ci-ico"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             <span>${t('Notruf: ', 'Emergency: ')}<a href="tel:112"><strong>112</strong></a></span>
           </div>
         </div>
         <div class="contact-card">
           <h3>${t('Arzt &amp; Apotheke', 'Doctors &amp; Pharmacy')}</h3>
           <div class="contact-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--orange)"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.08 2.2 2 2 0 012.08.02h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ci-ico"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.08 2.2 2 2 0 012.08.02h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             <span>Centro Medico Valposchiavo – <a href="tel:+41818390180">+41 81 839 01 80</a></span>
           </div>
           <div class="contact-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--orange)"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.08 2.2 2 2 0 012.08.02h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="ci-ico"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.08 2.2 2 2 0 012.08.02h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
             <span>Apotheke Bernina – <a href="tel:+41818440251">+41 81 844 02 51</a></span>
           </div>
         </div>
@@ -1120,10 +1135,27 @@ const DETAIL_PAGES = {
     title: () => t('Ausflugstipps', 'Your Local Area Guide'),
     backTo: 'screen-info',
     backNavId: 'nav-info',
-    render: () => {
-      showLocalGuideModal();
-      return '<p style="padding:20px;color:var(--text-muted)">...</p>';
-    }
+    render: () => `
+      <div class="detail-section">
+        <div class="signpost signpost--flush">
+          <div class="signpost-mast" aria-hidden="true"></div>
+          <button class="plate plate--out" onclick="showDetail('restaurants')" style="--i:0">
+            <span class="plate-bolt"></span>
+            <svg class="plate-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3v7a2 2 0 004 0V3M8 12v9"/><path d="M17 3c-1.7 1-2.5 2.8-2.5 5s.8 3 2 3.2L16 21"/></svg>
+            <span class="plate-name">${t('Restaurants', 'Restaurants')}</span>
+          </button>
+          <button class="plate plate--out" onclick="showDetail('grocery')" style="--i:1">
+            <span class="plate-bolt"></span>
+            <svg class="plate-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h2.4l2.3 9.5h9.1L19 8H7"/><circle cx="9" cy="19" r="1.5"/><circle cx="16.5" cy="19" r="1.5"/></svg>
+            <span class="plate-name">${t('Einkaufen', 'Grocery Shopping')}</span>
+          </button>
+          <button class="plate plate--out" onclick="showDetail('activities')" style="--i:2">
+            <span class="plate-bolt"></span>
+            <svg class="plate-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20l6-10 3.2 4.4L15 8l6 12z"/></svg>
+            <span class="plate-name">${t('Aktivitäten', 'Activities')}</span>
+          </button>
+        </div>
+      </div>`
   },
 
   restaurants: {
@@ -1290,25 +1322,105 @@ const DETAIL_PAGES = {
   }
 };
 
+// ─────────────────────────────────────────────────────────────
+// DISTANCES — every plate that points outward carries a real one,
+// computed from the coordinates in MAP_PLACES. No place we cannot
+// locate gets a number.
+// ─────────────────────────────────────────────────────────────
+const HOUSE = { lat: 46.31673649875822, lng: 10.05904302485825 };
+const DETOUR = 1.25;      // straight line → plausible road/path
+const WALK_KMH = 4.5;
+const VALLEY_FLOOR_KM = 3;   // beyond this, ascent dominates and a time would lie
+
+function haversineKm(a, b) {
+  const R = 6371, rad = d => d * Math.PI / 180;
+  const dLat = rad(b.lat - a.lat), dLng = rad(b.lng - a.lng);
+  const s = Math.sin(dLat / 2) ** 2 +
+            Math.cos(rad(a.lat)) * Math.cos(rad(b.lat)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(s));
+}
+
+function normName(s) {
+  return String(s).toLowerCase().normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
+}
+
+// Words shared across many places carry no identifying power.
+const GENERIC_NAME_WORDS = new Set([
+  'ristorante','restaurant','risturant','ristoro','hotel','pizzeria','bistro','bio',
+  'markt','market','minimarkt','minimarket','mini','metzgerei','butcher','baeckerei',
+  'bakery','panetteria','pasticceria','alimentari','prima','hostaria','grotto','borgo',
+  'poschiavo','giardino','della','delle','del','die','der','das','und','and','the'
+]);
+
+function nameTokens(s) {
+  return String(s).toLowerCase().normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .split(/[^a-z0-9]+/)
+    .filter(w => w.length >= 4 && !GENERIC_NAME_WORDS.has(w));
+}
+
+function findPlace(name) {
+  const n = normName(name);
+  if (!n) return null;
+  for (const p of MAP_PLACES) {
+    for (const title of [p.title_de, p.title_en]) {
+      const tn = normName(title);
+      if (tn && (tn === n || tn.includes(n) || n.includes(tn))) return p;
+    }
+  }
+  // Card names and map titles drift apart across languages ("Butcher Scalino"
+  // vs "Metzgerei Scalino"). Fall back to the distinctive proper noun.
+  const want = nameTokens(name);
+  if (!want.length) return null;
+  for (const p of MAP_PLACES) {
+    const have = nameTokens(p.title_de + ' ' + p.title_en);
+    if (want.some(w => have.includes(w))) return p;
+  }
+  return null;
+}
+
+function distanceLabel(name) {
+  const p = findPlace(name);
+  if (!p) return '';
+  const km = haversineKm(HOUSE, p) * DETOUR;
+  if (km < 0.15) return t('Hier', 'Here');
+  // Only the valley floor gets a time. Anything further is a mountain
+  // destination whose ascent we hold no data for, so it gets distance.
+  if (km <= VALLEY_FLOOR_KM) {
+    const min = Math.max(5, Math.round(km / WALK_KMH * 60 / 5) * 5);
+    if (min < 60) return min + ' min';
+    const h = Math.floor(min / 60), m = min % 60;
+    return m ? `${h} h ${m}` : `${h} h`;
+  }
+  const v = km < 10 ? km.toFixed(1) : String(Math.round(km));
+  return (currentLang === 'de' ? v.replace('.', ',') : v) + ' km';
+}
+
 function renderPlaceCard(id, name, description, mapsUrl, imgUrl) {
   const imgHtml = imgUrl
     ? `<img src="${imgUrl}" alt="${name}" loading="lazy" onerror="this.style.display='none'">`
     : '';
+  const dist = distanceLabel(name);
+  const distHtml = dist ? `<span class="place-dist">${dist}</span>` : '';
   return `
     <div class="place-card">
-      <div class="place-card-header" onclick="togglePlace('${id}')">
+      <div class="place-card-header is-open" id="head-${id}" role="button" tabindex="0"
+           aria-expanded="true" aria-controls="body-${id}"
+           onclick="togglePlace('${id}')"
+           onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();togglePlace('${id}')}">
         <h3>${name}</h3>
-        <span class="toggle-chevron" id="chev-${id}">∧</span>
+        ${distHtml}
+        <span class="toggle-chevron" id="chev-${id}" aria-hidden="true"></span>
       </div>
       <div class="place-card-body open" id="body-${id}">
         ${imgHtml}
         <p>${description}</p>
         <div class="place-card-actions">
-          <div style="display:flex;gap:8px">
-            <a href="${mapsUrl}" target="_blank" class="place-action-btn" title="Karte / Map">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            </a>
-          </div>
+          <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer"
+             class="place-action-btn" data-label="${t('Route', 'Directions')}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg>
+          </a>
         </div>
       </div>
     </div>`;
@@ -1351,37 +1463,32 @@ let googleMap = null;
 let markers = [];
 let mapInitialized = false;
 
+// Markers are the same signage as the app: a yellow enamel plate,
+// pointed, bolted to the map at the bolt hole. Category reads from the
+// pictogram, never from a new colour. Only the house inverts.
 function getMarkerIcon(cat) {
-  const defs = {
-    home: {
-      bg: '#1E2D40',
-      body: '<path d="M18 8L29 16v13H7V16z" fill="white"/><rect x="15" y="21" width="6" height="8" fill="#1E2D40"/>'
-    },
-    restaurant: {
-      bg: '#E8200A',
-      body: '<line x1="13" y1="9" x2="13" y2="27" stroke="white" stroke-width="1.8" stroke-linecap="round"/>' +
-            '<line x1="11" y1="9" x2="11" y2="13" stroke="white" stroke-width="1.8" stroke-linecap="round"/>' +
-            '<line x1="15" y1="9" x2="15" y2="13" stroke="white" stroke-width="1.8" stroke-linecap="round"/>' +
-            '<path d="M11 13Q13 15 15 13" fill="none" stroke="white" stroke-width="1.5"/>' +
-            '<path d="M22 9C25 9 26 12 24.5 15L23.5 27" fill="none" stroke="white" stroke-width="1.9" stroke-linecap="round"/>'
-    },
-    grocery: {
-      bg: '#E88A0A',
-      body: '<path d="M7 13H11L15 24H25L27 15H12" fill="none" stroke="white" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>' +
-            '<circle cx="15" cy="28" r="2" fill="white"/>' +
-            '<circle cx="23" cy="28" r="2" fill="white"/>'
-    },
-    activity: {
-      bg: '#0A7AE8',
-      body: '<path d="M4 29L12 16l4 5 5-9 11 17z" fill="white"/>'
-    }
+  const glyphs = {
+    home:       '<path d="M14.6 15.4 20 11l5.4 4.4v5.2h-3.5v-3.1h-3.8v3.1h-3.5z"/>',
+    restaurant: '<path d="M16.6 9.6v4.3a1.3 1.3 0 0 0 2.6 0V9.6"/><path d="M17.9 14.6v6"/>' +
+                '<path d="M23.6 9.6c-1.1.8-1.6 2-1.6 3.4 0 1.3.5 2 1.2 2.2l-.3 5.4"/>',
+    grocery:    '<path d="M14.2 11.2h1.6l1.6 6.3h6l1.3-4.4H16.4"/>' +
+                '<path d="M18.4 20.3h.01"/><path d="M22.6 20.3h.01"/>',
+    activity:   '<path d="M14.2 20.4l4-6.6 2.1 2.9 2.2-4 4.1 7.7z"/>'
   };
-  const { bg, body } = defs[cat] || defs.activity;
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36"><circle cx="18" cy="18" r="17" fill="${bg}" stroke="white" stroke-width="2"/>${body}</svg>`;
+  const isHome = cat === 'home';
+  const plate = isHome ? '#14181C' : '#FFCC00';
+  const ink   = isHome ? '#FFCC00' : '#14181C';
+  const glyph = glyphs[cat] || glyphs.activity;
+  const svg =
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 30">' +
+      `<path d="M4 4h28l10 11-10 11H4z" fill="${plate}" stroke="#0C0F12" stroke-width="1.2" stroke-linejoin="round"/>` +
+      `<circle cx="9" cy="15" r="2" fill="${ink}"/>` +
+      `<g fill="none" stroke="${ink}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${glyph}</g>` +
+    '</svg>';
   return {
     url: 'data:image/svg+xml,' + encodeURIComponent(svg),
-    scaledSize: new google.maps.Size(36, 36),
-    anchor: new google.maps.Point(18, 18)
+    scaledSize: new google.maps.Size(44, 30),
+    anchor: new google.maps.Point(9, 15)
   };
 }
 
@@ -1408,7 +1515,7 @@ function initMap() {
       content: `<div style="font-family:sans-serif;min-width:140px">` +
         `<strong>${currentLang === 'de' ? place.title_de : place.title_en}</strong>` +
         `<br><a href="${mapsNavUrl}" target="_blank" rel="noopener noreferrer" ` +
-        `style="display:inline-flex;align-items:center;gap:4px;margin-top:6px;font-size:13px;color:#1a73e8;text-decoration:none">` +
+        `style="display:inline-flex;align-items:center;gap:4px;margin-top:6px;font-size:13px;color:#14181C;text-decoration:none">` +
         `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>` +
         `${currentLang === 'de' ? 'In Google Maps öffnen' : 'Open in Google Maps'}</a>` +
         `</div>`
@@ -1428,9 +1535,10 @@ function updateMapMarkers() {
 
 function toggleMapFilter() {
   const panel = document.getElementById('map-filter-panel');
-  const arrow = document.getElementById('map-filter-arrow');
+  const bar = document.getElementById('map-filter-bar');
   const hidden = panel.classList.toggle('hidden');
-  arrow.textContent = hidden ? '▲' : '▼';
+  bar.classList.toggle('is-open', !hidden);
+  bar.setAttribute('aria-expanded', String(!hidden));
 }
 
 // Google Maps callback (called once API loads)
@@ -1527,7 +1635,7 @@ function doSearch() {
 }
 
 function searchGo(key, navId) {
-  previousScreen = 'screen-info';
+  previousScreen = 'screen-search';
   showDetail(key);
   setNavActive(navId || 'nav-info');
 }
@@ -1544,15 +1652,6 @@ document.addEventListener('DOMContentLoaded', () => {
   // Set language from storage
   setLang(currentLang);
 
-  // Override localguide grid card to show modal instead of navigating away
-  const gridCards = document.querySelectorAll('.grid-card');
-  gridCards.forEach(card => {
-    const onclick = card.getAttribute('onclick');
-    if (onclick && onclick.includes("'localguide'")) {
-      card.setAttribute('onclick', "showLocalGuideModal()");
-    }
-  });
-
   // previousScreen tracking
   document.querySelectorAll('[onclick*="showScreen"]').forEach(el => {
     const match = el.getAttribute('onclick') && el.getAttribute('onclick').match(/showScreen\('([^']+)'\)/);
@@ -1567,6 +1666,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function toggleWifiQR(btn) {
   const panel = document.getElementById('wifi-qr-panel');
   const isVisible = panel.style.display !== 'none';
-  panel.style.display = isVisible ? 'none' : 'block';
+  panel.style.display = isVisible ? 'none' : 'flex';
   btn.classList.toggle('active', !isVisible);
+  btn.setAttribute('aria-expanded', String(!isVisible));
 }

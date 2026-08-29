@@ -1,0 +1,507 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-30T00:00:00Z",
+  "title": "Design System: Casa Maranta",
+  "extensions": {
+    "colorMeta": {
+      "slate": {
+        "role": "neutral",
+        "displayName": "Wet Slate",
+        "canonical": "#14181C",
+        "tonalRamp": [
+          "#05070A",
+          "#0C0F12",
+          "#14181C",
+          "#1D2329",
+          "#2A3138",
+          "#3B444D",
+          "#5A666F",
+          "#8A97A1"
+        ]
+      },
+      "slate-deep": {
+        "role": "neutral",
+        "displayName": "Slate Deep",
+        "canonical": "#0C0F12",
+        "tonalRamp": [
+          "#05070A",
+          "#0C0F12",
+          "#14181C",
+          "#1D2329",
+          "#2A3138",
+          "#3B444D",
+          "#5A666F",
+          "#8A97A1"
+        ]
+      },
+      "slate-up": {
+        "role": "neutral",
+        "displayName": "Slate Raised",
+        "canonical": "#1D2329",
+        "tonalRamp": [
+          "#05070A",
+          "#0C0F12",
+          "#14181C",
+          "#1D2329",
+          "#2A3138",
+          "#3B444D",
+          "#5A666F",
+          "#8A97A1"
+        ]
+      },
+      "slate-line": {
+        "role": "neutral",
+        "displayName": "Slate Line",
+        "canonical": "#2A3138",
+        "tonalRamp": [
+          "#05070A",
+          "#0C0F12",
+          "#14181C",
+          "#1D2329",
+          "#2A3138",
+          "#3B444D",
+          "#5A666F",
+          "#8A97A1"
+        ]
+      },
+      "yellow": {
+        "role": "primary",
+        "displayName": "Signal Yellow",
+        "canonical": "#FFCC00",
+        "tonalRamp": [
+          "#241C00",
+          "#3D2F00",
+          "#5C4700",
+          "#8A6900",
+          "#B88C00",
+          "#D9AB00",
+          "#FFCC00",
+          "#FFE685"
+        ]
+      },
+      "yellow-hi": {
+        "role": "primary",
+        "displayName": "Lit Enamel",
+        "canonical": "#FFD629",
+        "tonalRamp": [
+          "#241C00",
+          "#3D2F00",
+          "#5C4700",
+          "#8A6900",
+          "#B88C00",
+          "#D9AB00",
+          "#FFD629",
+          "#FFEB94"
+        ]
+      },
+      "yellow-deep": {
+        "role": "primary",
+        "displayName": "Baked Enamel",
+        "canonical": "#D9AB00",
+        "tonalRamp": [
+          "#241C00",
+          "#3D2F00",
+          "#5C4700",
+          "#8A6900",
+          "#B88C00",
+          "#D9AB00",
+          "#FFCC00",
+          "#FFE685"
+        ]
+      },
+      "enamel": {
+        "role": "neutral",
+        "displayName": "Enamel White",
+        "canonical": "#F4F2EC",
+        "tonalRamp": [
+          "#2B2A26",
+          "#4A483F",
+          "#6E6B5F",
+          "#918E7F",
+          "#B5B2A2",
+          "#D5D2C5",
+          "#F4F2EC",
+          "#FBFAF6"
+        ]
+      },
+      "enamel-dim": {
+        "role": "neutral",
+        "displayName": "Enamel Dim",
+        "canonical": "rgba(244, 242, 236, 0.64)",
+        "tonalRamp": [
+          "#2B2A26",
+          "#4A483F",
+          "#6E6B5F",
+          "#918E7F",
+          "#B5B2A2",
+          "#D5D2C5",
+          "#F4F2EC",
+          "#FBFAF6"
+        ]
+      },
+      "enamel-faint": {
+        "role": "neutral",
+        "displayName": "Enamel Faint",
+        "canonical": "rgba(244, 242, 236, 0.60)",
+        "tonalRamp": [
+          "#2B2A26",
+          "#4A483F",
+          "#6E6B5F",
+          "#918E7F",
+          "#B5B2A2",
+          "#D5D2C5",
+          "#F4F2EC",
+          "#FBFAF6"
+        ]
+      },
+      "blaze": {
+        "role": "secondary",
+        "displayName": "Route Blaze",
+        "canonical": "#E30613",
+        "tonalRamp": [
+          "#2E0103",
+          "#520207",
+          "#75030A",
+          "#A2040E",
+          "#C50511",
+          "#E30613",
+          "#FF5C55",
+          "#FF9E96"
+        ]
+      },
+      "blaze-light": {
+        "role": "secondary",
+        "displayName": "Blaze Light",
+        "canonical": "#FF6B5E",
+        "tonalRamp": [
+          "#2E0103",
+          "#520207",
+          "#75030A",
+          "#A2040E",
+          "#C50511",
+          "#E30613",
+          "#FF6B5E",
+          "#FF9E96"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Routed",
+        "purpose": "The house name routed into the post head. Hero and login only — used exactly twice."
+      },
+      "headline": {
+        "displayName": "Post Time",
+        "purpose": "Check-in and check-out times in the post foot. The only large numeral in the system."
+      },
+      "section-heading": {
+        "displayName": "Board Strip",
+        "purpose": "Detail-page section titles and modal titles, in yellow above a 2px yellow rule."
+      },
+      "title": {
+        "displayName": "Plate Name",
+        "purpose": "The painted destination name on a plate and the label on a disclosure row. Widest setting (wdth 92)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Detail-page prose, capped at 68ch. Nested place and disclosure copy runs one step tighter at 15.5px / 1.68 / 66ch."
+      },
+      "action-label": {
+        "displayName": "Action Label",
+        "purpose": "Outline buttons — Route/Directions and the WiFi QR reveal."
+      },
+      "label": {
+        "displayName": "Micro Label",
+        "purpose": "All-caps caption above a value: check-in captions, WiFi field names, contact groups, search group titles."
+      },
+      "measure": {
+        "displayName": "Stamped Measure",
+        "purpose": "Distances and walking times on the tail of a pointed plate. Narrowest setting (wdth 78), tabular numerals."
+      }
+    },
+    "shadows": [
+      {
+        "name": "plate-rest",
+        "value": "0 2px 0 #D9AB00, 0 6px 16px rgba(0,0,0,0.4)",
+        "purpose": "Every interactive plate hanging from a mast in a signpost stack or modal list."
+      },
+      {
+        "name": "plate-lifted",
+        "value": "0 4px 0 #D9AB00, 0 10px 24px rgba(0,0,0,0.48)",
+        "purpose": "Plate hover, paired with translateY(-2px). The lip doubles as the plate rises."
+      },
+      {
+        "name": "plate-pressed",
+        "value": "0 1px 0 #D9AB00, 0 3px 10px rgba(0,0,0,0.4)",
+        "purpose": "Plate active, paired with translateY(1px). The lip collapses."
+      },
+      {
+        "name": "plate-flat",
+        "value": "0 2px 0 #D9AB00",
+        "purpose": "Place plates and search-result plates — lip only, for plates bolted flat to a page rather than hanging from a mast."
+      },
+      {
+        "name": "bolt-head",
+        "value": "inset 0 1px 1px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.35)",
+        "purpose": "The 9px slate disc at the left of every plate: countersunk inside, hairline highlight below."
+      },
+      {
+        "name": "steel-mast",
+        "value": "inset 1px 0 0 rgba(244,242,236,0.10), 0 0 0 1px rgba(0,0,0,0.55)",
+        "purpose": "The 12px post behind a signpost stack — a lit left edge and a dark contour."
+      },
+      {
+        "name": "focus-inset",
+        "value": "inset 0 0 0 3px #14181C, 0 2px 0 #D9AB00, 0 6px 16px rgba(0,0,0,0.4)",
+        "purpose": "Focus ring for pointed and blazed plates, where clip-path would clip a real outline away."
+      },
+      {
+        "name": "sheet-lift",
+        "value": "0 -12px 44px rgba(0,0,0,0.6)",
+        "purpose": "The bottom-sheet modal card only."
+      },
+      {
+        "name": "device",
+        "value": "0 0 0 1px #2A3138, 0 32px 90px rgba(0,0,0,0.7)",
+        "purpose": "The 390x844 desktop phone frame above 620px."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Exponential ease-out for every state transition: hover, press, chevron rotation, colour change. 0.16s-0.28s."
+      },
+      {
+        "name": "settle",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Softer exponential ease-out reserved for entrances — plate-settle and the filter tick."
+      },
+      {
+        "name": "plate-settle",
+        "value": "0.42s var(--settle) backwards; from { opacity: 0; transform: translateX(-14px) rotate(-1.6deg); }",
+        "purpose": "The one authored moment: each plate arrives tilted from the left and settles square onto the mast. Staggered 30ms per --i in a signpost, 52ms plus a 100ms lead-in in a modal list. Replayed by replayPlates() each time the signpost is opened."
+      },
+      {
+        "name": "body-in",
+        "value": "0.34s var(--ease); from { opacity: 0; transform: translateY(-6px); }",
+        "purpose": "A place card body expanding under its pointed header."
+      },
+      {
+        "name": "sheet-up",
+        "value": "0.36s var(--ease); from { transform: translateY(100%); }",
+        "purpose": "The bottom-sheet modal card entering."
+      },
+      {
+        "name": "fade-in",
+        "value": "0.24s var(--ease)",
+        "purpose": "The blurred modal backdrop."
+      },
+      {
+        "name": "nav-blaze",
+        "value": "transform 0.28s var(--ease); scaleX(0) to scaleX(1)",
+        "purpose": "The 30x3px yellow marker growing from the top edge of the active nav item."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "@media (prefers-reduced-motion: reduce) { animation-duration: 0.01ms; transition-duration: 0.01ms; }",
+        "purpose": "Every animation and transition collapses; no exceptions carved out."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "device",
+        "value": "620px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Enamel Plate",
+      "kind": "button",
+      "refersTo": "plate",
+      "description": "The system's primitive: a yellow enamel destination plate bolted to the mast. Rectangular means the destination is inside the house.",
+      "html": "<button class=\"ds-plate\"><span class=\"ds-plate-bolt\"></span><svg class=\"ds-plate-ico\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12.6a10 10 0 0114 0\"/><path d=\"M2 9a14.5 14.5 0 0120 0\"/><path d=\"M8.4 16.1a5.5 5.5 0 017.2 0\"/><circle cx=\"12\" cy=\"19.6\" r=\"1.1\" fill=\"currentColor\" stroke=\"none\"/></svg><span class=\"ds-plate-name\">WLAN / Internet</span></button>",
+      "css": ".ds-plate { position: relative; display: inline-flex; align-items: center; gap: 12px; min-height: 58px; padding: 0 20px 0 35px; background: #FFCC00; color: #14181C; border: none; border-radius: 3px; font-family: Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 16.5px; font-weight: 700; font-variation-settings: 'wdth' 92; letter-spacing: -0.012em; text-align: left; cursor: pointer; box-shadow: 0 2px 0 #D9AB00, 0 6px 16px rgba(0,0,0,0.4); transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s cubic-bezier(0.22,1,0.36,1), background 0.18s cubic-bezier(0.22,1,0.36,1); } .ds-plate-bolt { position: absolute; left: 12.4px; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: #14181C; box-shadow: inset 0 1px 1px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.35); } .ds-plate-ico { width: 21px; height: 21px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; } .ds-plate-name { padding: 12px 0; line-height: 1.2; } .ds-plate:hover { background: #FFD629; transform: translateY(-2px); box-shadow: 0 4px 0 #D9AB00, 0 10px 24px rgba(0,0,0,0.48); } .ds-plate:active { transform: translateY(1px); box-shadow: 0 1px 0 #D9AB00, 0 3px 10px rgba(0,0,0,0.4); } .ds-plate:focus-visible { outline: 3px solid #F4F2EC; outline-offset: 3px; }"
+    },
+    {
+      "name": "Pointed Plate",
+      "kind": "button",
+      "refersTo": "plate-out",
+      "description": "A plate that points outward into the valley. The clip-path chevron is the semantic difference: this destination is outside the house.",
+      "html": "<button class=\"ds-plate-out\"><span class=\"ds-plate-bolt\"></span><svg class=\"ds-plate-ico\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0116 0z\"/><circle cx=\"12\" cy=\"10\" r=\"2.6\"/></svg><span class=\"ds-plate-name\">Ausflugstipps</span><span class=\"ds-plate-dist\">20 min</span></button>",
+      "css": ".ds-plate-out { position: relative; display: inline-flex; align-items: center; gap: 12px; min-height: 58px; padding: 0 38px 0 35px; background: #FFCC00; color: #14181C; border: none; border-radius: 3px 0 0 3px; clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%); font-family: Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 16.5px; font-weight: 700; font-variation-settings: 'wdth' 92; letter-spacing: -0.012em; cursor: pointer; box-shadow: 0 2px 0 #D9AB00, 0 6px 16px rgba(0,0,0,0.4); transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s cubic-bezier(0.22,1,0.36,1), background 0.18s cubic-bezier(0.22,1,0.36,1); } .ds-plate-out .ds-plate-bolt { position: absolute; left: 12.4px; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: #14181C; box-shadow: inset 0 1px 1px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.35); } .ds-plate-out .ds-plate-ico { width: 21px; height: 21px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; } .ds-plate-out .ds-plate-name { padding: 12px 0; line-height: 1.2; } .ds-plate-dist { flex-shrink: 0; font-size: 12px; font-weight: 700; font-variation-settings: 'wdth' 78; letter-spacing: 0.05em; text-transform: uppercase; opacity: 0.78; font-variant-numeric: tabular-nums; } .ds-plate-out:hover { background: #FFD629; transform: translateY(-2px); box-shadow: 0 4px 0 #D9AB00, 0 10px 24px rgba(0,0,0,0.48); } .ds-plate-out:active { transform: translateY(1px); box-shadow: 0 1px 0 #D9AB00, 0 3px 10px rgba(0,0,0,0.4); } .ds-plate-out:focus-visible { outline: none; box-shadow: inset 0 0 0 3px #14181C, 0 2px 0 #D9AB00, 0 6px 16px rgba(0,0,0,0.4); }"
+    },
+    {
+      "name": "Blaze Plate",
+      "kind": "button",
+      "refersTo": "plate-blaze",
+      "description": "The emergency plate. A red-white-red Bergweg blaze fills the tip. Reserved absolutely to emergency contacts; this is the only place route-blaze red appears.",
+      "html": "<button class=\"ds-plate-blaze\"><span class=\"ds-plate-bolt\"></span><svg class=\"ds-plate-ico\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6.5 3.5h3l1.5 4-2 1.5a12 12 0 006 6l1.5-2 4 1.5v3a2 2 0 01-2.2 2A17.5 17.5 0 013.5 5.7a2 2 0 012-2.2z\"/></svg><span class=\"ds-plate-name\">Notfallnummern</span></button>",
+      "css": ".ds-plate-blaze { position: relative; display: inline-flex; align-items: center; gap: 12px; min-height: 58px; padding: 0 50px 0 35px; background: #FFCC00; color: #14181C; border: none; border-radius: 3px 0 0 3px; clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%); font-family: Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 16.5px; font-weight: 700; font-variation-settings: 'wdth' 92; letter-spacing: -0.012em; cursor: pointer; box-shadow: 0 2px 0 #D9AB00, 0 6px 16px rgba(0,0,0,0.4); transition: transform 0.22s cubic-bezier(0.22,1,0.36,1), box-shadow 0.22s cubic-bezier(0.22,1,0.36,1), background 0.18s cubic-bezier(0.22,1,0.36,1); } .ds-plate-blaze::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 37.8px; background: linear-gradient(to bottom, #E30613 0 33.34%, #F4F2EC 33.34% 66.67%, #E30613 66.67% 100%); } .ds-plate-blaze .ds-plate-bolt { position: absolute; left: 12.4px; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: #14181C; box-shadow: inset 0 1px 1px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.35); } .ds-plate-blaze .ds-plate-ico { width: 21px; height: 21px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; } .ds-plate-blaze .ds-plate-name { padding: 12px 0; line-height: 1.2; } .ds-plate-blaze:hover { background: #FFD629; transform: translateY(-2px); box-shadow: 0 4px 0 #D9AB00, 0 10px 24px rgba(0,0,0,0.48); } .ds-plate-blaze:focus-visible { outline: none; box-shadow: inset 0 0 0 3px #14181C, 0 2px 0 #D9AB00, 0 6px 16px rgba(0,0,0,0.4); }"
+    },
+    {
+      "name": "Place Plate",
+      "kind": "card",
+      "refersTo": "place-plate",
+      "description": "A mapped place as a pointed plate bolted flat to the page, carrying a distance computed at runtime from its coordinates, above an expanding body.",
+      "html": "<div class=\"ds-place\"><div class=\"ds-place-head\" role=\"button\" tabindex=\"0\"><h3>Pizzeria Albrici</h3><span class=\"ds-place-dist\">20 min</span><span class=\"ds-place-chev\" aria-hidden=\"true\"></span></div><div class=\"ds-place-body\"><p>Dieses Restaurant, direkt am Dorfplatz von Poschiavo gelegen, bietet k&ouml;stliche Pizzen, Qualit&auml;tsfleisch und lokale Spezialit&auml;ten.</p></div></div>",
+      "css": ".ds-place { margin-bottom: 16px; } .ds-place-head { position: relative; display: flex; align-items: center; gap: 10px; min-height: 58px; padding: 0 38px 0 35px; background: #FFCC00; color: #14181C; border-radius: 3px 0 0 3px; clip-path: polygon(0 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 0 100%); cursor: pointer; box-shadow: 0 2px 0 #D9AB00; transition: background 0.18s cubic-bezier(0.22,1,0.36,1); } .ds-place-head::before { content: ''; position: absolute; left: 12.4px; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%; background: #14181C; box-shadow: inset 0 1px 1px rgba(0,0,0,0.9), 0 1px 0 rgba(255,255,255,0.35); } .ds-place-head h3 { flex: 1; margin: 0; padding: 12px 0; font-family: Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 16.5px; font-weight: 700; font-variation-settings: 'wdth' 90; letter-spacing: -0.012em; line-height: 1.2; } .ds-place-dist { flex-shrink: 0; font-family: Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 12px; font-weight: 700; font-variation-settings: 'wdth' 78; letter-spacing: 0.05em; text-transform: uppercase; opacity: 0.78; font-variant-numeric: tabular-nums; } .ds-place-chev { flex-shrink: 0; width: 9px; height: 9px; border-right: 2px solid #14181C; border-bottom: 2px solid #14181C; transform: rotate(225deg) translate(-2px, -2px); transition: transform 0.24s cubic-bezier(0.22,1,0.36,1); } .ds-place-head:hover { background: #FFD629; } .ds-place-head:focus-visible { outline: none; box-shadow: inset 0 0 0 3px #14181C, 0 2px 0 #D9AB00; } .ds-place-body { padding: 20px 0 0 35px; } .ds-place-body p { margin: 0; font-family: Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 15.5px; line-height: 1.68; color: #F4F2EC; max-width: 66ch; }"
+    },
+    {
+      "name": "Outline Action Button",
+      "kind": "button",
+      "refersTo": "action-button",
+      "description": "The secondary action — Route/Directions, WiFi QR reveal. A yellow outline on slate that inverts to a solid plate on hover.",
+      "html": "<a class=\"ds-action-btn\" href=\"#\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M5 12h13M13 6l6 6-6 6\"/></svg>Route</a>",
+      "css": ".ds-action-btn { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 17px; background: transparent; border: 1.5px solid #FFCC00; border-radius: 2px; color: #FFCC00; text-decoration: none; font-family: Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 11.5px; font-weight: 700; font-variation-settings: 'wdth' 82; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; transition: background 0.18s cubic-bezier(0.22,1,0.36,1), color 0.18s cubic-bezier(0.22,1,0.36,1); } .ds-action-btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; } .ds-action-btn:hover { background: #FFCC00; color: #14181C; } .ds-action-btn:focus-visible { outline: 3px solid #FFCC00; outline-offset: 2px; }"
+    },
+    {
+      "name": "Checklist Item",
+      "kind": "input",
+      "refersTo": "checklist-item",
+      "description": "A departure-checklist row. Checking it washes the whole row 7% yellow and strikes the text through in baked enamel.",
+      "html": "<label class=\"ds-check\"><input type=\"checkbox\" class=\"ds-check-cb\"><span class=\"ds-check-box\"><svg viewBox=\"0 0 12 10\" aria-hidden=\"true\"><polyline points=\"1,5 4,9 11,1\"/></svg></span><span class=\"ds-check-text\">Alle Fenster und Balkont&uuml;ren sind vollst&auml;ndig geschlossen.</span></label>",
+      "css": ".ds-check { position: relative; display: flex; align-items: flex-start; gap: 13px; padding: 13px 15px; background: #1D2329; border: 1px solid #2A3138; border-radius: 3px; cursor: pointer; transition: background 0.2s cubic-bezier(0.22,1,0.36,1), border-color 0.2s cubic-bezier(0.22,1,0.36,1); } .ds-check-cb { position: absolute; opacity: 0; pointer-events: none; } .ds-check-box { flex-shrink: 0; width: 23px; height: 23px; margin-top: 1px; display: flex; align-items: center; justify-content: center; border: 2px solid #2A3138; border-radius: 2px; transition: background 0.2s cubic-bezier(0.22,1,0.36,1), border-color 0.2s cubic-bezier(0.22,1,0.36,1); } .ds-check-box svg { width: 14px; height: 14px; fill: none; stroke: #14181C; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0; transition: opacity 0.16s cubic-bezier(0.22,1,0.36,1); } .ds-check-text { font-family: Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 15.5px; line-height: 1.5; color: #F4F2EC; transition: color 0.2s cubic-bezier(0.22,1,0.36,1); } .ds-check:hover { border-color: rgba(244,242,236,0.60); } .ds-check:has(.ds-check-cb:checked) { background: rgba(255,204,0,0.07); border-color: #D9AB00; } .ds-check:has(.ds-check-cb:checked) .ds-check-box { background: #FFCC00; border-color: #FFCC00; } .ds-check:has(.ds-check-cb:checked) .ds-check-box svg { opacity: 1; } .ds-check:has(.ds-check-cb:checked) .ds-check-text { color: rgba(244,242,236,0.60); text-decoration: line-through; text-decoration-color: #D9AB00; } .ds-check-cb:focus-visible + .ds-check-box { outline: 3px solid #FFCC00; outline-offset: 2px; }"
+    },
+    {
+      "name": "Bottom Navigation",
+      "kind": "nav",
+      "refersTo": "nav-item",
+      "description": "The four-column route bar. The active item is marked by a short yellow blaze growing from the top edge.",
+      "html": "<nav class=\"ds-nav\"><button class=\"ds-nav-btn ds-is-active\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 10.5 12 4l8 6.5V20a1 1 0 01-1 1h-4v-6h-6v6H5a1 1 0 01-1-1z\"/></svg><span>START</span></button><button class=\"ds-nav-btn\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M12 21V7\"/><path d=\"M12 8h8v5h-8\"/><path d=\"M12 15H5v-5h7\"/></svg><span>WEGWEISER</span></button><button class=\"ds-nav-btn\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M9 4L3 6.5v13L9 17l6 3 6-2.5v-13L15 7z\"/><path d=\"M9 4v13M15 7v13\"/></svg><span>KARTE</span></button><button class=\"ds-nav-btn\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20 20l-4-4\"/></svg><span>SUCHE</span></button></nav>",
+      "css": ".ds-nav { display: flex; height: 66px; background: #0C0F12; border-top: 1px solid #2A3138; } .ds-nav-btn { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; background: none; border: none; color: rgba(244,242,236,0.60); font-family: Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 9.5px; font-weight: 700; font-variation-settings: 'wdth' 78; letter-spacing: 0.11em; cursor: pointer; transition: color 0.18s cubic-bezier(0.22,1,0.36,1); } .ds-nav-btn svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; } .ds-nav-btn::before { content: ''; position: absolute; top: 0; left: 50%; width: 30px; height: 3px; background: #FFCC00; transform: translateX(-50%) scaleX(0); transition: transform 0.28s cubic-bezier(0.22,1,0.36,1); } .ds-nav-btn:hover { color: rgba(244,242,236,0.64); } .ds-nav-btn:focus-visible { outline: 3px solid #FFCC00; outline-offset: -3px; } .ds-nav-btn.ds-is-active { color: #FFCC00; } .ds-nav-btn.ds-is-active::before { transform: translateX(-50%) scaleX(1); }"
+    },
+    {
+      "name": "Search Field",
+      "kind": "input",
+      "refersTo": "text-input",
+      "description": "The borderless search field inside its sticky blurred bar. The field itself has no chrome; the bar is the container.",
+      "html": "<div class=\"ds-search\"><svg class=\"ds-search-ico\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20 20l-4-4\"/></svg><input class=\"ds-search-input\" type=\"text\" placeholder=\"Suchen&hellip;\" aria-label=\"Suchen\"><button class=\"ds-search-clear\" aria-label=\"L&ouml;schen\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg></button></div>",
+      "css": ".ds-search { display: flex; align-items: center; gap: 11px; height: 56px; padding: 0 10px 0 20px; background: rgba(20,24,28,0.86); backdrop-filter: blur(14px); border-bottom: 1px solid #2A3138; } .ds-search-ico { width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: #FFCC00; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; } .ds-search-input { flex: 1; min-width: 0; height: 100%; border: none; outline: none; background: transparent; color: #F4F2EC; font-family: Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 17px; font-weight: 500; caret-color: #FFCC00; } .ds-search-input::placeholder { color: rgba(244,242,236,0.60); } .ds-search-input::selection { background: #FFCC00; color: #14181C; } .ds-search-input:focus-visible { outline: none; } .ds-search-clear { width: 40px; height: 40px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; background: transparent; border: none; border-radius: 2px; color: #FFCC00; cursor: pointer; transition: background 0.16s cubic-bezier(0.22,1,0.36,1); } .ds-search-clear svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; } .ds-search-clear:hover { background: #1D2329; } .ds-search-clear:focus-visible { outline: 3px solid #FFCC00; outline-offset: 2px; }"
+    },
+    {
+      "name": "Notice",
+      "kind": "card",
+      "refersTo": "notice",
+      "description": "The laminated card pinned to the board — the only boxed surface in the system. Yellow marks its top edge and its bolt; the prose stays enamel on slate.",
+      "html": "<div class=\"ds-notice\"><strong>Wichtig:</strong> Die Feuerschale darf nicht unter der Pergola benutzt werden.<br><small>Sie steht dort nur, um sie vor dem Wetter zu sch&uuml;tzen.</small></div>",
+      "css": ".ds-notice { position: relative; padding: 16px 20px 16px 35px; background: #1D2329; border: 1px solid #2A3138; border-top: 2px solid #FFCC00; border-radius: 3px; color: #F4F2EC; font-family: Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 15px; line-height: 1.66; } .ds-notice::before { content: ''; position: absolute; left: 12.4px; top: 23px; width: 9px; height: 9px; border-radius: 50%; background: #FFCC00; box-shadow: 0 0 0 2px #1D2329; } .ds-notice strong { font-weight: 700; color: #F4F2EC; } .ds-notice small { font-size: 13.5px; color: rgba(244,242,236,0.64); } .ds-notice a { color: #FFCC00; text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(255,204,0,0.42); transition: text-decoration-color 0.16s cubic-bezier(0.22,1,0.36,1); } .ds-notice a:hover { text-decoration-color: #FFCC00; }"
+    },
+    {
+      "name": "Disclosure Row",
+      "kind": "custom",
+      "refersTo": "plate",
+      "description": "A collapsible topic inside a long page. Grouped by a hairline rule, never by a box; the chevron is drawn from two borders, not a glyph.",
+      "html": "<details class=\"ds-disclosure\" open><summary>K&uuml;chenger&auml;te</summary><p>Der Geschirrsp&uuml;ler startet mit der Taste rechts unten. Tabs liegen im Schrank dar&uuml;ber.</p></details>",
+      "css": ".ds-disclosure { border-top: 1px solid #2A3138; border-bottom: 1px solid #2A3138; } .ds-disclosure summary { display: flex; align-items: center; justify-content: space-between; gap: 9px; padding: 16px 2px; font-family: Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 16.5px; font-weight: 700; font-variation-settings: 'wdth' 92; letter-spacing: -0.012em; color: #F4F2EC; cursor: pointer; list-style: none; user-select: none; transition: color 0.16s cubic-bezier(0.22,1,0.36,1); } .ds-disclosure summary::-webkit-details-marker { display: none; } .ds-disclosure summary::after { content: ''; width: 9px; height: 9px; flex-shrink: 0; margin-right: 4px; border-right: 2px solid #FFCC00; border-bottom: 2px solid #FFCC00; transform: rotate(-45deg) translate(-2px, 2px); transition: transform 0.24s cubic-bezier(0.22,1,0.36,1); } .ds-disclosure[open] summary::after { transform: rotate(45deg) translate(-2px, -2px); } .ds-disclosure[open] summary { color: #FFCC00; } .ds-disclosure summary:hover { color: #FFCC00; } .ds-disclosure summary:focus-visible { outline: 3px solid #FFCC00; outline-offset: 2px; } .ds-disclosure p { margin: 13px 0 20px; font-family: Archivo, ui-sans-serif, system-ui, sans-serif; font-size: 15.5px; line-height: 1.68; color: #F4F2EC; max-width: 66ch; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Wanderweg",
+    "overview": "The guide is the yellow signpost standing at the trailhead. Everything a guest might want is a named destination on its own enamel plate, bolted to a steel mast in the order you would meet it — and the plates are cut to the length of their names, so the stack ends in a ragged right edge rather than a tidy column. This is the refusal at the centre of the system: no icon-tile grid, no equal-width cards, no dashboard. A guest looking for the WiFi reads a signpost, not a control panel.\n\nThe ground is wet slate, the near-black of a rain-soaked path at dusk, and the plates are signal yellow — the same yellow the valley's own signage uses. Four values carry the whole world and nothing gets a fifth: slate, yellow, enamel white, and route-blaze red held in reserve for emergencies. There are no gradients anywhere except a single legibility scrim over the hero photograph, and even that is slate at varying alpha rather than a colour ramp. Depth is physical rather than atmospheric: a hard 2px lip in a darker yellow under every plate, as if the enamel were standing proud of the metal behind it, plus a soft shadow cast onto the slate.\n\nType is a single family — Archivo variable — and every difference in voice comes from the width axis rather than from a second typeface. Names on plates run wide and confident (wdth 92); distances and measured facts run narrow and clipped (wdth 78); the house name is routed into the post head at 800 weight. The result reads as one signmaker's hand across the whole guide. Anything that is not a destination — prose, notices, appliance instructions — sits on slate and is grouped by hairlines and spacing, never by drawing a box around it.",
+    "keyCharacteristics": [
+      "Signal-yellow enamel plates on wet-slate ground; four values, no fifth, no gradients.",
+      "Plates cut to their names, bolted to a visible steel mast — ragged right edge, never a grid.",
+      "Every plate is an arrow; a distance stamped in the tail marks the ones pointing out of the house.",
+      "Red route-blaze is emergency-only and never appears as body text.",
+      "One typeface, Archivo, with the width axis (78–96) doing the work a second family would.",
+      "Grouping by rule and spacing, not by boxes."
+    ],
+    "rules": [
+      {
+        "name": "The Four Values Rule",
+        "body": "Slate, yellow, enamel, blaze. Every other token in the stylesheet is a lightness step of one of those four or an alpha of enamel. A new screen may not introduce a fifth hue — not a success green, not an info blue, not a warning orange. Category, state, and emphasis are carried by shape, position, and width axis instead.",
+        "section": "colors"
+      },
+      {
+        "name": "The Blaze Reservation Rule",
+        "body": "Route-blaze red (#E30613) means emergency and nothing else. It exists only as the red-white-red band on the tip of the emergency plate. It is never a background, never a border, never body text. Where emergency information must be read rather than flagged, use the lighter blaze (#FF6B5E), which clears contrast on slate.",
+        "section": "colors"
+      },
+      {
+        "name": "The Yellow Marks the Edge Rule",
+        "body": "Outside of plates, yellow marks an edge and never floods a field. Notices get a 2px yellow top border and a yellow bolt dot; the prose inside them stays enamel on slate, where it reads. No paragraph of running text is ever set on a yellow ground.",
+        "section": "colors"
+      },
+      {
+        "name": "The Width-Axis Rule",
+        "body": "Hierarchy comes from the width axis before it comes from size, and always before it comes from a second family. Wide (wdth 90–96) means a name you go to; narrow (wdth 78–84) means a measurement, a label, or a caption. Never solve a hierarchy problem by adding a typeface.",
+        "section": "typography"
+      },
+      {
+        "name": "The Stamped Numeral Rule",
+        "body": "Every number a guest reads and compares — clock times, distances, walking times, the WiFi password — is set with font-variant-numeric: tabular-nums. Numerals in this system are stamped into metal and therefore have to line up.",
+        "section": "typography"
+      },
+      {
+        "name": "The Plate Constant Rule",
+        "body": "--plate: 58px is the governing measure. Any new layout rhythm — a stack gap, a gutter, a section break, a bar height — is expressed as a multiple of it, not as a fresh px value.",
+        "section": "layout"
+      },
+      {
+        "name": "The Ragged Edge Rule",
+        "body": "Plates in a signpost stack are cut to their names (width: auto). Never stretch them to a common width, never right-align them into a column, and never let the mast be hidden behind a full-width block. The uneven right edge is the evidence that these are signs, not buttons.",
+        "section": "layout"
+      },
+      {
+        "name": "The Phone Frame Rule",
+        "body": "At min-width: 620px the app is a 390 x 844 device on a dark ground. Do not build a wide desktop layout; build the phone better.",
+        "section": "layout"
+      },
+      {
+        "name": "The Bolted-Not-Floating Rule",
+        "body": "Elevation is expressed as a hard-edged lip plus a cast shadow, together. Never ship a soft-only shadow on a yellow plate, and never express state with a glow, an accent ring, or an opacity change where a lip would do.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Every-Plate-Is-An-Arrow Rule",
+        "body": "A Wegweiser is an arrow. Every plate tapers to a point, and no drawn arrow glyph sits inside one. What separates a valley destination from a house topic is the distance stamped in its tail, not its silhouette.",
+        "section": "shapes"
+      },
+      {
+        "name": "The No-Box Rule",
+        "body": "Content that is not a destination is grouped with a hairline and space, not with a container. border-top: 1px solid var(--slate-line) and nothing else. The notice is the single sanctioned exception, and it earns it by being a physically different object — a laminated card pinned to the board.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Bolt Hole Rule",
+        "body": "Every plate, every place header, and every notice carries a 9px disc at calc(--pad * 0.62) from its left edge, and its content starts at calc(--pad * 1.75) to clear it. That single indent is what makes plates, prose rails, and notices line up on one invisible mast line down the page.",
+        "section": "components"
+      },
+      {
+        "name": "The Settle-On-Arrival Rule",
+        "body": "The plate-settle stagger is the system's only authored animation. Do not add a second signature motion; new surfaces either inherit plate-settle or arrive without ceremony.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do derive new layout rhythm from --plate: 58px — gaps, gutters, section breaks and bar heights are multiples of the plate, not fresh px values.",
+      "Do keep the palette to four values (#14181C, #FFCC00, #F4F2EC, #E30613) plus their lightness steps. Category and state are carried by shape and width axis, never by a new hue.",
+      "Do cut plates to their names (width: auto) inside a signpost stack, and keep the 12px slate-line mast visible through the gaps.",
+      "Do point a plate (.plate--out, the clip-path chevron) whenever its destination is outside the house, and leave it rectangular whenever it is inside.",
+      "Do stamp a real, computed distance on a place plate — distanceLabel() from MAP_PLACES coordinates. A place with no coordinates gets no number rather than a guessed one.",
+      "Do express elevation as a hard 0 2px 0 baked-yellow lip plus a cast shadow, and deepen both on hover.",
+      "Do carry hierarchy on Archivo's width axis (78–96) before reaching for size, and set every compared number with tabular-nums.",
+      "Do group content with a border-top: 1px solid var(--slate-line) and space.",
+      "Do ring pointed and blazed plates from the inside (inset 0 0 0 3px var(--slate)), because clip-path clips an outline away entirely.",
+      "Do theme the browser's own surfaces — selection, focus ring, scrollbar, caret — to the same four values."
+    ],
+    "donts": [
+      "Don't introduce a fifth colour, a gradient, or a glow. The only gradients in the system are the slate-alpha legibility scrim on the hero and the flat three-stop blaze band.",
+      "Don't use route-blaze red (#E30613) for anything but the emergency plate's tip, and never as text — that is what #FF6B5E is for.",
+      "Don't set running prose on a yellow field. Yellow marks the edge of a notice; the words stay enamel on slate.",
+      "Don't stretch plates to equal widths or lay them out as an icon-tile grid. The ragged right edge and the visible mast are the thesis; a grid retires the system.",
+      "Don't add a second typeface. If something needs a different voice, move it along the width axis.",
+      "Don't draw a box around a group of content. Hairline and spacing only; the notice is the one sanctioned exception.",
+      "Don't build a wide desktop layout. Above 620px the app is a 390 x 844 phone frame by product decision.",
+      "Don't add a second signature animation. plate-settle is the authored moment."
+    ],
+    "standingExceptions": [
+      "Twelve emoji remain in app.js content strings — a warning sign (x6) opening each safety notice, a pin (x2) before the address, and a train and a car (x2 each) heading the arrival sections. The craft floor bans emoji-as-icons and the rest of the system uses stroked SVG, but the binding constraint on this build was to carry the owners' text exactly, and the brief outranks the floor. Do not silently convert them to SVG.",
+      "Archivo is loaded from Google Fonts and is not self-hosted. On a poor connection the width axis degrades to a system sans fallback and the width-axis hierarchy flattens. Known and unmitigated.",
+      "Roughly forty component values are hard-coded px rather than derived from --plate. The constant governs layout rhythm, not the full scale. Do not describe the system as fully derived.",
+      "Three dead rules remain in style.css: .section-toggle, .detail-hero-img and .mt-16 have no remaining markup. They are inert; do not build on them."
+    ]
+  }
+}
