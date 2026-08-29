@@ -310,7 +310,7 @@
       {
         "name": "journey",
         "value": "cinematic rAF: camera chases the train at zoom 2.4, flies to each origin, pulls back 1.3s at arrival; per-segment ease-in-out riding, duration ∝ length^0.75",
-        "purpose": "The home screen Streckenplan ridden close-up: from Zürich, Bern, Basel or Genf through the real western network (Lausanne, Fribourg, Olten, Aarau) into the Zürich hub, down the Albula and over the Bernina. Arrival at Poschiavo pulls the camera back to reveal the whole line; the dashed 15-minute walking trail then points at the post title — the page’s own Casa Maranta is the endpoint. Cycles with a ~4.6s overview rest, stops off-home, restarts on return; reduced-motion renders the completed overview."
+        "purpose": "The home screen Streckenplan ridden close-up from seven real origins: Zürich; Bern, Basel, Genf, St. Gallen (joining at Chur) and Luzern through the true network; Lugano arriving from the south over Tirano and the Brusio spiral. Stylised landmark vignettes pop up as the train passes. Arrival pulls the camera back; the dashed 15-minute trail ends at a home icon above the post title. Cycles with a ~4.6s rest, stops off-home, restarts on return; reduced-motion renders the completed overview with every landmark lit."
       }
     ],
     "breakpoints": [
