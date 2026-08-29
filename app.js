@@ -66,6 +66,8 @@ function showScreen(id) {
   screen.scrollTop = 0;
   if (id !== 'screen-detail') currentDetailKey = null;
   replayPlates(screen);
+  if (id === 'screen-home') startJourney();
+  else stopJourney();
 }
 
 // The plates settle onto the mast each time the signpost is opened.
@@ -1652,6 +1654,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Set language from storage
   setLang(currentLang);
 
+  buildJourney();
+  startJourney();
+
   // previousScreen tracking
   document.querySelectorAll('[onclick*="showScreen"]').forEach(el => {
     const match = el.getAttribute('onclick') && el.getAttribute('onclick').match(/showScreen\('([^']+)'\)/);
@@ -1669,4 +1674,262 @@ function toggleWifiQR(btn) {
   panel.style.display = isVisible ? 'none' : 'flex';
   btn.classList.toggle('active', !isVisible);
   btn.setAttribute('aria-expanded', String(!isVisible));
+}
+
+
+// ─────────────────────────────────────────────────────────────
+// THE JOURNEY — home-screen Streckenplan of the ride into the
+// valley. 45°-only schematic; horizontal drift encodes altitude.
+// Cycles through the real approaches: Zürich direct, then Bern,
+// Basel and Genf, each feeding through the Zürich HB hub. The
+// dashed walking trail at the end hands over to the post title —
+// the page's own "Casa Maranta" is the endpoint.
+// ─────────────────────────────────────────────────────────────
+const JOURNEY = {
+  cycle: [
+    { de: 'Von Zürich ins Puschlav', en: 'From Zürich into the valley', feeder: -1 },
+    { de: 'Von Bern ins Puschlav',   en: 'From Bern into the valley',   feeder: 0 },
+    { de: 'Von Basel ins Puschlav',  en: 'From Basel into the valley',  feeder: 1 },
+    { de: 'Von Genf ins Puschlav',   en: 'From Geneva into the valley', feeder: 2 },
+  ],
+  origins: [
+    { n: 'Bern',  x: 185, y: 20, d: 'M185 20 L123 82 L51 82' },
+    { n: 'Basel', x: 100, y: 20, d: 'M100 20 L100 33 L51 82' },
+    { n: 'Genf',  x: 20,  y: 20, d: 'M20 20 L20 51 L51 82' },
+  ],
+  stations: [
+    { n: 'Zürich HB',       alt: 408,  x: 51,  y: 82,  showAlt: true },
+    { n: 'Chur',            alt: 585,  x: 67,  y: 120 },
+    { n: 'Filisur',         alt: 1032, x: 107, y: 176 },
+    { n: 'Preda',           alt: 1789, x: 174, y: 253 },
+    { n: 'Samedan',         alt: 1721, x: 168, y: 281 },
+    { n: 'Pontresina',      alt: 1774, x: 173, y: 306 },
+    { n: 'Ospizio Bernina', alt: 2253, x: 216, y: 361, showAlt: true, summit: true },
+    { n: 'Alp Grüm',        alt: 2091, x: 201, y: 392, showAlt: true },
+    { n: 'Poschiavo',       alt: 1014, x: 105, y: 502, showAlt: true, end: true },
+  ],
+  walkD: 'M105 502 L105 505 L68 542',
+};
+
+// Schematic elbow: vertical first, then a 45° diagonal into the station.
+function journeyPathD(pts) {
+  let d = 'M' + pts[0].x + ' ' + pts[0].y;
+  for (let i = 1; i < pts.length; i++) {
+    const a = pts[i - 1], b = pts[i];
+    const adx = Math.abs(b.x - a.x), v = (b.y - a.y) - adx;
+    if (v > 0.5) d += ' L' + a.x + ' ' + (a.y + v);
+    d += ' L' + b.x + ' ' + b.y;
+  }
+  return d;
+}
+
+function journeySegLens(pts) {
+  const lens = [0];
+  let acc = 0;
+  for (let i = 1; i < pts.length; i++) {
+    const a = pts[i - 1], b = pts[i];
+    const adx = Math.abs(b.x - a.x), v = Math.max(0, (b.y - a.y) - adx);
+    acc += v + adx * Math.SQRT2;
+    lens.push(acc);
+  }
+  return lens;
+}
+
+function buildJourney() {
+  const host = document.getElementById('journey');
+  if (!host) return;
+  const S = JOURNEY.stations;
+  const railD = journeyPathD(S);
+  let feeders = '';
+  JOURNEY.origins.forEach((o, i) => {
+    feeders +=
+      '<path class="j-feeder" d="' + o.d + '"/>' +
+      '<path class="j-feeder-t" data-f="' + i + '" d="' + o.d + '"/>' +
+      '<g class="j-stop j-origin" data-f="' + i + '">' +
+        '<circle cx="' + o.x + '" cy="' + o.y + '" r="5"/>' +
+        '<text class="j-name" x="' + (o.x + 14) + '" y="' + (o.y + 4.5) + '">' + o.n + '</text>' +
+      '</g>';
+  });
+  let stops = '';
+  S.forEach((st, i) => {
+    const r = st.end ? 6.5 : 5;
+    stops +=
+      '<g class="j-stop" data-idx="' + i + '">' +
+        '<circle cx="' + st.x + '" cy="' + st.y + '" r="' + r + '"/>' +
+        '<text class="j-name" x="' + (st.x + 16) + '" y="' + (st.y + 4.5) + '">' + st.n + '</text>' +
+        (st.showAlt
+          ? '<text class="j-alt" x="' + (st.x + 16) + '" y="' + (st.y + 18) + '">' + st.alt + ' m</text>'
+          : '') +
+      '</g>' +
+      (st.summit
+        ? '<path class="j-summit" d="M' + st.x + ' ' + (st.y - 20) + ' l5.5 9 h-11 z"/>'
+        : '');
+  });
+  host.innerHTML =
+    '<svg id="journey-svg" viewBox="0 0 390 552" preserveAspectRatio="xMidYMid meet">' +
+      '<text class="j-head" x="372" y="496" text-anchor="end" data-de="Von Zürich ins Puschlav" data-en="From Zürich into the valley">' +
+        t('Von Zürich ins Puschlav', 'From Zürich into the valley') + '</text>' +
+      feeders +
+      '<path class="j-base" d="' + railD + '"/>' +
+      '<path class="j-travel" d="' + railD + '"/>' +
+      '<path class="j-walk" d="' + JOURNEY.walkD + '"/>' +
+      '<text class="j-walklabel" x="97" y="530" data-de="15 Min. zu Fuss" data-en="15 min on foot">' +
+        t('15 Min. zu Fuss', '15 min on foot') + '</text>' +
+      stops +
+      '<g class="j-train" opacity="0" transform="translate(' + S[0].x + ' ' + S[0].y + ')">' +
+        '<circle class="j-train-o" r="7"/><circle class="j-train-i" r="2.4"/>' +
+      '</g>' +
+    '</svg>';
+}
+
+const jAnim = { raf: 0, timer: 0, cycle: 0 };
+
+function stopJourney() {
+  cancelAnimationFrame(jAnim.raf);
+  clearTimeout(jAnim.timer);
+}
+
+function jResetBoard(svg, total) {
+  const travel = svg.querySelector('.j-travel');
+  travel.style.strokeDasharray = total;
+  travel.style.strokeDashoffset = total;
+  svg.querySelectorAll('.j-stop').forEach(s => s.classList.remove('lit'));
+  svg.querySelectorAll('.j-summit').forEach(s => s.classList.remove('lit'));
+  svg.querySelectorAll('.j-feeder-t').forEach(p => {
+    const l = p.getTotalLength();
+    p.style.strokeDasharray = l;
+    p.style.strokeDashoffset = l;
+  });
+  svg.querySelector('.j-walk').classList.remove('go');
+  svg.querySelector('.j-walklabel').classList.remove('go');
+}
+
+function jSetHeader(svg, c) {
+  const head = svg.querySelector('.j-head');
+  head.style.opacity = '0';
+  setTimeout(() => {
+    head.dataset.de = c.de;
+    head.dataset.en = c.en;
+    head.textContent = t(c.de, c.en);
+    head.style.opacity = '';
+  }, 220);
+}
+
+function startJourney() {
+  const svg = document.getElementById('journey-svg');
+  if (!svg) return;
+  stopJourney();
+  const travel = svg.querySelector('.j-travel');
+  const total = travel.getTotalLength();
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    jResetBoard(svg, total);
+    travel.style.strokeDashoffset = 0;
+    svg.querySelectorAll('.j-stop:not(.j-origin)').forEach(s => s.classList.add('lit'));
+    svg.querySelectorAll('.j-summit').forEach(s => s.classList.add('lit'));
+    svg.querySelector('.j-train').setAttribute('opacity', '0');
+    svg.querySelector('.j-walk').classList.add('go');
+    svg.querySelector('.j-walklabel').classList.add('go');
+    return;
+  }
+  jAnim.cycle = 0;
+  jRunCycle(svg, total);
+}
+
+function jRunCycle(svg, total) {
+  const c = JOURNEY.cycle[jAnim.cycle % JOURNEY.cycle.length];
+  const train = svg.querySelector('.j-train');
+  jResetBoard(svg, total);
+  jSetHeader(svg, c);
+
+  const toMain = () => jRunMain(svg, total, jAnim.cycle === 0, () => {
+    jAnim.timer = setTimeout(() => {
+      jAnim.cycle++;
+      jRunCycle(svg, total);
+    }, 4400);
+  });
+
+  if (c.feeder < 0) {
+    train.setAttribute('opacity', '1');
+    train.setAttribute('transform', 'translate(' + JOURNEY.stations[0].x + ' ' + JOURNEY.stations[0].y + ')');
+    jAnim.timer = setTimeout(toMain, 500);
+    return;
+  }
+
+  // Feeder leg: the train comes in from Bern, Basel or Genf first.
+  const o = JOURNEY.origins[c.feeder];
+  const fpath = svg.querySelector('.j-feeder-t[data-f="' + c.feeder + '"]');
+  const fstop = svg.querySelector('.j-origin[data-f="' + c.feeder + '"]');
+  const flen = fpath.getTotalLength();
+  fstop.classList.add('lit');
+  train.setAttribute('opacity', '1');
+  train.setAttribute('transform', 'translate(' + o.x + ' ' + o.y + ')');
+  const ease = p => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2);
+  const dur = 1500, begin = performance.now() + 500;
+  const frame = now => {
+    const p = Math.min(1, Math.max(0, (now - begin) / dur));
+    const L = ease(p) * flen;
+    fpath.style.strokeDashoffset = flen - L;
+    const pt = fpath.getPointAtLength(L);
+    train.setAttribute('transform', 'translate(' + pt.x + ' ' + pt.y + ')');
+    if (p < 1) jAnim.raf = requestAnimationFrame(frame);
+    else toMain();
+  };
+  jAnim.raf = requestAnimationFrame(frame);
+}
+
+function jRunMain(svg, total, plateNudge, done) {
+  const travel = svg.querySelector('.j-travel');
+  const stops = Array.from(svg.querySelectorAll('.j-stop:not(.j-origin)'));
+  const train = svg.querySelector('.j-train');
+  const walk = svg.querySelector('.j-walk');
+  const walkLabel = svg.querySelector('.j-walklabel');
+  const plate = document.querySelector('#screen-home .plate--action');
+  const lens = journeySegLens(JOURNEY.stations);
+
+  // The train eases out of and into every station: one eased leg per
+  // segment, its duration growing with its length.
+  const segs = [];
+  for (let i = 1; i < lens.length; i++) segs.push(lens[i] - lens[i - 1]);
+  const weights = segs.map(s => Math.pow(s, 0.75));
+  const wsum = weights.reduce((a, b) => a + b, 0);
+  const durs = weights.map(w => Math.max(480, (w / wsum) * 7400));
+  const starts = [];
+  let t0 = 150;
+  durs.forEach(d => { starts.push(t0); t0 += d; });
+  const totalT = t0;
+  const ease = p => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2);
+  const begin = performance.now();
+
+  const frame = now => {
+    const el = now - begin;
+    let L = 0;
+    if (el >= starts[0]) {
+      let i = segs.length - 1;
+      for (let k = 0; k < segs.length; k++) {
+        if (el < starts[k] + durs[k]) { i = k; break; }
+      }
+      const p = Math.min(1, (el - starts[i]) / durs[i]);
+      L = lens[i] + ease(p) * segs[i];
+    }
+    travel.style.strokeDashoffset = Math.max(0, total - L);
+    const pt = travel.getPointAtLength(Math.min(L, total));
+    train.setAttribute('transform', 'translate(' + pt.x + ' ' + pt.y + ')');
+    stops.forEach((s, idx) => { if (lens[idx] <= L + 0.5) s.classList.add('lit'); });
+    if (L >= lens[6] - 0.5) svg.querySelectorAll('.j-summit').forEach(s => s.classList.add('lit'));
+    if (el < totalT) {
+      jAnim.raf = requestAnimationFrame(frame);
+    } else {
+      train.setAttribute('opacity', '0');
+      walk.classList.add('go');
+      walkLabel.classList.add('go');
+      if (plateNudge && plate) {
+        plate.classList.remove('arrived');
+        void plate.offsetWidth;
+        plate.classList.add('arrived');
+      }
+      jAnim.timer = setTimeout(done, 700);
+    }
+  };
+  jAnim.raf = requestAnimationFrame(frame);
 }

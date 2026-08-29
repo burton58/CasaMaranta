@@ -188,7 +188,7 @@ components:
 
 The guide is the yellow signpost standing at the trailhead. Everything a guest might want is a named destination on its own enamel plate, bolted to a steel mast in the order you would meet it — and the plates are cut to the length of their names, so the stack ends in a ragged right edge rather than a tidy column. This is the refusal at the centre of the system: no icon-tile grid, no equal-width cards, no dashboard. A guest looking for the WiFi reads a signpost, not a control panel.
 
-The ground is wet slate, the near-black of a rain-soaked path at dusk, and the plates are signal yellow — the same yellow the valley's own signage uses. Four values carry the whole world and nothing gets a fifth: slate, yellow, enamel white, and route-blaze red held in reserve for emergencies. There are no gradients anywhere except a single legibility scrim over the hero photograph, and even that is slate at varying alpha rather than a colour ramp. Depth is physical rather than atmospheric: a hard 2px lip in a darker yellow under every plate, as if the enamel were standing proud of the metal behind it, plus a soft shadow cast onto the slate.
+The ground is wet slate, the near-black of a rain-soaked path at dusk, and the plates are signal yellow — the same yellow the valley's own signage uses. Four values carry the whole world and nothing gets a fifth: slate, yellow, enamel white, and route-blaze red held in reserve for emergencies. There are no gradients anywhere. Depth is physical rather than atmospheric: a hard 2px lip in a darker yellow under every plate, as if the enamel were standing proud of the metal behind it, plus a soft shadow cast onto the slate.
 
 Type is a single family — Archivo variable — and every difference in voice comes from the width axis rather than from a second typeface. Names on plates run wide and confident (wdth 92); distances and measured facts run narrow and clipped (wdth 78); the house name is routed into the post head at 800 weight. The result reads as one signmaker's hand across the whole guide. Anything that is not a destination — prose, notices, appliance instructions — sits on slate and is grouped by hairlines and spacing, never by drawing a box around it.
 
@@ -199,6 +199,7 @@ Type is a single family — Archivo variable — and every difference in voice c
 - Red route-blaze is emergency-only and never appears as body text.
 - One typeface, Archivo, with the width axis (78–96) doing the work a second family would.
 - Grouping by rule and spacing, not by boxes.
+- The first viewport is the journey itself: a live-drawn Streckenplan of the approaches to the valley — Zürich, then Bern, Basel and Genf feeding through the Zürich hub — whose 15-minute walking trail ends at the page's own "Casa Maranta" post title.
 
 ## Colors
 
@@ -238,7 +239,7 @@ A four-value alpine palette: a near-black wet slate, one signal yellow, one warm
 **Character:** A grotesque with a signmaker's discipline — squared-off, high x-height, and legible at a glance in bad light. Because the width axis is live, the family behaves like a whole signage kit: narrow for stamped measurements, wide for painted destination names, heavy and slightly condensed for the routed house name. Weight synthesis is switched off (`font-synthesis-weight: none`) so the real axis always wins.
 
 ### Hierarchy
-- **Display** (800, fluid 30–40px, `wdth 84`, line-height 0.98): The house name, routed into the post head on the hero and the login screen. Carries a hard 1px black text-shadow plus a soft one so it survives on photography. Used exactly twice.
+- **Display** (800, fluid 30–40px, `wdth 84`, line-height 0.98): The house name, routed into the post head on the home screen and the login screen. Used exactly twice.
 - **Headline** (700, 27px, `wdth 84`, tabular numerals): Check-in and check-out times in the post foot. The only place a large numeral appears.
 - **Section Heading** (700, 12.5px, `wdth 82`, `0.14em`, uppercase, yellow): Detail-page section titles and modal titles. Sits above a 2px yellow rule — the routed strip at the top of a board.
 - **Title** (700, 16.5px, `wdth 92`, `-0.012em`, line-height 1.2): The destination name on a plate, and the label on a disclosure row. The widest setting in the system; these are painted names, and they should feel painted.
@@ -347,7 +348,9 @@ Markers are the same signage as the app, drawn as inline SVG data URIs at 44 × 
 
 ### Motion
 - **Easings:** `--ease` (`cubic-bezier(0.22, 1, 0.36, 1)`) for all state transitions, and `--settle` (`cubic-bezier(0.16, 1, 0.3, 1)`) for entrances. Both are exponential ease-outs: fast departure, long soft arrival.
-- **The one authored moment:** `plate-settle` (0.42s on `--settle`) — each plate arrives from 14px left with a −1.6° tilt and settles square onto the mast, staggered 30ms per plate via a `--i` index (52ms plus a 100ms lead-in inside a modal list). `replayPlates()` re-triggers it every time the signpost is opened, so the stack settles onto the post on each visit.
+- **Two authored moments, both arrival stories:**
+  - `plate-settle` (0.42s on `--settle`) — each plate arrives from 14px left with a −1.6° tilt and settles square onto the mast, staggered 30ms per plate via a `--i` index. `replayPlates()` re-triggers it every time the signpost is opened.
+  - **The journey** — the home screen's Streckenplan draws itself over ~8s: the route paints in signal yellow behind a travelling train dot that eases out of and into every station (per-segment ease-in-out, duration ∝ length^0.75), stations ignite as bolts with a 1.6× pop, real altitudes fade in at the stations that tell the climb, the Ospizio Bernina summit triangle lights at 2253 m, and arrival dissolves into a dashed walking trail (slow 2.6s dash-march) that points at the post title below — the page's own "Casa Maranta" is the endpoint, at which the LOSLEGEN plate gives a single 0.55s lift on the first run. The map then cycles through the real approaches — Bern, Basel and Genf, drawn as dim feeder branches converging on the Zürich HB hub, each lighting its own way in before the main line runs again — with a ~4.4s rest between journeys. The cycle stops when the guest leaves the home screen and restarts from Zürich on return; `prefers-reduced-motion` renders the completed Zürich map statically.
 - **Everything else stays under 0.36s:** backdrop fade 0.24s, sheet-up 0.36s, chevron rotations 0.24–0.26s, colour and background transitions 0.16–0.22s.
 - `prefers-reduced-motion: reduce` collapses every animation and transition to 0.01ms.
 
@@ -357,7 +360,7 @@ The browser chrome is part of the design. Text selection is slate on signal yell
 ### Named Rules
 **The Bolt Hole Rule.** Every plate, every place header, and every notice carries a 9px disc at `calc(--pad * 0.62)` from its left edge, and its content starts at `calc(--pad * 1.75)` to clear it. That single indent is what makes plates, prose rails, and notices line up on one invisible mast line down the page.
 
-**The Settle-On-Arrival Rule.** The plate-settle stagger is the system's only authored animation. Do not add a second signature motion; new surfaces either inherit plate-settle or arrive without ceremony.
+**The Arrival-Stories Rule.** The system owns exactly two authored animations — the home journey and the plate-settle stagger — and both tell the same story: things arriving at their place. Do not add a third; new surfaces either inherit plate-settle or arrive without ceremony.
 
 ## Do's and Don'ts
 
@@ -374,14 +377,14 @@ The browser chrome is part of the design. Text selection is slate on signal yell
 - **Do** theme the browser's own surfaces — selection, focus ring, scrollbar, caret — to the same four values.
 
 ### Don't:
-- **Don't** introduce a fifth colour, a gradient, or a glow. The only gradients in the system are the slate-alpha legibility scrim on the hero and the flat three-stop blaze band.
+- **Don't** introduce a fifth colour, a gradient, or a glow. The only gradient-shaped value in the system is the flat three-stop blaze band, which is hard stops, not a ramp.
 - **Don't** use route-blaze red (`#E30613`) for anything but the emergency plate's tip, and never as text — that is what `#FF6B5E` is for.
 - **Don't** set running prose on a yellow field. Yellow marks the edge of a notice; the words stay enamel on slate.
 - **Don't** stretch plates to equal widths or lay them out as an icon-tile grid. The ragged right edge and the visible mast are the thesis; a grid retires the system.
 - **Don't** add a second typeface. If something needs a different voice, move it along the width axis.
 - **Don't** draw a box around a group of content. Hairline and spacing only; the notice is the one sanctioned exception.
 - **Don't** build a wide desktop layout. Above 620px the app is a 390 × 844 phone frame by product decision.
-- **Don't** add a second signature animation. `plate-settle` is the authored moment.
+- **Don't** add a third signature animation. The home journey and `plate-settle` are the authored moments.
 
 ### Standing Exceptions
 

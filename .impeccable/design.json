@@ -306,6 +306,11 @@
         "name": "reduced-motion",
         "value": "@media (prefers-reduced-motion: reduce) { animation-duration: 0.01ms; transition-duration: 0.01ms; }",
         "purpose": "Every animation and transition collapses; no exceptions carved out."
+      },
+      {
+        "name": "journey",
+        "value": "~8s rAF; per-segment ease-in-out, duration ∝ segment length^0.75; stroke-dashoffset paints the route behind a train dot via getPointAtLength",
+        "purpose": "The home screen Streckenplan drawing the approaches to the valley: Zürich first, then Bern, Basel and Genf feeding through the Zürich hub as dim branches that light per cycle. Stations ignite as passed, altitudes fade in, the summit lights, and arrival resolves into a dashed 15-minute walking trail pointing at the post title — the page’s own Casa Maranta is the endpoint. Cycles with a ~4.4s rest, stops off-home, restarts from Zürich on return; reduced-motion renders the completed map."
       }
     ],
     "breakpoints": [
@@ -470,8 +475,8 @@
         "section": "components"
       },
       {
-        "name": "The Settle-On-Arrival Rule",
-        "body": "The plate-settle stagger is the system's only authored animation. Do not add a second signature motion; new surfaces either inherit plate-settle or arrive without ceremony.",
+        "name": "The Arrival-Stories Rule",
+        "body": "The system owns exactly two authored animations — the home journey and the plate-settle stagger — and both tell the same story: things arriving at their place. Do not add a third; new surfaces either inherit plate-settle or arrive without ceremony.",
         "section": "components"
       }
     ],
