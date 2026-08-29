@@ -309,8 +309,8 @@
       },
       {
         "name": "journey",
-        "value": "~8s rAF; per-segment ease-in-out, duration ∝ segment length^0.75; stroke-dashoffset paints the route behind a train dot via getPointAtLength",
-        "purpose": "The home screen Streckenplan drawing the approaches to the valley: Zürich first, then Bern, Basel and Genf feeding through the Zürich hub as dim branches that light per cycle. Stations ignite as passed, altitudes fade in, the summit lights, and arrival resolves into a dashed 15-minute walking trail pointing at the post title — the page’s own Casa Maranta is the endpoint. Cycles with a ~4.4s rest, stops off-home, restarts from Zürich on return; reduced-motion renders the completed map."
+        "value": "cinematic rAF: camera chases the train at zoom 2.4, flies to each origin, pulls back 1.3s at arrival; per-segment ease-in-out riding, duration ∝ length^0.75",
+        "purpose": "The home screen Streckenplan ridden close-up: from Zürich, Bern, Basel or Genf through the real western network (Lausanne, Fribourg, Olten, Aarau) into the Zürich hub, down the Albula and over the Bernina. Arrival at Poschiavo pulls the camera back to reveal the whole line; the dashed 15-minute walking trail then points at the post title — the page’s own Casa Maranta is the endpoint. Cycles with a ~4.6s overview rest, stops off-home, restarts on return; reduced-motion renders the completed overview."
       }
     ],
     "breakpoints": [
