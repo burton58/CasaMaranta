@@ -62,6 +62,39 @@ das Bild, Node 16 nur die Bewegung darin.
 
 ---
 
+## Eigene Startbilder verwenden
+
+Wenn du ein Startbild selbst zeichnest oder anderswo erzeugst:
+
+| | |
+|---|---|
+| Aufloesung | **576 x 1024 px** (9:16 hochkant) |
+| Farben | **weisse Linien auf reinem Schwarz** |
+| Dateityp | **PNG** |
+
+Nur das Schwarz ist wirklich zwingend — siehe naechster Abschnitt. PNG statt
+JPEG, weil JPEG genau an harten Hell-Dunkel-Kanten Artefakte erzeugt, also
+ueberall dort, wo bei einer Strichzeichnung die Linien sind.
+
+**Die Aufloesung musst du aber nicht treffen.** `workflows/eigenes-bild.json`
+skaliert und beschneidet jedes Format automatisch auf 576x1024 (mittiger
+Ausschnitt). Getestet mit einem 768x1344-Bild: kommt korrekt als 576x1024
+heraus. Bei stark abweichendem Seitenverhaeltnis wird entsprechend
+beschnitten — bei Querformat also viel; dann besser vorher selbst hochkant
+zuschneiden, damit du bestimmst, was drin bleibt.
+
+So gehst du vor:
+
+1. Bild in ComfyUI hochladen (LoadImage-Node, Knopf "choose file to upload")
+2. `workflows/eigenes-bild.json` hineinziehen
+3. Im LoadImage-Node dein Bild waehlen
+4. Im Prompt von Node 14 beschreiben, **was sich bewegen soll** — nicht, was zu
+   sehen ist. Das Bild steht ja schon fest.
+5. Ergebnis als `01.mp4` … `07.mp4` in `Resources/Film/` ablegen
+
+Willst du eine andere Aufloesung: `width`/`height` in Node 21 **und** Node 14
+gleich setzen, beide Werte durch 32 teilbar.
+
 ## Warum weiss auf schwarz
 
 Keine Geschmacksfrage. Der Player blendet das Schwarz mit

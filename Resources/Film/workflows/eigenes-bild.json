@@ -1,0 +1,146 @@
+{
+ "10": {
+  "class_type": "UNETLoader",
+  "inputs": {
+   "unet_name": "minimax_h3_fl2va_pruned_int8_convrot.safetensors",
+   "weight_dtype": "default"
+  }
+ },
+ "11": {
+  "class_type": "MiniMaxH3SigmaShift",
+  "inputs": {
+   "model": [
+    "10",
+    0
+   ],
+   "shift_video": 12,
+   "shift_audio": 3
+  }
+ },
+ "12": {
+  "class_type": "CLIPLoader",
+  "inputs": {
+   "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+   "type": "minimax",
+   "device": "default"
+  }
+ },
+ "13": {
+  "class_type": "VAELoader",
+  "inputs": {
+   "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+  }
+ },
+ "14": {
+  "class_type": "MiniMaxH3ImageToVideo",
+  "inputs": {
+   "clip": [
+    "12",
+    0
+   ],
+   "vae": [
+    "13",
+    0
+   ],
+   "width": 576,
+   "height": 1024,
+   "length": 124,
+   "first_frame": [
+    "21",
+    0
+   ],
+   "prompt": "Describe here what should MOVE in the picture, not what is in it. Example: gentle wind in the grass, slow drifting cloud, the camera holding still. 2D hand-drawn line animation, pure white ink lines on a solid pure black background, one consistent line weight, no shading, no colour, no text. Calm continuous motion, the drawing stays exactly as it is."
+  }
+ },
+ "15": {
+  "class_type": "ConditioningZeroOut",
+  "inputs": {
+   "conditioning": [
+    "14",
+    0
+   ]
+  }
+ },
+ "16": {
+  "class_type": "KSampler",
+  "inputs": {
+   "model": [
+    "11",
+    0
+   ],
+   "positive": [
+    "14",
+    0
+   ],
+   "negative": [
+    "15",
+    0
+   ],
+   "latent_image": [
+    "14",
+    1
+   ],
+   "seed": 12345,
+   "steps": 20,
+   "cfg": 1,
+   "sampler_name": "euler",
+   "scheduler": "simple",
+   "denoise": 1
+  }
+ },
+ "17": {
+  "class_type": "VAEDecode",
+  "inputs": {
+   "samples": [
+    "16",
+    0
+   ],
+   "vae": [
+    "13",
+    0
+   ]
+  }
+ },
+ "18": {
+  "class_type": "CreateVideo",
+  "inputs": {
+   "images": [
+    "17",
+    0
+   ],
+   "fps": 24,
+   "bit_depth": 8
+  }
+ },
+ "19": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "18",
+    0
+   ],
+   "filename_prefix": "casamaranta/eigenes",
+   "format": "mp4",
+   "codec": "h264"
+  }
+ },
+ "20": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "mein_bild.png"
+  }
+ },
+ "21": {
+  "class_type": "ImageScale",
+  "inputs": {
+   "image": [
+    "20",
+    0
+   ],
+   "upscale_method": "lanczos",
+   "width": 576,
+   "height": 1024,
+   "crop": "center"
+  }
+ }
+}
