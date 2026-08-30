@@ -2208,7 +2208,8 @@ const LOGIN_FILM = [
   'Resources/Film/04.mp4',
   'Resources/Film/05.mp4',
   'Resources/Film/06.mp4',
-  'Resources/Film/07.mp4'
+  'Resources/Film/07.mp4',
+  'Resources/Film/08.mp4'
 ];
 
 function initLoginFilm() {

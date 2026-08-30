@@ -62,6 +62,24 @@ das Bild, Node 16 nur die Bewegung darin.
 
 ---
 
+## Vier Clips stammen aus eigenen Zeichnungen
+
+Die Clips 01 (Zug), 06 (Gasse), 07 (Haus) und 08 (San Romerio) gehen auf
+eigene Vorlagen zurueck, die bereits im fertigen Strichstil vorlagen
+(`Resources/Pics/Video pics`). Weil der Stil schon stimmte, entfaellt der
+Bildschritt komplett: die Zeichnung IST der erste Frame und bleibt
+unveraendert erhalten — nur die Bewegung wird erzeugt.
+
+Das ist der beste Weg. Ein selbst gezeichnetes oder ausgesuchtes Bild schlaegt
+jedes generierte, und das Modell kann daran nichts mehr verfaelschen.
+
+Die Vorlagen waren exakt 941x1672, also genau 9:16 — es wurde nichts
+beschnitten, nur auf 576x1024 verkleinert.
+
+Workflows: `workflows/01.json`, `06`, `07`, `08` (Bild -> Video, ohne
+Bildgenerierung). Im Prompt von Node 14 steht nur, was sich bewegen soll,
+plus die Anweisung, jede Linie unveraendert zu lassen.
+
 ## Eigene Startbilder verwenden
 
 Wenn du ein Startbild selbst zeichnest oder anderswo erzeugst:
