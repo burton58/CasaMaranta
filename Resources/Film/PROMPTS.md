@@ -31,6 +31,26 @@ Text-zu-Video driftet dagegen von Clip zu Clip auseinander.
 
 Rechenzeit auf der RTX 5070 Ti: rund 3–5 Minuten pro Clip.
 
+## Drei Clips folgen echten Fotos
+
+Die Clips 01 (Viadukt), 04 (Lago di Saoseo) und 06 (Poschiavo) sind nicht frei
+erfunden, sondern aus echten Fotos abgeleitet — sie liegen in `Resources/Pics`
+als `rhb.jpg`, `Lago saoseo.jpg` und `poschiavo.jpg`.
+
+Ablauf: Foto -> gezielter Ausschnitt (`ImageCrop`) -> auf 576x1024 skalieren ->
+`VAEEncode` -> KSampler mit **denoise 0.85**. Das ist der Kompromiss, der beides
+haelt: die Komposition der Vorlage und den Strichstil. Darunter (0.70) bleibt das
+Bild farbig und fotografisch, darueber verliert es die Vorlage.
+
+**Der Ausschnitt ist entscheidend.** Ein mittiger Schnitt von `poschiavo.jpg`
+schneidet den Zwiebelturm weg — die beiden Tuerme stehen links der Bildmitte.
+Deshalb `x: 75, w: 290` statt `crop: center`. Ohne das legt das Modell die
+beiden Tuerme zu einer Kirche zusammen, was falsch ist: es sind zwei getrennte
+Bauten.
+
+Canny-Kantenerkennung wurde probiert und verworfen — bei so dichten Motiven wird
+jedes Blatt und jeder Dachziegel zur Kante, das Motiv ersaeuft im Rauschen.
+
 ## Selbst neu würfeln
 
 Die fertigen Workflows liegen in `workflows/01.json` … `07.json`. Einfach in
