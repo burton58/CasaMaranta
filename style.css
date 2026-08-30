@@ -1407,3 +1407,47 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: roun
   flex: 1 1 auto;
 }
 .detail-content.has-signpost .detail-body:has(> .signpost-stack) > * { flex-shrink: 0; }
+
+/* ═══════════ HIKES ═══════════
+   A hike plate carries its walking time in the tail, exactly as the
+   yellow signs in the valley do. The facts sit in a stamped grid. */
+.hike-card { margin-bottom: var(--gap); }
+.hike-card .place-card-header h3 { font-size: 15.5px; line-height: 1.25; }
+.hike-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px var(--pad);
+  margin: 0 0 14px;
+  padding: 0;
+  list-style: none;
+}
+.hike-facts li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--slate-line);
+  margin: 0;
+}
+.hike-facts span {
+  font-size: 10.5px;
+  font-weight: 700;
+  font-variation-settings: 'wdth' 82;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--enamel-faint);
+}
+.hike-facts strong {
+  font-size: 15px;
+  font-weight: 700;
+  font-variation-settings: 'wdth' 86;
+  color: var(--yellow);
+  font-variant-numeric: tabular-nums;
+}
+.hike-route {
+  font-size: 13.5px !important;
+  line-height: 1.5 !important;
+  color: var(--enamel-dim) !important;
+  margin-bottom: 14px !important;
+}

@@ -1111,6 +1111,26 @@ const DETAIL_PAGES = {
             <svg class="plate-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20l6-10 3.2 4.4L15 8l6 12z"/></svg>
             <span class="plate-name">${t('Aktivitäten', 'Activities')}</span>
           </button>
+          <button class="plate plate--out" onclick="showDetail('hikes')" style="--i:3">
+            <span class="plate-bolt"></span>
+            <svg class="plate-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 4.6a1.4 1.4 0 102.8 0 1.4 1.4 0 10-2.8 0"/><path d="M14.6 20.5l-1.4-5.2-2.6-2 1.2-4.4 3.4-1 2.6 2.3 2.4.9"/><path d="M11.8 13.3L8.6 15l-2.2 5.5"/><path d="M17.2 12.6l1.1 3.2 1.4 4.7"/></svg>
+            <span class="plate-name">${t('Wanderungen', 'Hiking')}</span>
+          </button>
+        </div>
+      </div>`
+  },
+
+  hikes: {
+    title: () => t('Wanderungen', 'Hiking'),
+    backToDetail: 'localguide',
+    render: () => `
+      <div class="detail-section">
+        <div class="detail-body">
+          <p>${t(
+            'Sechs Wanderungen im Puschlav — von der flachen Runde am See bis zum langen Bergtag. Zeiten, Distanzen und Höhenmeter stammen von <a href="https://wegwandern.ch/graubuenden/puschlav-val-poschiavo-wandern/" target="_blank" rel="noopener noreferrer">wegwandern.ch</a>; die Route und die aktuelle Lage prüfen Sie am besten dort, bevor Sie losgehen.',
+            'Six walks in the Val Poschiavo — from a flat loop by the lake to a long day in the mountains. Times, distances and ascent come from <a href="https://wegwandern.ch/graubuenden/puschlav-val-poschiavo-wandern/" target="_blank" rel="noopener noreferrer">wegwandern.ch</a>; check the route and current conditions there before you set off.'
+          )}</p>
+          <div class="signpost-stack">${HIKES.map(renderHikeCard).join('')}</div>
         </div>
       </div>`
   },
@@ -1519,6 +1539,7 @@ const SEARCH_INDEX = [
   { type: 'section', key: 'restaurants', term_de: 'Restaurants Essen', term_en: 'Restaurants Food Dining', navId: 'nav-info' },
   { type: 'section', key: 'grocery', term_de: 'Einkaufen Supermarkt Metzger Bäcker', term_en: 'Grocery Shopping Supermarket Butcher Bakery', navId: 'nav-info' },
   { type: 'section', key: 'activities', term_de: 'Aktivitäten Ausflug Wandern', term_en: 'Activities Excursion Hiking', navId: 'nav-info' },
+  { type: 'section', key: 'hikes', term_de: 'Wanderungen Wandern Bergwanderung Route Saoseo Sassal Masone Palü Via Valtellina', term_en: 'Hiking Walks Mountain Hike Route Saoseo Sassal Masone Palue Via Valtellina', navId: 'nav-info' },
   { type: 'section', key: 'accommodation', term_de: 'Das Haus Unterkunft Übersicht', term_en: 'House Accommodation Overview', navId: 'nav-info' },
   { type: 'section', key: 'house_electricity', term_de: 'Strom Sicherungen Sicherungskasten Stromausfall', term_en: 'Electricity Fuses Fuse Box Power Outage', navId: 'nav-info' },
   { type: 'section', key: 'house_cleaning', term_de: 'Putzschrank Reinigung Putzmittel Bügeleisen Bügelbrett', term_en: 'Cleaning Cupboard Supplies Iron Ironing Board', navId: 'nav-info' },
@@ -2069,4 +2090,103 @@ function groupSignposts(root) {
   });
   if (root.querySelector('.signpost-stack')) root.classList.add('has-signpost');
   else root.classList.remove('has-signpost');
+}
+
+// ─────────────────────────────────────────────────────────────
+// HIKES — route data from wegwandern.ch, reproduced as facts only:
+// time, distance, ascent, descent, SAC grade and season. The
+// descriptions are our own summaries of where the route runs.
+// A plate carries its walking time in the tail, as a real
+// Wanderweg sign does.
+// ─────────────────────────────────────────────────────────────
+const HIKES = [
+  {
+    id: 'hk_miralago', time: '1 h 05', km: '4,5 km', up: '27 m', down: '26 m', sac: 'T2',
+    n_de: 'Miralago – Lago di Poschiavo – Le Prese',
+    n_en: 'Miralago – Lago di Poschiavo – Le Prese',
+    d_de: 'Flach dem Ufer des Lago di Poschiavo entlang, von Bahnhof zu Bahnhof. Die einfachste Runde im Tal — gut für einen halben Tag oder mit Kindern.',
+    d_en: 'Flat along the shore of the Lago di Poschiavo, station to station. The easiest walk in the valley — good for half a day or with children.',
+    s_de: 'Miralago (965 m) → Le Prese (965 m) · Mai–Oktober',
+    s_en: 'Miralago (965 m) → Le Prese (965 m) · May–October',
+    url: 'https://wegwandern.ch/wanderung/miralago-lago-di-poschiavo-le-prese-puschlav-wandern-wanderung/'
+  },
+  {
+    id: 'hk_palue', time: '1 h 30', km: '5 km', up: '79 m', down: '471 m', sac: 'T2',
+    n_de: 'Alp Grüm – Lagh da Palü – Cavaglia',
+    n_en: 'Alp Grüm – Lagh da Palü – Cavaglia',
+    d_de: 'Mit der Bernina-Bahn hinauf nach Alp Grüm, dann fast nur bergab: am türkisen Lagh da Palü vorbei und durch den Gletschergarten nach Cavaglia.',
+    d_en: 'Take the Bernina line up to Alp Grüm, then almost all downhill: past the turquoise Lagh da Palü and through the glacier garden down to Cavaglia.',
+    s_de: 'Alp Grüm (2091 m) → Cavaglia (1693 m) · Juni–Oktober',
+    s_en: 'Alp Grüm (2091 m) → Cavaglia (1693 m) · June–October',
+    url: 'https://wegwandern.ch/wanderung/alp-gruem-lagh-da-palue-gletschergarten-cavaglia-wandern/'
+  },
+  {
+    id: 'hk_sassal', time: '1 h 50', km: '6,3 km', up: '209 m', down: '380 m', sac: 'T2',
+    n_de: 'Ospizio Bernina – Sassal Masone – Alp Grüm',
+    n_en: 'Ospizio Bernina – Sassal Masone – Alp Grüm',
+    d_de: 'Vom Berninapass über den Aussichtspunkt Sassal Masone (2358 m) mit Blick auf den Palü-Gletscher und hinunter nach Alp Grüm. Beide Enden liegen an der Bahn.',
+    d_en: 'From the Bernina pass over the Sassal Masone viewpoint (2358 m), facing the Palü glacier, and down to Alp Grüm. Both ends are on the railway.',
+    s_de: 'Ospizio Bernina (2253 m) → Alp Grüm (2083 m) · Juni–Oktober',
+    s_en: 'Ospizio Bernina (2253 m) → Alp Grüm (2083 m) · June–October',
+    url: 'https://wegwandern.ch/wanderung/ospizio-bernina-sassal-masone-alp-gruem-puschlav-wanderung-wandern/'
+  },
+  {
+    id: 'hk_valdacamp', time: '3 h 30', km: '11,6 km', up: '457 m', down: '826 m', sac: 'T2',
+    n_de: 'Val da Camp: Rifugio Saoseo – Lagh da Saoseo – Sfazù',
+    n_en: 'Val da Camp: Rifugio Saoseo – Lagh da Saoseo – Sfazù',
+    d_de: 'Durch das Val da Camp an zwei Bergseen vorbei — Lagh da Saoseo und Lagh da Val Viola — durch Lärchen- und Arvenwald hinunter nach Sfazù.',
+    d_en: 'Through the Val da Camp past two mountain lakes — Lagh da Saoseo and Lagh da Val Viola — then down through larch and stone pine forest to Sfazù.',
+    s_de: 'Rifugio Saoseo (1985 m) → Sfazù (1622 m) · Juni–Oktober',
+    s_en: 'Rifugio Saoseo (1985 m) → Sfazù (1622 m) · June–October',
+    url: 'https://wegwandern.ch/wanderung/val-da-camp-puschlav-rifugio-saoseo-lagh-da-saoseo-lagh-da-val-viola-sfazu-wandern-wanderung/'
+  },
+  {
+    id: 'hk_saoseo', time: '4 h 45', km: '15,2 km', up: '790 m', down: '790 m', sac: 'T2',
+    n_de: 'Sfazù – Rifugio Saoseo – Lagh da Saoseo – Sfazù',
+    n_en: 'Sfazù – Rifugio Saoseo – Lagh da Saoseo – Sfazù',
+    d_de: 'Die gleiche Seenlandschaft als Rundtour ab Sfazù — Start und Ziel an derselben Bushaltestelle, also ohne Umsteigen planbar.',
+    d_en: 'The same lake landscape as a round trip from Sfazù — start and finish at the same bus stop, so no connections to plan.',
+    s_de: 'Sfazù (1622 m), Rundtour · Juni–Oktober',
+    s_en: 'Sfazù (1622 m), round trip · June–October',
+    url: 'https://wegwandern.ch/wanderung/sfazu-rif-saoseo-lagh-da-saoseo-sfazu/'
+  },
+  {
+    id: 'hk_romerio', time: '5 h 30', km: '16,2 km', up: '1089 m', down: '814 m', sac: 'T2',
+    n_de: 'Poschiavo – San Romerio – Viano (Via Valtellina)',
+    n_en: 'Poschiavo – San Romerio – Viano (Via Valtellina)',
+    d_de: 'Der lange Tag: ab Bahnhof Poschiavo auf der alten Via Valtellina hinauf zur Kirche San Romerio auf ihrer Felskanzel und weiter nach Viano. Über 1000 Höhenmeter im Aufstieg.',
+    d_en: 'The long day: from Poschiavo station up the old Via Valtellina to the church of San Romerio on its rock terrace, and on to Viano. Over 1000 m of ascent.',
+    s_de: 'Poschiavo (1014 m) → Viano (1289 m) · Juni–Oktober',
+    s_en: 'Poschiavo (1014 m) → Viano (1289 m) · June–October',
+    url: 'https://wegwandern.ch/wanderung/poschiavo-san-romerio-viano-puschlav-via-valtellina-wandern-wanderung/'
+  }
+];
+
+function renderHikeCard(h) {
+  return '' +
+    '<div class="place-card hike-card">' +
+      '<div class="place-card-header" id="head-' + h.id + '" role="button" tabindex="0"' +
+        ' aria-expanded="false" aria-controls="body-' + h.id + '"' +
+        ' onclick="togglePlace(\'' + h.id + '\')"' +
+        ' onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();togglePlace(\'' + h.id + '\')}">' +
+        '<h3>' + t(h.n_de, h.n_en) + '</h3>' +
+        '<span class="place-dist">' + h.time + '</span>' +
+        '<span class="toggle-chevron" id="chev-' + h.id + '" aria-hidden="true"></span>' +
+      '</div>' +
+      '<div class="place-card-body" id="body-' + h.id + '">' +
+        '<p>' + t(h.d_de, h.d_en) + '</p>' +
+        '<ul class="hike-facts">' +
+          '<li><span>' + t('Strecke', 'Distance') + '</span><strong>' + h.km + '</strong></li>' +
+          '<li><span>' + t('Aufstieg', 'Ascent') + '</span><strong>' + h.up + '</strong></li>' +
+          '<li><span>' + t('Abstieg', 'Descent') + '</span><strong>' + h.down + '</strong></li>' +
+          '<li><span>' + t('Schwierigkeit', 'Grade') + '</span><strong>' + h.sac + '</strong></li>' +
+        '</ul>' +
+        '<p class="hike-route">' + t(h.s_de, h.s_en) + '</p>' +
+        '<div class="place-card-actions">' +
+          '<a class="place-action-btn" href="' + h.url + '" target="_blank" rel="noopener noreferrer"' +
+            ' data-label="' + t('Route & Karte', 'Route & map') + '">' +
+            '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
 }
