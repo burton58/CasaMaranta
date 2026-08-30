@@ -1348,3 +1348,24 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: roun
 .detail-body .plate .plate-dist { color: var(--slate); }
 .detail-body .place-action-btn,
 .detail-body .place-action-btn:hover { text-decoration: none; }
+
+/* Plates need a post to hang from. The disclosure stacks sit straight
+   in the prose, so each section carries its own mast segment and the
+   segments bridge the gaps into one continuous pole. */
+.appliance-section { position: relative; }
+.appliance-section::before {
+  content: '';
+  position: absolute;
+  left: calc(var(--pad) * 0.62 + 4.5px - 6px);
+  top: 0;
+  bottom: calc(var(--gap) * -1);
+  width: 12px;
+  background: var(--slate-line);
+  border-radius: 1px;
+  box-shadow: inset 1px 0 0 rgba(244,242,236,0.10), 0 0 0 1px rgba(0,0,0,0.55);
+  z-index: 0;
+}
+.appliance-section:first-of-type::before { top: calc(var(--gap) * -1.6); }
+.appliance-section:last-of-type::before { bottom: calc(var(--void) * -1); }
+.appliance-section > summary,
+.appliance-section > *:not(summary) { position: relative; z-index: 1; }
