@@ -1078,13 +1078,53 @@ const DETAIL_PAGES = {
             <p>Herzlichen Dank, dass Sie bei uns zu Gast waren. Wir hoffen, Sie haben Ihren Aufenthalt in vollen Zügen genossen!</p>
             <p>Falls es während Ihres Aufenthalts etwas zu bemängeln gab, zögern Sie nicht, uns zu informieren – wir möchten sicherstellen, dass wir es für den nächsten Gast verbessern können.</p>
             <p>Kommen Sie gut nach Hause und bis auf hoffentlich bald im schönen Poschiavo.</p>
-            <p>Liebe Grüsse<br>Christine &amp; Markus</p>
           `, `
             <p>Thank you so much for staying with us. We hope you enjoyed every moment of your time here!</p>
             <p>If there was anything that didn't meet your expectations during your stay, please don't hesitate to let us know – we'd love to make it even better for the next guest.</p>
             <p>Safe travels home, and we hope to see you again soon in beautiful Poschiavo.</p>
-            <p>Warm regards,<br>Christine &amp; Markus</p>
           `)}
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h2>${t('Zeigen Sie uns Ihr Poschiavo', 'Show us your Poschiavo')}</h2>
+        <div class="detail-body">
+          ${t(`
+            <p>Was hat Ihnen im Tal am besten gefallen? Über ein Bild Ihres liebsten Moments würden wir uns wirklich freuen – markieren Sie uns mit <strong>@casa.maranta.poschiavo</strong> oder <strong>#casamarantaposchiavo</strong>, dann sehen wir es.</p>
+          `, `
+            <p>What did you enjoy most in the valley? We would genuinely love to see a picture of your favourite moment – tag us with <strong>@casa.maranta.poschiavo</strong> or <strong>#casamarantaposchiavo</strong> and it will reach us.</p>
+          `)}
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <h2>${t('Eine Bewertung hilft uns sehr', 'A review really helps us')}</h2>
+        <div class="detail-body">
+          ${t(`
+            <p>Wir vermieten das Haus noch nicht lange, und gerade am Anfang zählt jede Rückmeldung doppelt. Die Buchungsplattform schickt Ihnen nach der Abreise eine kurze Umfrage – oder Sie hinterlassen uns ein paar Zeilen bei Google. Beides hilft uns sehr.</p>
+          `, `
+            <p>We have not been renting the house for very long, and at the start every piece of feedback counts double. The booking platform will send you a short survey after you leave – or you can leave us a few lines on Google. Either one helps us a great deal.</p>
+          `)}
+          <div class="signpost-inline">
+            <div class="signpost-mast" aria-hidden="true"></div>
+            <a class="plate plate--out" href="https://www.instagram.com/casa.maranta.poschiavo/" target="_blank" rel="noopener noreferrer" style="--i:0">
+              <span class="plate-bolt"></span>
+              <svg class="plate-ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="4.6"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+              <span class="plate-name">${t('Auf Instagram', 'On Instagram')}</span>
+              <span class="plate-dist">${t('Bild teilen', 'Share a photo')}</span>
+            </a>
+            <a class="plate plate--out" href="https://www.google.com/travel/search?ts=CAEaKwopEicyJTB4NDc4MzlmOGMwNzEyYjcxOToweGZjYTNmOTg0NDY3ZmM0NjA&qs=CAEyFENnc0k0SWpfczhTd190SDhBUkFCOAI&utm_campaign=sharing&utm_medium=link_btn&utm_source=htls" target="_blank" rel="noopener noreferrer" style="--i:1">
+              <span class="plate-bolt"></span>
+              <svg class="plate-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.6l2.6 5.3 5.8.85-4.2 4.1 1 5.8-5.2-2.75-5.2 2.75 1-5.8-4.2-4.1 5.8-.85z"/></svg>
+              <span class="plate-name">${t('Auf Google bewerten', 'Review on Google')}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <div class="detail-body">
+          ${t('<p>Liebe Grüsse<br>Christine &amp; Markus</p>', '<p>Warm regards,<br>Christine &amp; Markus</p>')}
         </div>
       </div>`
   },
@@ -1536,7 +1576,7 @@ const SEARCH_INDEX = [
   { type: 'section', key: 'wifi', term_de: 'WLAN Internet Passwort LaRasiga Fehlerbehebung Router WiFi', term_en: 'WiFi Internet Password Network Troubleshooting Router', navId: 'nav-info' },
   { type: 'section', key: 'checkout', term_de: 'Check-out Abreise', term_en: 'Check-out Departure', navId: 'nav-info' },
   { type: 'section', key: 'contacts', term_de: 'Kontakt Notfall Arzt Apotheke Anna', term_en: 'Contact Emergency Doctor Pharmacy Anna', navId: 'nav-info' },
-  { type: 'section', key: 'farewell', term_de: 'Auf Wiedersehen Bewertung Danke', term_en: 'Farewell Thank You Review', navId: 'nav-info' },
+  { type: 'section', key: 'farewell', term_de: 'Auf Wiedersehen Bewertung Danke Instagram Google Feedback Umfrage', term_en: 'Farewell Thank You Review Instagram Google Feedback Survey', navId: 'nav-info' },
   { type: 'section', key: 'restaurants', term_de: 'Restaurants Essen', term_en: 'Restaurants Food Dining', navId: 'nav-info' },
   { type: 'section', key: 'grocery', term_de: 'Einkaufen Supermarkt Metzger Bäcker', term_en: 'Grocery Shopping Supermarket Butcher Bakery', navId: 'nav-info' },
   { type: 'section', key: 'activities', term_de: 'Aktivitäten Ausflug Wandern', term_en: 'Activities Excursion Hiking', navId: 'nav-info' },
