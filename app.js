@@ -353,11 +353,13 @@ const DETAIL_PAGES = {
             <iframe class="maps-embed" loading="lazy" allowfullscreen
               src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCQp4IVRPBNThAtWVxI6uOTgvkkWe3YmsM&origin=46.31669206283648,10.058899635376326&destination=46.3152177266861,10.059864411044678&mode=walking">
             </iframe>
+            <a class="place-action-btn maps-route" target="_blank" rel="noopener noreferrer" data-label="Route in Google Maps öffnen" href="https://www.google.com/maps/dir/?api=1&origin=46.31669206283648,10.058899635376326&destination=46.3152177266861,10.059864411044678&travelmode=walking"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
             <p><strong>Altglas &amp; PET:</strong><br>
             Altglas und PET können getrennt entsorgt werden. Die nächstgelegene Sammelstelle:</p>
             <iframe class="maps-embed" loading="lazy" allowfullscreen
               src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCQp4IVRPBNThAtWVxI6uOTgvkkWe3YmsM&origin=46.31669206283648,10.058899635376326&destination=46.3229775,10.0556606&mode=walking">
             </iframe>
+            <a class="place-action-btn maps-route" target="_blank" rel="noopener noreferrer" data-label="Route in Google Maps öffnen" href="https://www.google.com/maps/dir/?api=1&origin=46.31669206283648,10.058899635376326&destination=46.3229775,10.0556606&travelmode=walking"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
             <p>Bitte achten Sie auf eine korrekte Trennung und entsorgen Sie den Abfall regelmässig.</p>
           `, `
             <p>Official waste bags are required for household rubbish — you can buy them at the Coop, for example. Please use only these special bags, as they are required for proper disposal.</p>
@@ -366,11 +368,13 @@ const DETAIL_PAGES = {
             <iframe class="maps-embed" loading="lazy" allowfullscreen
               src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCQp4IVRPBNThAtWVxI6uOTgvkkWe3YmsM&origin=46.31669206283648,10.058899635376326&destination=46.3152177266861,10.059864411044678&mode=walking">
             </iframe>
+            <a class="place-action-btn maps-route" target="_blank" rel="noopener noreferrer" data-label="Open route in Google Maps" href="https://www.google.com/maps/dir/?api=1&origin=46.31669206283648,10.058899635376326&destination=46.3152177266861,10.059864411044678&travelmode=walking"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
             <p><strong>Glass &amp; PET recycling:</strong><br>
             Glass and PET can be recycled separately. The nearest collection point:</p>
             <iframe class="maps-embed" loading="lazy" allowfullscreen
               src="https://www.google.com/maps/embed/v1/directions?key=AIzaSyCQp4IVRPBNThAtWVxI6uOTgvkkWe3YmsM&origin=46.31669206283648,10.058899635376326&destination=46.3229775,10.0556606&mode=walking">
             </iframe>
+            <a class="place-action-btn maps-route" target="_blank" rel="noopener noreferrer" data-label="Open route in Google Maps" href="https://www.google.com/maps/dir/?api=1&origin=46.31669206283648,10.058899635376326&destination=46.3229775,10.0556606&travelmode=walking"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M13 6l6 6-6 6"/></svg></a>
             <p>Please sort your waste correctly and dispose of it regularly.</p>
           `)}
         </div>
@@ -751,62 +755,12 @@ const DETAIL_PAGES = {
           ${t(`
             <p>Wenn das Wetter einmal nicht mitspielt oder einfach Zeit für eine Pause ist, wird bei uns gerne gespielt. Ob ehrgeizige Jassrunde, spannende Partie oder einfach ein lustiges Spiel mit den Kindern: Für Unterhaltung ist gesorgt.</p>
             <p>Im Haus finden Sie eine Auswahl an Spielen für verschiedene Altersgruppen:</p>
-            <ul>
-              <li><strong>Jasskarten</strong> (deutsche und französische Karten)<br>
-              <a href="https://jassverzeichnis.ch/thema/jassregeln-jassarten/" target="_blank">Anleitung</a></li>
-              <li><strong>Uno</strong><br>
-              <a href="https://www.uno-kartenspiel.de/wp-content/uploads/2019/08/UNO-Spielregeln-Anleitung.pdf" target="_blank">Anleitung</a></li>
-              <li><strong>Schach</strong><br>
-              <a href="https://www.chess.com/de/schachregeln" target="_blank">Anleitung</a></li>
-              <li><strong>Skip-Bo</strong><br>
-              <a href="https://gzhls.at/blob/ldb/d/a/d/6/ca4fc7c7125cea9a5ab9bbc9fdffa6762b38.pdf" target="_blank">Anleitung</a></li>
-              <li><strong>Fiesta de los Muertos</strong><br>
-              <a href="https://www.wog.ch/nas/docs/regel_fiestadelosmuertos.pdf" target="_blank">Anleitung</a></li>
-              <li><strong>Verfuxt</strong><br>
-              <a href="https://amagino.ch/media/15/66/88/1604334922/Verfuxt%20Spielanleitung_DE_FR_IT.pdf" target="_blank">Anleitung</a></li>
-              <li><strong>Scrabble</strong><br>
-              <a href="https://www.spielezar.ch/modules/genzo_zar/views/pdf/spielregeln-scrabble-original.pdf" target="_blank">Anleitung</a></li>
-              <li><strong>Ticket to Ride: San Francisco</strong><br>
-              <a href="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/2024/07/720364-T2RSF-Rules-DE.pdf" target="_blank">Anleitung</a></li>
-              <li><strong>Kahuna</strong><br>
-              <a href="https://fragkosmos.zendesk.com/hc/de/article_attachments/8086781066908" target="_blank">Anleitung</a></li>
-              <li><strong>Yatzy</strong><br>
-              <a href="https://jassverzeichnis.ch/yatzy-wuerfelspiel-spielregeln/" target="_blank">Anleitung</a></li>
-              <li><strong>Rummikub</strong><br>
-              <a href="https://rummikub.com/wp-content/uploads/2019/12/2600-Germany.pdf" target="_blank">Anleitung</a></li>
-              <li><strong>The Walking Pet</strong><br>
-              <a href="https://fragkosmos.zendesk.com/hc/de/article_attachments/8095269961884" target="_blank">Anleitung</a></li>
-            </ul>
+            ${renderGamePlates()}
             <p>Viel Spass beim Spielen!</p>
           `, `
             <p>When the weather doesn't cooperate or it's simply time for a break, we love to play games. Whether it's a competitive round of Jass, an exciting match, or a fun game with the kids — entertainment is guaranteed.</p>
             <p>You'll find a selection of games for various age groups in the house:</p>
-            <ul>
-              <li><strong>Jass cards</strong> (German and French cards for Switzerland's favourite card game)<br>
-              <a href="https://www.swisslos.ch/en/jass/informations/jass-rules/principles-of-jass.html" target="_blank">Rules</a></li>
-              <li><strong>Uno</strong><br>
-              <a href="https://www.unorules.com" target="_blank">Rules</a></li>
-              <li><strong>Chess</strong><br>
-              <a href="https://www.chess.com/learn-how-to-play-chess" target="_blank">Rules</a></li>
-              <li><strong>Skip-Bo</strong><br>
-              <a href="https://service.mattel.com/instruction_sheets/42050.pdf" target="_blank">Rules</a></li>
-              <li><strong>Fiesta de los Muertos</strong><br>
-              <a href="https://www.wog.ch/nas/docs/regel_fiestadelosmuertos.pdf" target="_blank">Rules (DE only)</a></li>
-              <li><strong>Verfuxt</strong><br>
-              <a href="https://amagino.ch/media/15/66/88/1604334922/Verfuxt%20Spielanleitung_DE_FR_IT.pdf" target="_blank">Rules (DE/FR/IT)</a></li>
-              <li><strong>Scrabble</strong><br>
-              <a href="https://www.spielezar.ch/modules/genzo_zar/views/pdf/spielregeln-scrabble-original.pdf" target="_blank">Rules (DE only)</a></li>
-              <li><strong>Ticket to Ride: San Francisco</strong><br>
-              <a href="https://cdn.svc.asmodee.net/production-daysofwonder/uploads/2024/07/720064-T2RSF-Rules-EN.pdf" target="_blank">Rules</a></li>
-              <li><strong>Kahuna</strong><br>
-              <a href="https://cdn.1j1ju.com/medias/76/cd/cd-kahuna-rulebook.pdf" target="_blank">Rules</a></li>
-              <li><strong>Yatzy</strong><br>
-              <a href="https://info.lite.games/en/support/solutions/articles/60000688821-yatzy-rules" target="_blank">Rules</a></li>
-              <li><strong>Rummikub</strong><br>
-              <a href="https://rummikub.com/wp-content/uploads/2019/12/2600-Germany.pdf" target="_blank">Rules</a></li>
-              <li><strong>The Walking Pet</strong><br>
-              <a href="https://fragkosmos.zendesk.com/hc/de/article_attachments/8095269961884" target="_blank">Rules (DE only)</a></li>
-            </ul>
+            ${renderGamePlates()}
             <p>Have fun playing!</p>
           `)}
         </div>
@@ -2054,4 +2008,39 @@ function jRunCycle(svg, first) {
   jCamFly(svg, origin.x, origin.y, JVIEW.zoom, first ? 0 : 1000, () => {
     jAnim.timer = setTimeout(ride, first ? 700 : 420);
   });
+}
+
+// ─────────────────────────────────────────────────────────────
+// BOARD GAMES — each game is a plate that points at its rules.
+// Names, labels and links are exactly the owners’ own.
+// ─────────────────────────────────────────────────────────────
+const HOUSE_GAMES = [
+  { n_de: 'Jasskarten', n_en: 'Jass cards', s_de: 'deutsche und französische Karten', s_en: 'German and French cards for Switzerland\'s favourite card game', l_de: 'Anleitung', l_en: 'Rules', u_de: 'https://jassverzeichnis.ch/thema/jassregeln-jassarten/', u_en: 'https://www.swisslos.ch/en/jass/informations/jass-rules/principles-of-jass.html' },
+  { n_de: 'Uno', n_en: 'Uno', s_de: '', s_en: '', l_de: 'Anleitung', l_en: 'Rules', u_de: 'https://www.uno-kartenspiel.de/wp-content/uploads/2019/08/UNO-Spielregeln-Anleitung.pdf', u_en: 'https://www.unorules.com' },
+  { n_de: 'Schach', n_en: 'Chess', s_de: '', s_en: '', l_de: 'Anleitung', l_en: 'Rules', u_de: 'https://www.chess.com/de/schachregeln', u_en: 'https://www.chess.com/learn-how-to-play-chess' },
+  { n_de: 'Skip-Bo', n_en: 'Skip-Bo', s_de: '', s_en: '', l_de: 'Anleitung', l_en: 'Rules', u_de: 'https://gzhls.at/blob/ldb/d/a/d/6/ca4fc7c7125cea9a5ab9bbc9fdffa6762b38.pdf', u_en: 'https://service.mattel.com/instruction_sheets/42050.pdf' },
+  { n_de: 'Fiesta de los Muertos', n_en: 'Fiesta de los Muertos', s_de: '', s_en: '', l_de: 'Anleitung', l_en: 'Rules (DE only)', u_de: 'https://www.wog.ch/nas/docs/regel_fiestadelosmuertos.pdf', u_en: 'https://www.wog.ch/nas/docs/regel_fiestadelosmuertos.pdf' },
+  { n_de: 'Verfuxt', n_en: 'Verfuxt', s_de: '', s_en: '', l_de: 'Anleitung', l_en: 'Rules (DE/FR/IT)', u_de: 'https://amagino.ch/media/15/66/88/1604334922/Verfuxt%20Spielanleitung_DE_FR_IT.pdf', u_en: 'https://amagino.ch/media/15/66/88/1604334922/Verfuxt%20Spielanleitung_DE_FR_IT.pdf' },
+  { n_de: 'Scrabble', n_en: 'Scrabble', s_de: '', s_en: '', l_de: 'Anleitung', l_en: 'Rules (DE only)', u_de: 'https://www.spielezar.ch/modules/genzo_zar/views/pdf/spielregeln-scrabble-original.pdf', u_en: 'https://www.spielezar.ch/modules/genzo_zar/views/pdf/spielregeln-scrabble-original.pdf' },
+  { n_de: 'Ticket to Ride: San Francisco', n_en: 'Ticket to Ride: San Francisco', s_de: '', s_en: '', l_de: 'Anleitung', l_en: 'Rules', u_de: 'https://cdn.svc.asmodee.net/production-daysofwonder/uploads/2024/07/720364-T2RSF-Rules-DE.pdf', u_en: 'https://cdn.svc.asmodee.net/production-daysofwonder/uploads/2024/07/720064-T2RSF-Rules-EN.pdf' },
+  { n_de: 'Kahuna', n_en: 'Kahuna', s_de: '', s_en: '', l_de: 'Anleitung', l_en: 'Rules', u_de: 'https://fragkosmos.zendesk.com/hc/de/article_attachments/8086781066908', u_en: 'https://cdn.1j1ju.com/medias/76/cd/cd-kahuna-rulebook.pdf' },
+  { n_de: 'Yatzy', n_en: 'Yatzy', s_de: '', s_en: '', l_de: 'Anleitung', l_en: 'Rules', u_de: 'https://jassverzeichnis.ch/yatzy-wuerfelspiel-spielregeln/', u_en: 'https://info.lite.games/en/support/solutions/articles/60000688821-yatzy-rules' },
+  { n_de: 'Rummikub', n_en: 'Rummikub', s_de: '', s_en: '', l_de: 'Anleitung', l_en: 'Rules', u_de: 'https://rummikub.com/wp-content/uploads/2019/12/2600-Germany.pdf', u_en: 'https://rummikub.com/wp-content/uploads/2019/12/2600-Germany.pdf' },
+  { n_de: 'The Walking Pet', n_en: 'The Walking Pet', s_de: '', s_en: '', l_de: 'Anleitung', l_en: 'Rules (DE only)', u_de: 'https://fragkosmos.zendesk.com/hc/de/article_attachments/8095269961884', u_en: 'https://fragkosmos.zendesk.com/hc/de/article_attachments/8095269961884' }
+];
+
+function renderGamePlates() {
+  return '<div class="signpost signpost--flush signpost--games">' +
+    '<div class="signpost-mast" aria-hidden="true"></div>' +
+    HOUSE_GAMES.map(function (g, i) {
+      var sub = t(g.s_de, g.s_en);
+      return '<a class="plate plate--out plate--game" style="--i:' + i + '"' +
+        ' href="' + t(g.u_de, g.u_en) + '" target="_blank" rel="noopener noreferrer">' +
+          '<span class="plate-bolt"></span>' +
+          '<span class="plate-name">' + t(g.n_de, g.n_en) +
+            (sub ? '<small class="plate-sub">' + sub + '</small>' : '') + '</span>' +
+          '<span class="plate-dist">' + t(g.l_de, g.l_en) + '</span>' +
+        '</a>';
+    }).join('') +
+  '</div>';
 }
