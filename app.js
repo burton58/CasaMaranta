@@ -20,6 +20,7 @@ function checkLogin() {
   if (val === 'larasiga585') {
     sessionStorage.setItem('cm_auth', '1');
     document.getElementById('login-overlay').classList.add('hidden');
+  if (typeof stopLoginFilm === 'function') stopLoginFilm();
   } else {
     const err = document.getElementById('login-error');
     err.textContent = 'Falsches Passwort / Wrong password';
@@ -1632,6 +1633,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   buildJourney();
   startJourney();
+  initLoginFilm();
 
   // previousScreen tracking
   document.querySelectorAll('[onclick*="showScreen"]').forEach(el => {
@@ -2189,4 +2191,105 @@ function renderHikeCard(h) {
         '</div>' +
       '</div>' +
     '</div>';
+}
+
+// ─────────────────────────────────────────────────────────────
+// LOGIN FILM — black-and-white line clips played one after the
+// other behind the login card. The clips are generated art
+// (Resources/Film/PROMPTS.md); the black ground is dropped with
+// mix-blend-mode: screen so the drawing sits straight on slate.
+// Missing files are skipped, so the login works with none, some
+// or all of them present.
+// ─────────────────────────────────────────────────────────────
+const LOGIN_FILM = [
+  'Resources/Film/01.mp4',
+  'Resources/Film/02.mp4',
+  'Resources/Film/03.mp4',
+  'Resources/Film/04.mp4',
+  'Resources/Film/05.mp4',
+  'Resources/Film/06.mp4',
+  'Resources/Film/07.mp4'
+];
+
+function initLoginFilm() {
+  const host = document.getElementById('login-film');
+  if (!host || !LOGIN_FILM.length) return;
+  const overlay = document.getElementById('login-overlay');
+  if (overlay && overlay.classList.contains('hidden')) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const layers = [0, 1].map(function () {
+    const v = document.createElement('video');
+    v.muted = true; v.defaultMuted = true;
+    v.playsInline = true; v.setAttribute('playsinline', '');
+    v.setAttribute('webkit-playsinline', '');
+    v.preload = 'auto';
+    v.disablePictureInPicture = true;
+    host.appendChild(v);
+    return v;
+  });
+
+  let idx = 0, cur = 0, alive = true, started = false, misses = 0;
+  const isLast = i => i === LOGIN_FILM.length - 1;
+
+  function fail() {
+    // Nothing playable: leave the still background alone.
+    if (!started) host.classList.add('film-off');
+  }
+
+  function preload(v, src) {
+    return new Promise(function (resolve, reject) {
+      v.onerror = function () { reject(); };
+      v.oncanplay = function () { resolve(); };
+      v.src = src;
+      v.load();
+    });
+  }
+
+  function step() {
+    if (!alive) return;
+    const nextIdx = idx % LOGIN_FILM.length;
+    const showing = layers[cur];
+    const incoming = layers[1 - cur];
+
+    preload(incoming, LOGIN_FILM[nextIdx]).then(function () {
+      if (!alive) return;
+      started = true;
+      misses = 0;
+      host.classList.add('film-on');
+      host.classList.toggle('film-final', isLast(nextIdx));
+      incoming.classList.add('on');
+      showing.classList.remove('on');
+      cur = 1 - cur;
+      idx = nextIdx + 1;
+      const play = incoming.play();
+      if (play && play.catch) play.catch(function () {});
+      incoming.onended = step;
+      // A clip that stalls must not freeze the sequence.
+      clearTimeout(incoming._guard);
+      incoming._guard = setTimeout(step, 14000);
+    }).catch(function () {
+      if (!alive) return;
+      idx = nextIdx + 1;
+      misses++;
+      // One full pass with nothing playable: stop for good.
+      if (!started && misses >= LOGIN_FILM.length) { fail(); return; }
+      if (misses > LOGIN_FILM.length * 2) { fail(); return; }
+      step();
+    });
+  }
+
+  step();
+
+  window.stopLoginFilm = function () {
+    alive = false;
+    layers.forEach(function (v) {
+      clearTimeout(v._guard);
+      v.onended = null;
+      try { v.pause(); } catch (e) {}
+      v.removeAttribute('src');
+      try { v.load(); } catch (e) {}
+    });
+    host.classList.remove('film-on', 'film-final');
+  };
 }
