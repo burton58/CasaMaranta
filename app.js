@@ -93,6 +93,7 @@ function showDetail(key) {
   if (!cfg) return;
   document.getElementById('detail-title').textContent = cfg.title();
   document.getElementById('detail-content').innerHTML = cfg.render();
+  groupSignposts(document.getElementById('detail-content'));
   document.getElementById('screen-detail').scrollTop = 0;
   if (key === 'checkout') {
     const saved = JSON.parse(localStorage.getItem('cm_checkout_checks') || '{}');
@@ -2043,4 +2044,29 @@ function renderGamePlates() {
         '</a>';
     }).join('') +
   '</div>';
+}
+
+// ─────────────────────────────────────────────────────────────
+// Plates hang from a post. Consecutive plate rows rendered straight
+// into prose get wrapped in one stack so a single mast can run
+// behind them and on down to the foot of the screen.
+// ─────────────────────────────────────────────────────────────
+function groupSignposts(root) {
+  if (!root) return;
+  root.querySelectorAll('.modal-list').forEach(function (el) {
+    el.classList.add('signpost-stack');
+  });
+  var runs = [], run = null;
+  Array.prototype.forEach.call(root.querySelectorAll('.appliance-section'), function (sec) {
+    if (run && run[run.length - 1].nextElementSibling === sec) run.push(sec);
+    else { run = [sec]; runs.push(run); }
+  });
+  runs.forEach(function (group) {
+    var wrap = document.createElement('div');
+    wrap.className = 'signpost-stack';
+    group[0].parentNode.insertBefore(wrap, group[0]);
+    group.forEach(function (sec) { wrap.appendChild(sec); });
+  });
+  if (root.querySelector('.signpost-stack')) root.classList.add('has-signpost');
+  else root.classList.remove('has-signpost');
 }
