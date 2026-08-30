@@ -31,6 +31,9 @@
   --point: calc(var(--plate) * 0.31);    /* ~18px  plate arrow depth */
   --bar:   calc(var(--plate) * 0.97);    /* ~56px  top bar */
   --nav:   calc(var(--plate) * 1.14);    /* ~66px  bottom nav */
+  /* The bar must GROW by the home-indicator inset, never absorb it:
+     with border-box, padding inside a fixed height crushes the icons. */
+  --nav-safe: calc(var(--plate) * 1.14 + env(safe-area-inset-bottom, 0px));
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --settle: cubic-bezier(0.16, 1, 0.3, 1);
@@ -61,7 +64,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: roun
 .screen {
   position: fixed;
   inset: 0;
-  bottom: var(--nav);
+  bottom: var(--nav-safe);
   overflow-y: auto;
   overscroll-behavior: contain;
   background: var(--slate);
@@ -80,7 +83,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: roun
    Zürich over the Bernina down into Poschiavo, ending at the post. */
 .home-hero {
   position: relative;
-  height: calc(100dvh - var(--nav));
+  height: calc(100dvh - var(--nav-safe));
   background: var(--slate);
   display: flex;
   flex-direction: column;
@@ -996,11 +999,11 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: roun
   left: 0;
   right: 0;
   z-index: 200;
-  height: var(--nav);
+  height: var(--nav-safe);
   display: flex;
   background: var(--slate-deep);
   border-top: 1px solid var(--slate-line);
-  padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 .nav-btn {
   position: relative;
@@ -1021,7 +1024,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: roun
   cursor: pointer;
   transition: color 0.18s var(--ease);
 }
-.nav-btn svg { width: 21px; height: 21px; }
+.nav-btn svg { width: 21px; height: 21px; flex-shrink: 0; }
 .nav-btn:hover { color: var(--enamel-dim); }
 .nav-btn.active { color: var(--yellow); }
 /* The blaze marks where you are */
@@ -1029,6 +1032,7 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: roun
   content: '';
   position: absolute;
   top: 0;
+  pointer-events: none;
   left: 50%;
   width: 30px;
   height: 3px;
