@@ -1741,22 +1741,8 @@ const JOURNEY = {
     { n: 'Alp Grüm',        alt: 2091, x: 231, y: 503, showAlt: true },
     { n: 'Poschiavo',       alt: 1014, x: 135, y: 605, showAlt: true, end: true },
   ],
-  walkD: 'M135 605 L135 608 L98 645',
+  walkD: 'M135 605 L135 608 L17 726',
 };
-
-// Landmarks of the regions, drawn in the world's own stroke grammar.
-// Each pops up as the train passes. Stylised, not surveyed.
-const JPOIS = [
-  { key: 'n:genf',     x: 58,  y: 8,   d: 'M2 21 q5 2 10 0 M8 21 C8 13 9 8 13 3 M13 3 l-3.4 1 M13 3 l1.4 3.2' },
-  { key: 'n:bern',     x: 100, y: 90,  d: 'M6 21 V9 h8 V21 M4.5 9 L10 3.5 15.5 9 M10 12.5 m-2.6 0 a2.6 2.6 0 1 0 5.2 0 a2.6 2.6 0 1 0 -5.2 0 M10 12.5 V10.8 M10 12.5 l1.5 .9' },
-  { key: 'n:luzern',   x: 176, y: 132, d: 'M2 17 h13 M4.5 13.5 h8 L15 17 M2 17 l2.5 -3.5 M6 13.5 V17 M10 13.5 V17 M17 17 V8 l2.5 -2.5 L22 8 V17 M17 17 h5' },
-  { key: 'n:stgallen', x: 356, y: 78,  d: 'M4 21 V11 M9 21 V11 M4 11 q2.5 -5.5 5 0 M6.5 8.5 V6 M14 21 V11 M19 21 V11 M14 11 q2.5 -5.5 5 0 M16.5 8.5 V6 M9 21 h5' },
-  { key: 'm:0',        x: 52,  y: 238, d: 'M4 21 V9.5 h5.5 V21 M3 9.5 L6.75 4.5 10.5 9.5 M13.5 21 V9.5 h5.5 V21 M12.5 9.5 L16.25 4.5 20 9.5' },
-  { key: 'm:2',        x: 102, y: 322, d: 'M2 7.5 h20 M4 7.5 V19 M10 7.5 V19 M16 7.5 V19 M22 7.5 V19 M4 13.5 q3 4.5 6 0 M10 13.5 q3 4.5 6 0 M16 13.5 q3 4.5 6 0' },
-  { key: 'm:6',        x: 198, y: 482, d: 'M4 12 q3.5 -4.5 8.5 -3.5 q5.5 1 6.5 4.5 q-2.5 4.5 -8 3.8 q-6 -.8 -7 -4.8 z M6 9 l2 -3.5 2.5 3' },
-  { key: 'n:brusio',   x: 158, y: 674, d: 'M2 20 l5.5 -3.5 M20 6 l2 -1.5 M14 12 m-6 0 a6 6 0 1 0 12 0 a6 6 0 1 0 -12 0' },
-  { key: 'n:lugano',   x: 348, y: 674, d: 'M2 20 q5 2.5 10 0 q5 -2.5 10 0 M6 20 L12 8 l4.5 7 M15 12 l3 -4 3.5 6' },
-];
 
 // Schematic elbow: vertical first, then a 45° diagonal into the station.
 function journeyPathD(pts) {
@@ -1821,12 +1807,6 @@ function buildJourney() {
       '</g>';
   });
 
-  let pois = '';
-  JPOIS.forEach(p => {
-    pois += '<g transform="translate(' + p.x + ' ' + p.y + ')">' +
-      '<path class="j-poi" data-poi-for="' + p.key + '" d="' + p.d + '"/></g>';
-  });
-
   let stops = '';
   S.forEach((st, i) => {
     const r = st.end ? 6.5 : 5;
@@ -1850,10 +1830,8 @@ function buildJourney() {
         '<path class="j-base" d="' + railD + '"/>' +
         '<path class="j-travel" d="' + railD + '"/>' +
         '<path class="j-walk" d="' + JOURNEY.walkD + '"/>' +
-        '<path class="j-home" d="M90 651 L98 644.5 L106 651 V659 H101 v-4.5 h-6 V659 H90 Z"/>' +
         '<text class="j-walklabel" x="88" y="636" text-anchor="end" data-de="15 Min. zu Fuss" data-en="15 min on foot">' +
           t('15 Min. zu Fuss', '15 min on foot') + '</text>' +
-        pois +
         nodeDots +
         stops +
         '<g class="j-train" opacity="0"><circle class="j-train-o" r="7"/><circle class="j-train-i" r="2.4"/></g>' +
@@ -1917,7 +1895,7 @@ function jResetBoard(svg) {
   travel.style.strokeDasharray = total;
   travel.style.strokeDashoffset = total;
   svg.querySelectorAll('.j-stop').forEach(s => s.classList.remove('lit'));
-  svg.querySelectorAll('.j-summit, .j-poi').forEach(s => s.classList.remove('lit'));
+  svg.querySelectorAll('.j-summit').forEach(s => s.classList.remove('lit'));
   svg.querySelectorAll('.j-feeder-t').forEach(p => {
     const l = p.getTotalLength();
     p.style.strokeDasharray = l;
@@ -1925,7 +1903,6 @@ function jResetBoard(svg) {
   });
   svg.querySelector('.j-walk').classList.remove('go');
   svg.querySelector('.j-walklabel').classList.remove('go');
-  svg.querySelector('.j-home').classList.remove('go');
   svg.querySelector('.j-train').setAttribute('opacity', '0');
 }
 
@@ -1939,7 +1916,6 @@ function jLight(svg, key) {
     if (el) el.classList.add('lit');
     if (i === 6) svg.querySelectorAll('.j-summit').forEach(x => x.classList.add('lit'));
   }
-  svg.querySelectorAll('.j-poi[data-poi-for="' + key + '"]').forEach(x => x.classList.add('lit'));
 }
 
 function jSchedule(lens, msTotal) {
@@ -2031,10 +2007,9 @@ function startJourney() {
     jCamApply(svg);
     svg.querySelector('.j-travel').style.strokeDashoffset = 0;
     svg.querySelectorAll('.j-stop[data-idx]').forEach(s => s.classList.add('lit'));
-    svg.querySelectorAll('.j-summit, .j-poi').forEach(s => s.classList.add('lit'));
+    svg.querySelectorAll('.j-summit').forEach(s => s.classList.add('lit'));
     svg.querySelector('.j-walk').classList.add('go');
     svg.querySelector('.j-walklabel').classList.add('go');
-    svg.querySelector('.j-home').classList.add('go');
     return;
   }
   jAnim.cycle = 0;
@@ -2055,7 +2030,8 @@ function jRunCycle(svg, first) {
       jCamFly(svg, JVIEW.cx, JVIEW.cy, 1, 1300, () => {
         svg.querySelector('.j-walk').classList.add('go');
         svg.querySelector('.j-walklabel').classList.add('go');
-        svg.querySelector('.j-home').classList.add('go');
+        const hm = document.querySelector('#screen-home .home-mark');
+        if (hm) { hm.classList.remove('arrived'); void hm.getBoundingClientRect(); hm.classList.add('arrived'); }
         if (jAnim.cycle === 0) {
           const plate = document.querySelector('#screen-home .plate--action');
           if (plate) { plate.classList.remove('arrived'); void plate.offsetWidth; plate.classList.add('arrived'); }

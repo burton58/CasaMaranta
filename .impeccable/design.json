@@ -310,7 +310,7 @@
       {
         "name": "journey",
         "value": "cinematic rAF: camera chases the train at zoom 2.4, flies to each origin, pulls back 1.3s at arrival; per-segment ease-in-out riding, duration ∝ length^0.75",
-        "purpose": "The home screen Streckenplan ridden close-up from seven real origins: Zürich; Bern, Basel, Genf, St. Gallen (joining at Chur) and Luzern through the true network; Lugano arriving from the south over Tirano and the Brusio spiral. Stylised landmark vignettes pop up as the train passes. Arrival pulls the camera back; the dashed 15-minute trail ends at a home icon above the post title. Cycles with a ~4.6s rest, stops off-home, restarts on return; reduced-motion renders the completed overview with every landmark lit."
+        "purpose": "The home screen Streckenplan ridden close-up from seven real origins: Zürich; Bern, Basel, Genf, St. Gallen (joining at Chur) and Luzern through the true network; Lugano arriving from the south over Tirano and Brusio. Arrival pulls the camera back; the dashed 15-minute trail runs to the map’s bottom edge and ends at the large home icon standing in front of the post title, which pops once per arrival. No captions, no decorative vignettes — pure signage. Cycles with a ~4.6s rest, stops off-home, restarts on return; reduced-motion renders the completed overview."
       }
     ],
     "breakpoints": [
