@@ -1515,3 +1515,60 @@ svg { fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: roun
     rgba(12,15,18,0.20) 100%);
 }
 #login-overlay:has(#login-film.film-on)::after { opacity: 1; }
+
+/* ═══════════ LOGIN LAYOUT: NAME UP, GATE DOWN ═══════════
+   The name sits at the top, the password field at the foot, so the
+   middle of the frame belongs to the film. */
+#login-overlay { align-items: stretch; justify-content: stretch; padding: 0; }
+#login-card {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: calc(var(--void) * 1.2) var(--pad) var(--void);
+}
+#login-card .post-head { margin-bottom: 0; padding-left: 0; }
+
+.login-foot { display: flex; flex-direction: column; }
+.login-row { display: flex; align-items: stretch; gap: var(--gap); }
+#login-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: auto;
+  margin-bottom: 0;
+  backdrop-filter: blur(6px);
+}
+#login-btn {
+  flex: 0 0 auto;
+  width: auto;
+  min-height: 52px;
+  padding-left: calc(var(--pad) * 1.6);
+}
+#login-error { margin: 0 0 9px; }
+
+/* The scrim now protects the top and the foot, and clears the middle
+   for the drawing — the opposite of what a centred card needed. */
+#login-overlay::after {
+  background: linear-gradient(to bottom,
+    rgba(12,15,18,0.94) 0%,
+    rgba(12,15,18,0.72) 14%,
+    rgba(12,15,18,0.18) 34%,
+    rgba(12,15,18,0.14) 60%,
+    rgba(12,15,18,0.66) 84%,
+    rgba(12,15,18,0.95) 100%);
+}
+
+/* The gate is a row, and the field must stay readable: the button
+   gives up its generous plate padding so the placeholder fits. */
+.login-row #login-input { flex: 1 1 auto; min-width: 0; }
+.login-row #login-btn {
+  font-size: 15px;
+  font-variation-settings: 'wdth' 88;
+  padding-left: calc(var(--pad) * 1.15);
+  padding-right: calc(var(--pad) * 0.5 + var(--point));
+}
+.login-row #login-btn .plate-bolt { left: calc(var(--pad) * 0.42); }
+.login-row #login-input { padding: 0 12px; }
+.login-row #login-btn { font-size: 14px; letter-spacing: -0.005em; }
