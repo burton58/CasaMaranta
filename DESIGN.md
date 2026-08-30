@@ -385,6 +385,7 @@ The browser chrome is part of the design. Text selection is slate on signal yell
 - **Don't** draw a box around a group of content. Hairline and spacing only; the notice is the one sanctioned exception.
 - **Don't** build a wide desktop layout. Above 620px the app is a 390 × 844 phone frame by product decision.
 - **Don't** add a third signature animation. The home journey and `plate-settle` are the authored moments.
+- **Don't** put `padding-bottom: env(safe-area-inset-bottom)` inside a fixed height. With `border-box` the inset eats the content box instead of extending the bar: the bottom nav shipped at 66px with 34px of padding on an iPhone, leaving 31px for a 36px stack and squashing the icons to 16x21. Add the inset to the height (`--nav-safe`), keep the padding, and give edge-bar icons `flex-shrink: 0`.
 
 ### Standing Exceptions
 
